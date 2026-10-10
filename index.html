@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Roast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a café counter. Warm paper page, hero with the logo on its own saucer card, pricing as a café menu board with dotted leaders, process as a brew sequence. */
+:root{
+  --paper:#F7EEDD;
+  --foam:#FFF8EC;
+  --espresso:#3B2418;
+  --coffee:#7A4A2E;
+  --caramel:#B8693C;
+  --line:#E3D2B8;
+  --muted:#7C6553;
+  --board:#2E1F17;
+  --board-ink:#F5E7D2;
+  --board-accent:#E0A06E;
+  --logo-bg:#F8F0E2;
+  --font-display:"Commissioner", "Helvetica Neue", Arial, sans-serif;
+  --font-body:"Commissioner", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --step-0:1rem; --step-1:1.25rem; --step-2:1.6rem; --step-3:2.2rem; --step-4:clamp(2.4rem, 5.4vw, 4.2rem);
+  --wrap:1120px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#1C130E; --foam:#271A13; --espresso:#F3E6D3; --coffee:#D7B08E;
+    --caramel:#E0995F; --line:#3E2C21; --muted:#B39A85;
+    --board:#120C09; --board-ink:#F5E7D2; --board-accent:#E8A874;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#1C130E; --foam:#271A13; --espresso:#F3E6D3; --coffee:#D7B08E;
+  --caramel:#E0995F; --line:#3E2C21; --muted:#B39A85;
+  --board:#120C09; --board-ink:#F5E7D2; --board-accent:#E8A874;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--espresso);font-family:var(--font-body);font-size:17px;line-height:1.6}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,32px)}
+h1,h2,h3{font-family:var(--font-display);line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:var(--step-3);font-weight:800;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
+.eyebrow{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--caramel)}
+.lede{color:var(--muted);max-width:60ch}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{font-weight:900;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;font-size:1.05rem}
+.brand span{color:var(--caramel)}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:.95rem}
+.nav ul a{text-decoration:none;color:var(--muted)}
+.nav ul a:hover{color:var(--espresso)}
+@media (max-width:720px){.nav ul{display:none}}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 .98rem var(--font-body);padding:12px 20px;border-radius:999px;border:1.5px solid var(--espresso);background:var(--espresso);color:var(--paper);text-decoration:none;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--espresso)}
+.btn.small{padding:8px 16px;font-size:.9rem}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center;padding-block:clamp(48px,8vw,96px)}
+.hero h1{font-size:var(--step-4);font-weight:900;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--caramel)}
+.hero .stack{display:flex;flex-direction:column;gap:22px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+.code-line{font-family:var(--font-mono);font-size:.85rem;color:var(--muted)}
+.code-line b{color:var(--caramel);font-weight:600}
+.saucer{background:var(--logo-bg);border-radius:28px;padding:20px;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(59,36,24,.35);justify-self:center;max-width:380px;width:100%}
+.saucer img{display:block;width:100%;height:auto;border-radius:16px}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.saucer{max-width:300px;order:-1}}
+
+
+/* section scaffolding */
+section{padding-block:clamp(56px,8vw,96px)}
+.section-head{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
+.alt{background:var(--foam);border-block:1px solid var(--line)}
+
+/* features */
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.feature{background:var(--paper);padding:28px;display:flex;flex-direction:column;gap:10px}
+.alt .feature{background:var(--foam)}
+.feature h3{font-size:var(--step-1);font-weight:800}
+.feature p{color:var(--muted);font-size:.97rem}
+.feature .tag{font-family:var(--font-mono);font-size:.75rem;color:var(--caramel)}
+@media (max-width:900px){.features{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.features{grid-template-columns:1fr}}
+
+/* menu board */
+.board{background:var(--board);color:var(--board-ink);border-radius:24px;padding:clamp(24px,5vw,56px);display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,40px)}
+.item .two-col{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 32px}
+@media (max-width:560px){.item .two-col{grid-template-columns:1fr}}
+.board-title{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px dashed color-mix(in srgb,var(--board-ink) 30%,transparent);padding-bottom:20px}
+.board-title h2{color:var(--board-ink)}
+.board-title .eyebrow{color:var(--board-accent)}
+.item{display:flex;flex-direction:column;gap:14px}
+.item .row{display:flex;align-items:baseline;gap:8px}
+.item h3{font-size:var(--step-2);font-weight:900}
+.item .dots{flex:1;border-bottom:2px dotted color-mix(in srgb,var(--board-ink) 35%,transparent);transform:translateY(-6px)}
+.item .price{font-family:var(--font-mono);font-weight:600;font-size:var(--step-1);color:var(--board-accent);font-variant-numeric:tabular-nums}
+.item .size{font-family:var(--font-mono);font-size:.78rem;opacity:.7;letter-spacing:.06em;text-transform:uppercase}
+.item ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:.95rem;opacity:.9}
+.item li::before{content:"· ";color:var(--board-accent)}
+.item.house{position:relative}
+.item.house .badge{align-self:flex-start;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:var(--board-accent);color:var(--board);padding:3px 10px;border-radius:999px}
+.board-note{grid-column:1/-1;font-size:.85rem;opacity:.65}
+@media (max-width:860px){.board{grid-template-columns:1fr}}
+
+/* demo */
+.demo .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+@media (max-width:820px){.demo .wrap{grid-template-columns:1fr}}
+.phone{justify-self:center;width:min(300px,100%);background:var(--espresso);border-radius:40px;padding:12px;box-shadow:0 40px 70px -35px rgba(59,36,24,.5)}
+.screen{background:#FBF5EA;color:#3B2418;border-radius:30px;padding:22px 18px;display:flex;flex-direction:column;gap:14px;min-height:480px}
+.screen .shop{font-weight:900;font-size:1.25rem}
+.screen .meta{font-family:var(--font-mono);font-size:.72rem;color:#8A6E58}
+.screen .tabs{display:flex;gap:6px;flex-wrap:wrap}
+.screen .tabs span{font-size:.75rem;padding:4px 10px;border-radius:999px;border:1px solid #E3D2B8}
+.screen .tabs span.on{background:#3B2418;color:#FBF5EA;border-color:#3B2418}
+.screen .mi{display:flex;justify-content:space-between;gap:10px;font-size:.88rem;border-bottom:1px dashed #E3D2B8;padding-bottom:8px}
+.screen .mi small{display:block;color:#8A6E58;font-size:.72rem}
+.screen .mi b{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.screen .cta{margin-top:auto;background:#B8693C;color:#fff;text-align:center;font-weight:600;font-size:.88rem;padding:10px;border-radius:12px}
+.demo-points{display:flex;flex-direction:column;gap:18px;margin-top:28px;padding:0;list-style:none}
+.demo-points li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.demo-points code{font-family:var(--font-mono);font-size:.78rem;color:var(--caramel);padding-top:4px;min-width:5.5ch}
+.demo-points strong{display:block}
+.demo-points span{color:var(--muted);font-size:.95rem}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:2px solid var(--espresso)}
+.steps .when{font-family:var(--font-mono);font-size:.78rem;color:var(--caramel)}
+.steps h3{font-size:var(--step-1);font-weight:800}
+.steps p{color:var(--muted);font-size:.95rem}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* faq */
+.faq{display:flex;flex-direction:column;max-width:780px}
+.faq details{border-bottom:1px solid var(--line);padding-block:18px}
+.faq summary{cursor:pointer;font-weight:600;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--font-mono);color:var(--caramel)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{color:var(--muted);margin-top:10px;max-width:65ch}
+
+/* contact */
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,72px)}
+@media (max-width:820px){.contact .wrap{grid-template-columns:1fr}}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+@media (max-width:520px){form{grid-template-columns:1fr}}
+label{font-size:.85rem;font-weight:600}
+input,select,textarea{font:inherit;font-size:1rem;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--foam);color:var(--espresso);width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--caramel)}
+textarea{min-height:120px;resize:vertical}
+.form-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.ok{font-size:.95rem;color:var(--coffee)}
+
+footer{border-top:1px solid var(--line);padding-block:32px;font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer .code-line{font-size:.8rem}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Κύριο μενού">
+  <div class="wrap">
+    <a class="brand" href="#top">Digital <span>Roast</span></a>
+    <ul>
+      <li><a href="#ti-kanoume">Τι κάνουμε</a></li>
+      <li><a href="#menou">Πακέτα</a></li>
+      <li><a href="#diadikasia">Διαδικασία</a></li>
+      <li><a href="#faq">Ερωτήσεις</a></li>
+    </ul>
+    <a class="btn small" href="#epikoinonia">Ζήτα προσφορά</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="stack">
+      <span class="eyebrow">Web agency για καφετέριες &amp; μπαρ</span>
+      <h1>Ψήνουμε websites που <em>γεμίζουν τραπέζια.</em></h1>
+      <p class="lede">Η Digital Roast φτιάχνει sites για καφετέριες και μπαρ. Ο πελάτης σε βρίσκει στο Google, βλέπει τον κατάλογο από το κινητό του και έρχεται.</p>
+      <div class="actions">
+        <a class="btn" href="rantevou.html">Κλείσε ένα δωρεάν ραντεβού</a>
+        <a class="btn ghost" href="#menou">Δες τα πακέτα</a>
+      </div>
+      <p class="code-line">&lt;site&gt; έτοιμο σε <b>2–3 εβδομάδες</b> · φιλοξενία &amp; υποστήριξη <b>μέσα</b> &lt;/site&gt;</p>
+    </div>
+    <div class="saucer">
+      <img src="logo.jpg" alt="Λογότυπο Digital Roast Web Agency: φλιτζάνι καφέ με ατμό που γίνεται κώδικας">
+    </div>
+  </div>
+</header>
+
+<section class="alt" id="ti-kanoume">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Τι σερβίρουμε</span>
+      <h2>Όλα όσα χρειάζεται ένα μαγαζί στο ίντερνετ</h2>
+      <p class="lede">Δουλεύουμε μόνο με χώρους εστίασης, οπότε ξέρουμε τι ψάχνει ο πελάτης πριν κάτσει.</p>
+    </div>
+    <div class="features">
+      <article class="feature"><span class="tag">/website</span><h3>Site που φορτώνει γρήγορα</h3><p>Σχεδιασμένο πρώτα για κινητό, με φωτογραφίες του χώρου, ωράριο, χάρτη και κουμπί κλήσης.</p></article>
+      <article class="feature"><span class="tag">/menu</span><h3>Ο κατάλογος στο site</h3><p>Καφέδες, ροφήματα και τιμές σε μια σελίδα που διαβάζεται εύκολα στο κινητό. Ελληνικά και αγγλικά για τους τουρίστες.</p></article>
+      <article class="feature"><span class="tag">/google</span><h3>Google Business &amp; Maps</h3><p>Στήνουμε και φτιάχνουμε το προφίλ σου ώστε να βγαίνεις στο «καφέ κοντά μου».</p></article>
+      <article class="feature"><span class="tag">/instagram</span><h3>Σύνδεση με social</h3><p>Το Instagram σου μέσα στο site, ώστε οι νέες αναρτήσεις να φαίνονται αυτόματα.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="menou">
+  <div class="wrap">
+    <div class="board">
+      <div class="board-title">
+        <div>
+          <span class="eyebrow">Ο κατάλογός μας</span>
+          <h2>Ένα πακέτο, όλα μέσα</h2>
+        </div>
+        <span class="code-line" style="color:inherit;opacity:.7">εφάπαξ κόστος · τιμές χωρίς ΦΠΑ</span>
+      </div>
+
+      <div class="item house">
+        <span class="badge">Η πρόταση του barista</span>
+        <div class="row"><h3>Espresso</h3><span class="dots"></span><span class="price">250€</span></div>
+        <ul class="two-col">
+          <li>Σελίδα μίας ενότητας (one-page)</li>
+          <li>Ωράριο, χάρτης, τηλέφωνο</li>
+          <li>Σύνδεση με Instagram</li>
+          <li>Google Business προφίλ</li>
+          <li>Σελίδα με τον κατάλογο</li>
+          <li>Ελληνικά &amp; αγγλικά</li>
+        </ul>
+        <a class="btn" href="rantevou.html" style="align-self:flex-start;background:var(--board-accent);border-color:var(--board-accent);color:var(--board)">Κλείσε ραντεβού</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="alt demo">
+  <div class="wrap">
+    <div>
+      <div class="section-head" style="margin-bottom:0">
+        <span class="eyebrow">Στο κινητό</span>
+        <h2>Ο κατάλογός σου, όπως τον βλέπει ο πελάτης.</h2>
+        <p class="lede">Ένα παράδειγμα καταλόγου όπως τον στήνουμε. Το μαγαζί στην οθόνη είναι φανταστικό.</p>
+      </div>
+      <ul class="demo-points">
+        <li><code>0,8s</code><div><strong>Ανοίγει αμέσως</strong><span>Χωρίς εφαρμογή, χωρίς PDF που μεγεθύνεις με τα δάχτυλα.</span></div></li>
+        <li><code>EL/EN</code><div><strong>Δύο γλώσσες με ένα πάτημα</strong><span>Ο τουρίστης βλέπει «Freddo Espresso», όχι μετάφραση από μηχανή.</span></div></li>
+      </ul>
+    </div>
+    <div class="phone" aria-label="Παράδειγμα ψηφιακού καταλόγου σε κινητό">
+      <div class="screen">
+        <div>
+          <div class="shop">Καφέ Λιμάνι</div>
+          <div class="meta">ανοιχτά · 08:00–02:00</div>
+        </div>
+        <div class="tabs"><span class="on">Καφέδες</span><span>Brunch</span><span>Κοκτέιλ</span><span>EN</span></div>
+        <div class="mi"><div>Freddo Espresso<small>διπλός, μέτρια γλυκός</small></div><b>3,00€</b></div>
+        <div class="mi"><div>Freddo Cappuccino<small>με αφρόγαλα</small></div><b>3,50€</b></div>
+        <div class="mi"><div>Flat White<small>specialty, Αιθιοπία</small></div><b>3,80€</b></div>
+        <div class="mi"><div>Ελληνικός<small>μονός ή διπλός</small></div><b>2,50€</b></div>
+        <div class="mi"><div>Φρέντο με γάλα βρώμης<small>+0,50€ φυτικό γάλα</small></div><b>3,50€</b></div>
+        <div class="cta">Βρες μας στον χάρτη</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diadikasia">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Πώς δουλεύουμε</span>
+      <h2>Από τον κόκκο στο φλιτζάνι</h2>
+    </div>
+    <ol class="steps">
+      <li><span class="when">Ημέρα 1</span><h3>Γνωριμία</h3><p>Ερχόμαστε στο μαγαζί ή μιλάμε online. Μας λες τι σερβίρεις και ποιος είναι ο πελάτης σου.</p></li>
+      <li><span class="when">Εβδομάδα 1</span><h3>Σχέδιο</h3><p>Σου δείχνουμε πώς θα μοιάζει το site στο κινητό. Αλλάζουμε ό,τι θέλεις πριν γράψουμε κώδικα.</p></li>
+      <li><span class="when">Εβδομάδα 2</span><h3>Ψήσιμο</h3><p>Στήνουμε το site και τον κατάλογο. Ανεβάζουμε φωτογραφίες και τιμές.</p></li>
+      <li><span class="when">Εβδομάδα 3</span><h3>Σερβίρισμα</h3><p>Βγαίνει online και σου δείχνουμε πώς το διαχειρίζεσαι.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="alt" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Συχνές ερωτήσεις</span>
+      <h2>Πριν παραγγείλεις</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Έχω ήδη site. Μπορείτε να το φτιάξετε;</summary><p>Ναι. Κρατάμε το domain σου και ξαναστήνουμε το site ώστε να είναι γρήγορο στο κινητό και να βγαίνει στο Google.</p></details>
+      <details><summary>Τι γίνεται αν κάτι χαλάσει;</summary><p>Η μηνιαία υποστήριξη καλύπτει φιλοξενία, ενημερώσεις και διορθώσεις. Μας στέλνεις μήνυμα και το κοιτάμε την ίδια μέρα.</p></details>
+      <details><summary>Δουλεύετε και εκτός πόλης;</summary><p>Ναι, σε όλη την Ελλάδα. Τα περισσότερα τα κάνουμε online και για φωτογράφιση ερχόμαστε στο μαγαζί.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="epikoinonia">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Επικοινωνία</span>
+      <h2>Πάμε για έναν καφέ;</h2>
+      <p class="lede">Πες μας για το μαγαζί σου και σου στέλνουμε προσφορά μέσα σε 24 ώρες. Η πρώτη συνάντηση δεν κοστίζει τίποτα.</p>
+    </div>
+    <form id="contact-form" novalidate>
+      <div class="field"><label for="f-name">Όνομα</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="f-shop">Όνομα μαγαζιού</label><input id="f-shop" name="shop" required></div>
+      <div class="field"><label for="f-phone">Τηλέφωνο</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+      <div class="field"><label for="f-type">Τι μαγαζί έχεις;</label>
+        <select id="f-type" name="type"><option>Καφετέρια</option><option>Μπαρ</option><option>All-day καφέ-μπαρ</option><option>Άλλο</option></select></div>
+      <div class="field full"><label for="f-msg">Μήνυμα</label><textarea id="f-msg" name="msg" placeholder="π.χ. Θέλω site με τον κατάλογο και φωτογραφίες από το μαγαζί."></textarea></div>
+      <div class="form-actions">
+        <button class="btn" type="submit">Στείλε το αίτημα</button>
+        <p class="ok" id="form-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Digital Roast Web Agency</span>
+    <span class="code-line">&lt;/made with ☕ &amp; code&gt;</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var status = document.getElementById('form-status');
+  var required = ['f-name', 'f-shop', 'f-phone'];
+  var missing = required.filter(function (id) { return !document.getElementById(id).value.trim(); });
+  if (missing.length) {
+    status.textContent = 'Συμπλήρωσε όνομα, μαγαζί και τηλέφωνο για να σε καλέσουμε.';
+    document.getElementById(missing[0]).focus();
+    return;
+  }
+  var shop = document.getElementById('f-shop').value.trim();
+  status.textContent = 'Δοκιμαστική λειτουργία: η φόρμα δεν στέλνει ακόμα μηνύματα. Το αίτημα για το «' + shop + '» δεν καταχωρήθηκε.';
+});
+</script>
+</body>
+</html>

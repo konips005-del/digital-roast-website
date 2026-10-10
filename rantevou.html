@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Κλείσε ραντεβού · Digital Roast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --paper:#F7EEDD;
+  --espresso:#3B2418;
+  --caramel:#B8693C;
+  --line:#E3D2B8;
+  --muted:#7C6553;
+  --logo-bg:#F8F0E2;
+  --font-body:"Commissioner", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{color-scheme:dark;--paper:#1C130E;--espresso:#F3E6D3;--caramel:#E0995F;--line:#3E2C21;--muted:#B39A85}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--espresso);font-family:var(--font-body);line-height:1.6}
+.wrap{max-width:960px;margin-inline:auto;padding-inline:clamp(16px,4vw,32px);padding-block:32px 48px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.back{align-self:flex-start;font-size:.95rem;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--espresso)}
+.logo{background:var(--logo-bg);border:1px solid var(--line);border-radius:24px;padding:14px;width:min(220px,60%)}
+.logo img{display:block;width:100%;height:auto;border-radius:12px}
+.eyebrow{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--caramel)}
+h1{margin:0;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;text-align:center;text-wrap:balance;line-height:1.15}
+.lede{margin:0;color:var(--muted);text-align:center;max-width:55ch}
+.calendar{width:100%;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.calendly-inline-widget{min-width:320px;height:700px}
+:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="index.html">← Πίσω στην αρχική</a>
+  <a class="logo" href="index.html"><img src="logo.jpg" alt="Digital Roast Web Agency"></a>
+  <span class="eyebrow">Δωρεάν γνωριμία · 30 λεπτά</span>
+  <h1>Κλείσε ραντεβού για καφέ</h1>
+  <p class="lede">Διάλεξε μέρα και ώρα. Θα μιλήσουμε για το μαγαζί σου και θα σου πούμε τι χρειάζεσαι, χωρίς καμία δέσμευση.</p>
+
+  <div class="calendar">
+    <!-- Calendly inline widget begin -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/konips005/30min?hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Calendly inline widget end -->
+  </div>
+</main>
+</body>
+</html>
