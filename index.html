@@ -185,16 +185,14 @@ section{padding-block:clamp(60px,9vw,110px)}
 @media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
 .contact .section-head{margin-bottom:0}
 .direct{display:flex;flex-direction:column;gap:6px;margin-top:22px;font-family:var(--font-mono);font-size:.88rem;color:var(--muted)}
-form{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-width:0}
-.field{display:flex;flex-direction:column;gap:6px;min-width:0}
-.field.full{grid-column:1/-1}
-@media (max-width:520px){form{grid-template-columns:1fr}}
-label{font-size:.85rem;font-weight:600}
-input,select,textarea{font:inherit;font-size:1rem;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
-textarea{min-height:120px;resize:vertical}
-.form-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.ok{font-size:.95rem;color:var(--accent)}
+.direct{font-size:1rem;gap:12px}
+.direct a{color:var(--ink);text-decoration:none;font-weight:600;font-family:var(--font-body)}
+.direct a:hover{color:var(--accent)}
+.cal{min-width:0;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.calendly-inline-widget{width:100%;height:700px}
+footer .contact-links{display:flex;flex-wrap:wrap;gap:8px 20px}
+footer .contact-links a{color:var(--ink);text-decoration:none;font-weight:600}
+footer .contact-links a:hover{color:var(--accent)}
 
 footer{border-top:1px solid var(--line);padding-block:30px;font-size:.88rem;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
@@ -297,7 +295,7 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
         <div class="price"><small>από</small>450€</div>
         <p class="for">Για νέα επιχείρηση, καμπάνια ή προϊόν που χρειάζεται παρουσία γρήγορα.</p>
         <ul><li>Μία σελίδα με έως 6 ενότητες</li><li>Φόρμα επικοινωνίας</li><li>Βασικό SEO &amp; Google Analytics</li><li>Παράδοση σε 2 εβδομάδες</li></ul>
-        <a class="btn ghost" href="#epikoinonia" data-pack="Landing page">Ζήτα προσφορά</a>
+        <a class="btn ghost" href="#epikoinonia">Ζήτα προσφορά</a>
       </div>
       <div class="plan hot">
         <div class="top"><span class="kind">Business</span><span class="badge">Η πιο συχνή επιλογή</span></div>
@@ -305,7 +303,7 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
         <div class="price"><small>από</small>950€</div>
         <p class="for">Για επιχειρήσεις που θέλουν πλήρες site και να το ενημερώνουν μόνες τους.</p>
         <ul><li>Έως 8 σελίδες με custom σχέδιο</li><li>Διαχείριση περιεχομένου (CMS)</li><li>Blog &amp; δύο γλώσσες</li><li>Τεχνικό SEO &amp; Google Business</li><li>Εκπαίδευση για τη διαχείριση</li></ul>
-        <a class="btn" href="#epikoinonia" data-pack="Εταιρικό site">Ζήτα προσφορά</a>
+        <a class="btn" href="#epikoinonia">Ζήτα προσφορά</a>
       </div>
       <div class="plan">
         <div class="top"><span class="kind">Commerce</span></div>
@@ -313,7 +311,7 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
         <div class="price"><small>από</small>1.650€</div>
         <p class="for">Για όσους πουλάνε online και θέλουν ένα κατάστημα που τρέχει χωρίς προβλήματα.</p>
         <ul><li>Ό,τι έχει το Εταιρικό site</li><li>Κατάλογος &amp; φίλτρα προϊόντων</li><li>Πληρωμές με κάρτα &amp; αντικαταβολή</li><li>Σύνδεση με courier</li></ul>
-        <a class="btn ghost" href="#epikoinonia" data-pack="E-shop">Ζήτα προσφορά</a>
+        <a class="btn ghost" href="#epikoinonia">Ζήτα προσφορά</a>
       </div>
     </div>
     <p class="plans-note">Τιμές χωρίς ΦΠΑ. Φιλοξενία, domain και τεχνική υποστήριξη από 15€ / μήνα. Για web εφαρμογές και custom έργα δίνουμε προσφορά μετά από ανάλυση αναγκών.</p>
@@ -357,30 +355,29 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
       <div class="section-head">
         <span class="eyebrow">Επικοινωνία</span>
         <h2>Ας φτιάξουμε κάτι μαζί</h2>
-        <p class="lede">Πες μας για το project σου και σου στέλνουμε προσφορά μέσα σε 24 ώρες. Η πρώτη συνάντηση δεν κοστίζει τίποτα.</p>
+        <p class="lede">Κλείσε μια δωρεάν γνωριμία 30 λεπτών, χωρίς δέσμευση. Ή πάρε μας κατευθείαν τηλέφωνο.</p>
       </div>
+      <p class="direct">
+        <a href="tel:+306934361336">📞 693 436 1336</a>
+        <a href="mailto:digitalroast1@gmail.com">✉️ digitalroast1@gmail.com</a>
+        <a href="https://www.instagram.com/digitalroast.io/" target="_blank" rel="noopener">📷 @digitalroast.io</a>
+      </p>
     </div>
-    <form id="contact-form" novalidate>
-      <div class="field"><label for="f-name">Όνομα</label><input id="f-name" name="name" autocomplete="name" required></div>
-      <div class="field"><label for="f-company">Επιχείρηση</label><input id="f-company" name="company" autocomplete="organization"></div>
-      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="field"><label for="f-phone">Τηλέφωνο</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
-      <div class="field"><label for="f-type">Τι χρειάζεσαι;</label>
-        <select id="f-type" name="type"><option>Εταιρικό site</option><option>E-shop</option><option>Landing page</option><option>Web εφαρμογή</option><option>Redesign υπάρχοντος site</option><option>Δεν είμαι σίγουρος</option></select></div>
-      <div class="field"><label for="f-budget">Προϋπολογισμός</label>
-        <select id="f-budget" name="budget"><option>Έως 1.000€</option><option selected>1.000–3.000€</option><option>3.000–8.000€</option><option>Πάνω από 8.000€</option><option>Δεν ξέρω ακόμα</option></select></div>
-      <div class="field full"><label for="f-msg">Πες μας λίγα λόγια</label><textarea id="f-msg" name="msg" placeholder="π.χ. Έχουμε λογιστικό γραφείο και θέλουμε site με φόρμα για ραντεβού και ενότητα με νέα."></textarea></div>
-      <div class="form-actions">
-        <button class="btn" type="submit">Στείλε το αίτημα</button>
-        <p class="ok" id="form-status" role="status" aria-live="polite"></p>
-      </div>
-    </form>
+    <div class="cal">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/konips005/30min?hide_gdpr_banner=1"></div>
+      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <span class="logo"><span class="wordmark lg"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span><span>© 2026 Digital Roast · Web design · Development · E-shops</span></span>
+    <span class="contact-links">
+      <a href="tel:+306934361336">📞 693 436 1336</a>
+      <a href="mailto:digitalroast1@gmail.com">✉️ digitalroast1@gmail.com</a>
+      <a href="https://www.instagram.com/digitalroast.io/" target="_blank" rel="noopener">📷 @digitalroast.io</a>
+    </span>
     <span class="code-line">&lt;/made with ☕ &amp; code&gt;</span>
   </div>
 </footer>
@@ -545,20 +542,6 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
   items.forEach(function(li){ li.addEventListener('pointerenter', function(){ highlight(li.dataset.l); }); });
   highlight('3');
 
-  /* ---------- Package buttons prefill ---------- */
-  var typeSel = document.getElementById('f-type');
-  document.querySelectorAll('[data-pack]').forEach(function(a){
-    a.addEventListener('click', function(){ var v = a.dataset.pack; for (var i=0;i<typeSel.options.length;i++){ if (typeSel.options[i].text === v) typeSel.selectedIndex = i; } });
-  });
-
-  /* ---------- Form ---------- */
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var status = document.getElementById('form-status');
-    var missing = ['f-name','f-email'].filter(function (id) { return !document.getElementById(id).value.trim(); });
-    if (missing.length) { status.textContent = 'Συμπλήρωσε όνομα και email για να σου απαντήσουμε.'; document.getElementById(missing[0]).focus(); return; }
-    status.textContent = 'Δοκιμαστική λειτουργία: η φόρμα δεν στέλνει ακόμα μηνύματα, οπότε το αίτημα δεν καταχωρήθηκε.';
-  });
 })();
 </script>
 
