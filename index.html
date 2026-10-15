@@ -8,36 +8,22 @@
 /* Layout: a studio at night. Dark-first page; a live 3D scene of floating browser windows in the hero, an exploded 3D "anatomy of a website" stack, tilt cards for services, a copper accent carried over from the Roast brand. */
 :root{
   color-scheme:dark;
-  --bg:#0F0B09;
-  --surface:#18120F;
-  --surface-2:#221A15;
-  --ink:#F3EBE3;
-  --muted:#A6968A;
-  --line:#2F241D;
-  --accent:#EA8A4B;
-  --accent-2:#F6C29A;
-  --accent-ink:#1A0E06;
-  --glow:rgba(234,138,75,.22);
+  --bg:#0A0A0B;
+  --surface:#121214;
+  --surface-2:#1B1B1E;
+  --ink:#ECEAE6;
+  --muted:#9A968F;
+  --line:#26262A;
+  --accent:#B89A6A;
+  --accent-2:#D9C3A0;
+  --accent-ink:#14110C;
+  --glow:rgba(184,154,106,.13);
   --wm-a:#FFFFFF;--wm-b:#D6D3D8;--wm-x:#7E2610;--wm-cursor:#FFFFFF;--wm-cursor-line:#111111;
   --font-display:"Commissioner","Helvetica Neue",Arial,sans-serif;
   --font-body:"Commissioner","Helvetica Neue",Arial,sans-serif;
   --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
   --step-0:1rem;--step-1:1.25rem;--step-2:1.6rem;--step-3:clamp(1.9rem,3.6vw,2.7rem);--step-4:clamp(2.5rem,6.2vw,4.9rem);
   --wrap:1180px;
-}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
-    color-scheme:light;
-    --bg:#F4F1EE;--surface:#FFFFFF;--surface-2:#EBE4DD;--ink:#1B1310;--muted:#6B5C51;--line:#DDD2C8;
-    --accent:#C25B22;--accent-2:#8F3F12;--accent-ink:#FFF6EF;--glow:rgba(194,91,34,.16);
-    --wm-a:#3A2C25;--wm-b:#1B1310;--wm-x:#E9A27A;--wm-cursor:#FFFFFF;--wm-cursor-line:#1B1310;
-  }
-}
-:root[data-theme="light"]{
-  color-scheme:light;
-  --bg:#F4F1EE;--surface:#FFFFFF;--surface-2:#EBE4DD;--ink:#1B1310;--muted:#6B5C51;--line:#DDD2C8;
-  --accent:#C25B22;--accent-2:#8F3F12;--accent-ink:#FFF6EF;--glow:rgba(194,91,34,.16);
-    --wm-a:#3A2C25;--wm-b:#1B1310;--wm-x:#E9A27A;--wm-cursor:#FFFFFF;--wm-cursor-line:#1B1310;
 }
 
 *{box-sizing:border-box}
@@ -158,7 +144,7 @@ section{padding-block:clamp(60px,9vw,110px)}
 .plan li{display:grid;grid-template-columns:18px 1fr;gap:10px}
 .plan li::before{content:"";width:8px;height:8px;margin-top:9px;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
 .plan .btn{margin-top:auto;justify-content:center}
-.plans-note{margin-top:22px;color:var(--muted);font-size:.9rem;max-width:75ch}
+.services.one,.plans.one{grid-template-columns:1fr;max-width:520px}
 
 /* process */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:0;counter-reset:s}
@@ -218,14 +204,14 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
 <header class="hero" id="top">
   <div class="wrap">
     <div class="stack">
-      <span class="eyebrow">Web development studio</span>
-      <h1>Websites που <span class="out">φαίνονται</span> ωραία και <em>φέρνουν πελάτες.</em></h1>
-      <p class="lede">Η Digital Roast σχεδιάζει και αναπτύσσει εταιρικά sites, e-shops και web εφαρμογές για επιχειρήσεις κάθε κλάδου. Γρήγορα, σωστά στημένα για το Google και εύκολα στη διαχείριση.</p>
+      <span class="eyebrow">Websites για γραφεία τελετών</span>
+      <h1>Websites που <span class="out">εμπνέουν</span> εμπιστοσύνη <em>όταν σε χρειάζονται.</em></h1>
+      <p class="lede">Η Digital Roast φτιάχνει sites για γραφεία τελετών. Οι οικογένειες σε βρίσκουν στο Google, βλέπουν τις υπηρεσίες σου και σε καλούν με ένα πάτημα, όποια ώρα κι αν είναι.</p>
       <div class="actions">
         <a class="btn" href="#epikoinonia">Κλείσε δωρεάν γνωριμία</a>
-        <a class="btn ghost" href="#paketa">Δες τα πακέτα</a>
+        <a class="btn ghost" href="#paketa">Δες το πακέτο</a>
       </div>
-      <p class="code-line">&lt;project&gt; παράδοση από <b>2 εβδομάδες</b> · φιλοξενία &amp; υποστήριξη <b>μέσα</b> &lt;/project&gt;</p>
+      <p class="code-line">&lt;site&gt; έτοιμο σε <b>2–3 μέρες</b> · φιλοξενία <b>μέσα</b> &lt;/site&gt;</p>
     </div>
     <div class="scene" id="scene" aria-hidden="true"><div class="fallback"></div></div>
   </div>
@@ -233,7 +219,7 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
 
 <div class="stackbar">
   <div class="wrap">
-    <span>Δουλεύουμε με:</span><b>HTML/CSS</b><b>JavaScript</b><b>React · Next.js</b><b>WordPress</b><b>WooCommerce</b><b>Shopify</b><b>Node.js</b><b>Three.js</b>
+    <span>Δουλεύουμε με:</span><b>HTML/CSS</b><b>JavaScript</b><b>React · Next.js</b><b>WordPress</b><b>Node.js</b><b>Three.js</b>
   </div>
 </div>
 
@@ -241,16 +227,11 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Τι φτιάχνουμε</span>
-      <h2>Από μια σελίδα παρουσίασης μέχρι ολόκληρη πλατφόρμα</h2>
-      <p class="lede">Κάθε project ξεκινά από το τι θέλεις να πετύχεις: τηλεφωνήματα, πωλήσεις, κρατήσεις ή εσωτερική οργάνωση. Η τεχνολογία έρχεται μετά.</p>
+      <h2>Κάνουμε ένα πράγμα, και το κάνουμε σωστά</h2>
+      <p class="lede">Δεν φτιάχνουμε e-shops ούτε εφαρμογές. Φτιάχνουμε sites για γραφεία τελετών: σοβαρά, διακριτικά και γρήγορα στο κινητό.</p>
     </div>
-    <div class="services">
-      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><rect x="6" y="10" width="40" height="30" rx="5" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><path d="M6 17h40" stroke="var(--accent)" stroke-width="1.5"/><rect x="11" y="22" width="16" height="4" rx="2" fill="var(--accent)"/><rect x="11" y="29" width="24" height="3" rx="1.5" fill="var(--muted)"/></svg><h3>Εταιρικά websites</h3><p>Σελίδες υπηρεσιών, ομάδα, blog και φόρμες επικοινωνίας. Το site που δείχνεις με σιγουριά σε κάθε νέο πελάτη.</p><span class="tag">/corporate</span></article>
-      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><path d="M10 14h5l5 20h18l4-14H18" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round" fill="var(--surface-2)"/><circle cx="22" cy="40" r="3" fill="var(--accent)"/><circle cx="35" cy="40" r="3" fill="var(--accent)"/></svg><h3>E-shop</h3><p>Κατάλογος προϊόντων, καλάθι, πληρωμές με κάρτα και αντικαταβολή, σύνδεση με courier και τιμολόγηση.</p><span class="tag">/e-commerce</span></article>
-      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><rect x="8" y="8" width="36" height="36" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><rect x="14" y="15" width="24" height="5" rx="2" fill="var(--ink)" opacity=".8"/><rect x="14" y="24" width="16" height="3" rx="1.5" fill="var(--muted)"/><rect x="14" y="33" width="12" height="5" rx="2.5" fill="var(--accent)"/></svg><h3>Landing pages</h3><p>Μία σελίδα για μία καμπάνια ή ένα προϊόν, σχεδιασμένη να μετατρέπει επισκέπτες σε αιτήματα.</p><span class="tag">/landing</span></article>
-      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><rect x="6" y="10" width="40" height="32" rx="5" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><rect x="6" y="10" width="11" height="32" rx="5" fill="var(--accent)" opacity=".25"/><path d="M22 34l6-7 5 4 8-10" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Web εφαρμογές</h3><p>Πάνελ διαχείρισης, συστήματα κρατήσεων, πύλες πελατών και εργαλεία που φτιάχνονται για τη δική σου ροή.</p><span class="tag">/web-apps</span></article>
-      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="28" r="16" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><path d="M26 28l8-8" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><circle cx="26" cy="28" r="3" fill="var(--accent)"/></svg><h3>Redesign &amp; ταχύτητα</h3><p>Παίρνουμε ένα παλιό ή αργό site, το ξανασχεδιάζουμε και το κάνουμε να φορτώνει σε κάτω από 2 δευτερόλεπτα.</p><span class="tag">/redesign</span></article>
-      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><circle cx="23" cy="23" r="12" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><path d="M32 32l10 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M17 26l4-5 3 3 5-6" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>SEO &amp; συντήρηση</h3><p>Τεχνικό SEO, Google Business, αναλυτικά στοιχεία, ενημερώσεις ασφαλείας και αντίγραφα κάθε μέρα.</p><span class="tag">/care</span></article>
+    <div class="services one">
+      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><rect x="6" y="10" width="40" height="30" rx="5" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><path d="M6 17h40" stroke="var(--accent)" stroke-width="1.5"/><rect x="11" y="22" width="16" height="4" rx="2" fill="var(--accent)"/><rect x="11" y="29" width="24" height="3" rx="1.5" fill="var(--muted)"/></svg><h3>Κατασκευή website</h3><p>Οι υπηρεσίες σου, τηλέφωνο 24 ωρών, διεύθυνση και χάρτης σε ένα site με σχέδιο που δείχνει σεβασμό. Στημένο ώστε να σε βρίσκουν στο Google.</p><span class="tag">/website</span></article>
     </div>
   </div>
 </section>
@@ -274,7 +255,7 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
       <ul class="layers-list" id="layers-list">
         <li data-l="3"><code>design</code><div><strong>Σχεδιασμός UI/UX</strong><span>Wireframes και σχέδια σε Figma, με τα χρώματα και τη γραμματοσειρά της εταιρείας σου.</span></div></li>
         <li data-l="2"><code>front</code><div><strong>Frontend</strong><span>Ο κώδικας που βλέπει ο επισκέπτης. Responsive, προσβάσιμος και γρήγορος σε κάθε κινητό.</span></div></li>
-        <li data-l="1"><code>back</code><div><strong>Backend &amp; CMS</strong><span>Διαχείριση περιεχομένου, βάσεις δεδομένων, πληρωμές και συνδέσεις με τα εργαλεία που ήδη χρησιμοποιείς.</span></div></li>
+        <li data-l="1"><code>back</code><div><strong>Backend &amp; CMS</strong><span>Το περιεχόμενο του site και η σύνδεση με το Google Business και τους χάρτες.</span></div></li>
         <li data-l="0"><code>host</code><div><strong>Φιλοξενία &amp; ασφάλεια</strong><span>Servers, SSL, domain, καθημερινά backups και παρακολούθηση ώστε το site να μένει online.</span></div></li>
       </ul>
     </div>
@@ -285,36 +266,20 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Πακέτα</span>
-      <h2>Ξεκάθαρες τιμές, χωρίς εκπλήξεις</h2>
-      <p class="lede">Εφάπαξ κόστος κατασκευής. Η τελική προσφορά βγαίνει μετά την πρώτη γνωριμία, ανάλογα με το εύρος.</p>
+      <h2>Ένα πακέτο, όλα μέσα</h2>
+      <p class="lede">Μία τιμή, εφάπαξ. Χωρίς κρυφές χρεώσεις.</p>
     </div>
-    <div class="plans">
-      <div class="plan">
-        <div class="top"><span class="kind">Launch</span></div>
-        <h3>Landing page</h3>
-        <div class="price"><small>από</small>450€</div>
-        <p class="for">Για νέα επιχείρηση, καμπάνια ή προϊόν που χρειάζεται παρουσία γρήγορα.</p>
-        <ul><li>Μία σελίδα με έως 6 ενότητες</li><li>Φόρμα επικοινωνίας</li><li>Βασικό SEO &amp; Google Analytics</li><li>Παράδοση σε 2 εβδομάδες</li></ul>
-        <a class="btn ghost" href="#epikoinonia">Ζήτα προσφορά</a>
-      </div>
+    <div class="plans one">
       <div class="plan hot">
-        <div class="top"><span class="kind">Business</span><span class="badge">Η πιο συχνή επιλογή</span></div>
-        <h3>Εταιρικό site</h3>
-        <div class="price"><small>από</small>950€</div>
-        <p class="for">Για επιχειρήσεις που θέλουν πλήρες site και να το ενημερώνουν μόνες τους.</p>
-        <ul><li>Έως 8 σελίδες με custom σχέδιο</li><li>Διαχείριση περιεχομένου (CMS)</li><li>Blog &amp; δύο γλώσσες</li><li>Τεχνικό SEO &amp; Google Business</li><li>Εκπαίδευση για τη διαχείριση</li></ul>
-        <a class="btn" href="#epikoinonia">Ζήτα προσφορά</a>
-      </div>
-      <div class="plan">
-        <div class="top"><span class="kind">Commerce</span></div>
-        <h3>E-shop</h3>
-        <div class="price"><small>από</small>1.650€</div>
-        <p class="for">Για όσους πουλάνε online και θέλουν ένα κατάστημα που τρέχει χωρίς προβλήματα.</p>
-        <ul><li>Ό,τι έχει το Εταιρικό site</li><li>Κατάλογος &amp; φίλτρα προϊόντων</li><li>Πληρωμές με κάρτα &amp; αντικαταβολή</li><li>Σύνδεση με courier</li></ul>
-        <a class="btn ghost" href="#epikoinonia">Ζήτα προσφορά</a>
+        <div class="top"><span class="kind">Website</span></div>
+        <h3>Website γραφείου τελετών</h3>
+        <div class="price">250€</div>
+        <p class="for">Για γραφεία τελετών που θέλουν να τα βρίσκουν οι οικογένειες στο Google.</p>
+        <ul><li>Site μίας σελίδας σε σοβαρό, σκούρο σχέδιο</li><li>Υπηρεσίες &amp; τηλέφωνο 24 ωρών με ένα πάτημα</li><li>Διεύθυνση &amp; χάρτης</li><li>Google Business</li><li>Ελληνικά &amp; αγγλικά</li><li>Φιλοξενία μέσα</li><li>Έτοιμο σε 2–3 μέρες</li></ul>
+        <a class="btn" href="#epikoinonia">Κλείσε ραντεβού</a>
       </div>
     </div>
-    <p class="plans-note">Τιμές χωρίς ΦΠΑ. Φιλοξενία, domain και τεχνική υποστήριξη από 15€ / μήνα. Για web εφαρμογές και custom έργα δίνουμε προσφορά μετά από ανάλυση αναγκών.</p>
+
   </div>
 </section>
 
@@ -322,13 +287,13 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Διαδικασία</span>
-      <h2>Από την ιδέα στο online σε τέσσερα βήματα</h2>
+      <h2>Από την πρώτη κουβέντα στο online σε τρεις μέρες</h2>
     </div>
     <ol class="steps">
       <li><span class="when">Ημέρα 1</span><h3>Γνωριμία</h3><p>Μιλάμε για την επιχείρηση, τους πελάτες σου και τι πρέπει να κάνει το site.</p></li>
-      <li><span class="when">Εβδομάδα 1</span><h3>Σχέδιο</h3><p>Σου δείχνουμε πώς θα μοιάζει σε κινητό και υπολογιστή. Αλλάζουμε ό,τι θέλεις πριν γράψουμε κώδικα.</p></li>
-      <li><span class="when">Εβδομάδα 2–3</span><h3>Ανάπτυξη</h3><p>Γράφουμε τον κώδικα, στήνουμε το CMS και ανεβάζουμε κείμενα και φωτογραφίες.</p></li>
-      <li><span class="when">Εβδομάδα 3–4</span><h3>Launch</h3><p>Ελέγχουμε ταχύτητα και SEO, βγαίνει online και σου δείχνουμε πώς το διαχειρίζεσαι.</p></li>
+      <li><span class="when">Ημέρα 1</span><h3>Σχέδιο</h3><p>Σου δείχνουμε πώς θα μοιάζει σε κινητό και υπολογιστή. Αλλάζουμε ό,τι θέλεις πριν γράψουμε κώδικα.</p></li>
+      <li><span class="when">Ημέρα 2</span><h3>Κατασκευή</h3><p>Γράφουμε τον κώδικα και ανεβάζουμε κείμενα και φωτογραφίες.</p></li>
+      <li><span class="when">Ημέρα 3</span><h3>Online</h3><p>Ελέγχουμε ταχύτητα και Google, και το site βγαίνει online.</p></li>
     </ol>
   </div>
 </section>
@@ -340,10 +305,8 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
       <h2>Πριν ξεκινήσουμε</h2>
     </div>
     <div class="faq">
-      <details open><summary>Μπορώ να αλλάζω μόνος μου κείμενα και φωτογραφίες;</summary><p>Ναι. Σε όλα τα πακέτα εκτός του landing page παίρνεις πίνακα διαχείρισης και μια σύντομη εκπαίδευση. Αλλάζεις κείμενα, φωτογραφίες και προϊόντα χωρίς να μας χρειάζεσαι.</p></details>
-      <details><summary>Έχω ήδη site. Μπορείτε να το ανανεώσετε;</summary><p>Ναι. Κρατάμε το domain και ό,τι περιεχόμενο αξίζει, και ξαναστήνουμε το site ώστε να είναι γρήγορο, σύγχρονο και να μη χάσει τη θέση του στο Google.</p></details>
-      <details><summary>Σε ποια τεχνολογία θα φτιαχτεί;</summary><p>Επιλέγουμε ανάλογα με το έργο: WordPress όταν θέλεις εύκολη διαχείριση, Shopify ή WooCommerce για e-shop, React και Next.js για εφαρμογές με απαιτήσεις. Σου εξηγούμε την επιλογή πριν ξεκινήσουμε.</p></details>
-      <details><summary>Τι γίνεται αν κάτι χαλάσει μετά την παράδοση;</summary><p>Η μηνιαία υποστήριξη καλύπτει φιλοξενία, ενημερώσεις ασφαλείας, backups και διορθώσεις. Μας στέλνεις μήνυμα και το κοιτάμε την ίδια μέρα.</p></details>
+      <details open><summary>Έχω ήδη site. Μπορείτε να το ανανεώσετε;</summary><p>Ναι. Κρατάμε το domain και ό,τι περιεχόμενο αξίζει, και ξαναστήνουμε το site ώστε να είναι γρήγορο, σύγχρονο και να μη χάσει τη θέση του στο Google.</p></details>
+      <details><summary>Τι γίνεται αν κάτι χαλάσει μετά την παράδοση;</summary><p>Μας στέλνεις μήνυμα και το κοιτάμε την ίδια μέρα.</p></details>
       <details><summary>Δουλεύετε με πελάτες εκτός Ελλάδας;</summary><p>Ναι. Οι περισσότερες συναντήσεις γίνονται online, οπότε δουλεύουμε με επιχειρήσεις σε όλη την Ελλάδα και το εξωτερικό.</p></details>
     </div>
   </div>
@@ -372,7 +335,7 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
 
 <footer>
   <div class="wrap">
-    <span class="logo"><span class="wordmark lg"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span><span>© 2026 Digital Roast · Web design · Development · E-shops</span></span>
+    <span class="logo"><span class="wordmark lg"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span><span>© 2026 Digital Roast · Websites για γραφεία τελετών</span></span>
     <span class="contact-links">
       <a href="tel:+306934361336">📞 693 436 1336</a>
       <a href="mailto:digitalroast1@gmail.com">✉️ digitalroast1@gmail.com</a>
@@ -402,14 +365,14 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.55));
     var key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(4, 6, 8); scene.add(key);
-    var warm = new THREE.PointLight(0xff9a5a, 1.4, 30); warm.position.set(-4, -2, 6); scene.add(warm);
+    var warm = new THREE.PointLight(0xd9c3a0, 0.8, 30); warm.position.set(-4, -2, 6); scene.add(warm);
 
     function rr(c, x, y, w, h, r){ c.beginPath(); c.moveTo(x+r,y); c.arcTo(x+w,y,x+w,y+h,r); c.arcTo(x+w,y+h,x,y+h,r); c.arcTo(x,y+h,x,y,r); c.arcTo(x,y,x+w,y,r); c.closePath(); }
     function windowTex(kind){
       var W = 1024, H = 700, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
       var c = cv.getContext('2d');
       var dark = kind === 'app';
-      var bg = dark ? '#1B1411' : '#FBF7F3', chrome = dark ? '#261C17' : '#EFE6DE', ink = dark ? '#F3EBE3' : '#22170F', soft = dark ? '#3A2C24' : '#E4D8CD', acc = '#EA8A4B';
+      var bg = dark ? '#1B1411' : '#FBF7F3', chrome = dark ? '#261C17' : '#EFE6DE', ink = dark ? '#F3EBE3' : '#22170F', soft = dark ? '#3A2C24' : '#E4D8CD', acc = '#B89A6A';
       rr(c, 0, 0, W, H, 34); c.fillStyle = bg; c.fill();
       c.save(); rr(c,0,0,W,H,34); c.clip();
       c.fillStyle = chrome; c.fillRect(0,0,W,64);
@@ -424,13 +387,13 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
         rr(c,60,238,300,14,7); c.fill();
         rr(c,60,286,170,52,14); c.fillStyle=acc; c.fill();
         rr(c,246,286,140,52,14); c.strokeStyle=soft; c.lineWidth=3; c.stroke();
-        var g = c.createLinearGradient(540,110,960,420); g.addColorStop(0,'#F6C29A'); g.addColorStop(1,'#EA8A4B');
+        var g = c.createLinearGradient(540,110,960,420); g.addColorStop(0,'#D9C3A0'); g.addColorStop(1,'#B89A6A');
         rr(c,540,110,420,300,24); c.fillStyle=g; c.fill();
         c.beginPath(); c.arc(750,260,70,0,7); c.fillStyle='rgba(255,255,255,.35)'; c.fill();
         for (var i=0;i<3;i++){ rr(c,60+i*305,460,280,180,20); c.fillStyle=soft; c.fill(); rr(c,84+i*305,488,60,60,14); c.fillStyle=acc; c.globalAlpha=.8; c.fill(); c.globalAlpha=1; rr(c,84+i*305,570,200,14,7); c.fillStyle=dark?'#4A3A30':'#D3C4B6'; c.fill(); }
       } else if (kind === 'shop') {
         rr(c,60,100,260,26,8); c.fillStyle=ink; c.fill();
-        var cols=['#F6C29A','#B9D3C7','#E9B8B0','#C9C3E6','#F1D9A0','#A9C8E8'];
+        var cols=['#D9C3A0','#B9D3C7','#E9B8B0','#C9C3E6','#F1D9A0','#A9C8E8'];
         for (var j=0;j<6;j++){ var x=60+(j%3)*310, y=160+Math.floor(j/3)*260;
           rr(c,x,y,280,236,20); c.fillStyle=soft; c.fill();
           rr(c,x+16,y+16,248,140,14); c.fillStyle=cols[j]; c.fill();
@@ -446,7 +409,7 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
         c.strokeStyle='#3A2C24'; c.lineWidth=2; for (var gl=0;gl<5;gl++){ c.beginPath(); c.moveTo(270,300+gl*75); c.lineTo(950,300+gl*75); c.stroke(); }
         var pts=[[270,560],[360,520],[450,540],[540,450],[630,470],[720,380],[810,400],[950,300]];
         c.beginPath(); pts.forEach(function(p,i){ i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]); }); c.lineTo(950,600); c.lineTo(270,600); c.closePath();
-        var ga=c.createLinearGradient(0,300,0,600); ga.addColorStop(0,'rgba(234,138,75,.45)'); ga.addColorStop(1,'rgba(234,138,75,0)'); c.fillStyle=ga; c.fill();
+        var ga=c.createLinearGradient(0,300,0,600); ga.addColorStop(0,'rgba(184,154,106,.45)'); ga.addColorStop(1,'rgba(184,154,106,0)'); c.fillStyle=ga; c.fill();
         c.beginPath(); pts.forEach(function(p,i){ i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]); }); c.strokeStyle=acc; c.lineWidth=6; c.lineJoin='round'; c.stroke();
         c.beginPath(); c.arc(950,300,12,0,7); c.fillStyle=acc; c.fill();
       }
@@ -457,8 +420,8 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
     var group = new THREE.Group(); scene.add(group);
     var panelGeo = new THREE.PlaneGeometry(4.1, 2.8);
     var defs = [
-      {kind:'app', pos:[1.2, 1.25, -1.6], rot:[0.05,-0.42,0.04]},
-      {kind:'shop', pos:[-1.3, -1.05, -0.4], rot:[-0.04,0.38,-0.03]},
+      {kind:'landing', pos:[1.2, 1.25, -1.6], rot:[0.05,-0.42,0.04]},
+      {kind:'landing', pos:[-1.3, -1.05, -0.4], rot:[-0.04,0.38,-0.03]},
       {kind:'landing', pos:[0.35, 0.05, 0.9], rot:[0.02,-0.22,0]}
     ];
     var panels = defs.map(function(d, i){
@@ -471,7 +434,7 @@ footer .logo{display:flex;flex-direction:column;gap:10px}
       group.add(holder); return holder;
     });
 
-    var copper = new THREE.MeshStandardMaterial({color:0xE8894A, metalness:.65, roughness:.28});
+    var copper = new THREE.MeshStandardMaterial({color:0x9C8459, metalness:.65, roughness:.28});
     var cream = new THREE.MeshStandardMaterial({color:0xF6E3D2, metalness:.1, roughness:.35});
     var shapes = [
       new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.2, 32, 80), copper),
