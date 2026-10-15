@@ -1,317 +1,565 @@
-<!doctype html>
-<html lang="el">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Digital Roast</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: a café counter. Warm paper page, hero with the logo on its own saucer card, pricing as a café menu board with dotted leaders, process as a brew sequence. */
+/* Layout: a studio at night. Dark-first page; a live 3D scene of floating browser windows in the hero, an exploded 3D "anatomy of a website" stack, tilt cards for services, a copper accent carried over from the Roast brand. */
 :root{
-  --paper:#F7EEDD;
-  --foam:#FFF8EC;
-  --espresso:#3B2418;
-  --coffee:#7A4A2E;
-  --caramel:#B8693C;
-  --line:#E3D2B8;
-  --muted:#7C6553;
-  --board:#2E1F17;
-  --board-ink:#F5E7D2;
-  --board-accent:#E0A06E;
-  --logo-bg:#F8F0E2;
-  --font-display:"Commissioner", "Helvetica Neue", Arial, sans-serif;
-  --font-body:"Commissioner", "Helvetica Neue", Arial, sans-serif;
-  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  --step-0:1rem; --step-1:1.25rem; --step-2:1.6rem; --step-3:2.2rem; --step-4:clamp(2.4rem, 5.4vw, 4.2rem);
-  --wrap:1120px;
+  color-scheme:dark;
+  --bg:#0F0B09;
+  --surface:#18120F;
+  --surface-2:#221A15;
+  --ink:#F3EBE3;
+  --muted:#A6968A;
+  --line:#2F241D;
+  --accent:#EA8A4B;
+  --accent-2:#F6C29A;
+  --accent-ink:#1A0E06;
+  --glow:rgba(234,138,75,.22);
+  --wm-a:#FFFFFF;--wm-b:#D6D3D8;--wm-x:#7E2610;--wm-cursor:#FFFFFF;--wm-cursor-line:#111111;
+  --font-display:"Commissioner","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Commissioner","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --step-0:1rem;--step-1:1.25rem;--step-2:1.6rem;--step-3:clamp(1.9rem,3.6vw,2.7rem);--step-4:clamp(2.5rem,6.2vw,4.9rem);
+  --wrap:1180px;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --paper:#1C130E; --foam:#271A13; --espresso:#F3E6D3; --coffee:#D7B08E;
-    --caramel:#E0995F; --line:#3E2C21; --muted:#B39A85;
-    --board:#120C09; --board-ink:#F5E7D2; --board-accent:#E8A874;
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#F4F1EE;--surface:#FFFFFF;--surface-2:#EBE4DD;--ink:#1B1310;--muted:#6B5C51;--line:#DDD2C8;
+    --accent:#C25B22;--accent-2:#8F3F12;--accent-ink:#FFF6EF;--glow:rgba(194,91,34,.16);
+    --wm-a:#3A2C25;--wm-b:#1B1310;--wm-x:#E9A27A;--wm-cursor:#FFFFFF;--wm-cursor-line:#1B1310;
   }
 }
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --paper:#1C130E; --foam:#271A13; --espresso:#F3E6D3; --coffee:#D7B08E;
-  --caramel:#E0995F; --line:#3E2C21; --muted:#B39A85;
-  --board:#120C09; --board-ink:#F5E7D2; --board-accent:#E8A874;
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#F4F1EE;--surface:#FFFFFF;--surface-2:#EBE4DD;--ink:#1B1310;--muted:#6B5C51;--line:#DDD2C8;
+  --accent:#C25B22;--accent-2:#8F3F12;--accent-ink:#FFF6EF;--glow:rgba(194,91,34,.16);
+    --wm-a:#3A2C25;--wm-b:#1B1310;--wm-x:#E9A27A;--wm-cursor:#FFFFFF;--wm-cursor-line:#1B1310;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--paper);color:var(--espresso);font-family:var(--font-body);font-size:17px;line-height:1.6}
-.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,32px)}
-h1,h2,h3{font-family:var(--font-display);line-height:1.1;text-wrap:balance;margin:0}
-h2{font-size:var(--step-3);font-weight:800;letter-spacing:-.01em}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:700px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+h1,h2,h3{font-family:var(--font-display);line-height:1.04;text-wrap:balance;margin:0}
+h2{font-size:var(--step-3);font-weight:800;letter-spacing:-.025em}
 p{margin:0}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
-.eyebrow{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--caramel)}
-.lede{color:var(--muted);max-width:60ch}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.eyebrow{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.lede{color:var(--muted);max-width:58ch;font-size:1.06rem}
 
 /* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
-.brand{font-weight:900;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;font-size:1.05rem}
-.brand span{color:var(--caramel)}
-.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:.95rem}
+.brand{display:inline-flex;text-decoration:none;border-radius:8px}
+.wordmark{display:inline-flex;align-items:flex-start;font-family:var(--font-display);font-weight:900;font-size:1.7rem;line-height:1;letter-spacing:-.06em;white-space:nowrap;padding-bottom:3px}
+.wordmark .wm{filter:drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x))}
+.wordmark .wm-d{background:linear-gradient(180deg,var(--wm-a),var(--wm-b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wordmark .wm-r{background:linear-gradient(180deg,#FF9447,#F2511A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wordmark svg{width:1em;height:1em;margin-left:.04em;margin-top:-.22em;flex:none}
+.wordmark.lg{font-size:clamp(2rem,5vw,2.6rem)}
+@media (max-width:400px){.wordmark{font-size:1.4rem}}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:.95rem}
 .nav ul a{text-decoration:none;color:var(--muted)}
-.nav ul a:hover{color:var(--espresso)}
-@media (max-width:720px){.nav ul{display:none}}
-.btn{display:inline-flex;align-items:center;gap:8px;font:600 .98rem var(--font-body);padding:12px 20px;border-radius:999px;border:1.5px solid var(--espresso);background:var(--espresso);color:var(--paper);text-decoration:none;cursor:pointer;transition:transform .15s ease}
-.btn:hover{transform:translateY(-1px)}
-.btn.ghost{background:transparent;color:var(--espresso)}
-.btn.small{padding:8px 16px;font-size:.9rem}
+.nav ul a:hover{color:var(--ink)}
+@media (max-width:820px){.nav ul{display:none}}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 .98rem var(--font-body);padding:13px 22px;border-radius:14px;border:1.5px solid var(--accent);background:var(--accent);color:var(--accent-ink);text-decoration:none;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 10px 30px -12px var(--accent)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px var(--accent)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);box-shadow:none}
+.btn.ghost:hover{border-color:var(--accent)}
+.btn.small{padding:9px 16px;font-size:.9rem;border-radius:12px}
 
 /* hero */
-.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center;padding-block:clamp(48px,8vw,96px)}
-.hero h1{font-size:var(--step-4);font-weight:900;letter-spacing:-.02em}
-.hero h1 em{font-style:normal;color:var(--caramel)}
-.hero .stack{display:flex;flex-direction:column;gap:22px}
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:70%;aspect-ratio:1;background:radial-gradient(closest-side,var(--glow),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:center;padding-block:clamp(40px,7vw,88px)}
+.hero .stack{display:flex;flex-direction:column;gap:24px;min-width:0}
+.hero h1{font-size:var(--step-4);font-weight:900;letter-spacing:-.04em}
+.hero h1 .out{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+.hero h1 em{font-style:normal;color:var(--accent)}
 .hero .actions{display:flex;flex-wrap:wrap;gap:12px}
-.code-line{font-family:var(--font-mono);font-size:.85rem;color:var(--muted)}
-.code-line b{color:var(--caramel);font-weight:600}
-.saucer{background:var(--logo-bg);border-radius:28px;padding:20px;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(59,36,24,.35);justify-self:center;max-width:380px;width:100%}
-.saucer img{display:block;width:100%;height:auto;border-radius:16px}
-@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.saucer{max-width:300px;order:-1}}
+.code-line{font-family:var(--font-mono);font-size:.84rem;color:var(--muted)}
+.code-line b{color:var(--accent);font-weight:600}
+.scene{position:relative;width:100%;max-width:100%;aspect-ratio:1/1;min-height:300px}
+.scene canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block}
+.scene .fallback{position:absolute;inset:12%;border-radius:24px;border:1px solid var(--line);background:linear-gradient(135deg,var(--surface-2),var(--surface));transform:perspective(900px) rotateY(-18deg) rotateX(8deg);box-shadow:0 40px 80px -40px var(--accent)}
+.scene.ready .fallback{display:none}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.scene{max-width:520px;justify-self:center;aspect-ratio:4/3}}
 
+.stackbar{border-block:1px solid var(--line);background:var(--surface)}
+.stackbar .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;padding-block:18px;font-family:var(--font-mono);font-size:.82rem;color:var(--muted);align-items:center}
+.stackbar b{color:var(--ink);font-weight:600}
 
-/* section scaffolding */
-section{padding-block:clamp(56px,8vw,96px)}
-.section-head{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
-.alt{background:var(--foam);border-block:1px solid var(--line)}
+/* sections */
+section{padding-block:clamp(60px,9vw,110px)}
+.section-head{display:flex;flex-direction:column;gap:14px;margin-bottom:44px;max-width:760px}
 
-/* features */
-.features{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
-.feature{background:var(--paper);padding:28px;display:flex;flex-direction:column;gap:10px}
-.alt .feature{background:var(--foam)}
-.feature h3{font-size:var(--step-1);font-weight:800}
-.feature p{color:var(--muted);font-size:.97rem}
-.feature .tag{font-family:var(--font-mono);font-size:.75rem;color:var(--caramel)}
-@media (max-width:900px){.features{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:560px){.features{grid-template-columns:1fr}}
+/* services: tilt cards */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:960px){.services{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.services{grid-template-columns:1fr}}
+.card{--rx:0deg;--ry:0deg;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:12px;transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .25s ease,border-color .25s ease;min-width:0}
+.card:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),var(--glow),transparent 45%);opacity:0;transition:opacity .25s;pointer-events:none}
+.card:hover::after{opacity:1}
+.card .ico{width:52px;height:52px;transform:translateZ(30px)}
+.card h3{font-size:var(--step-1);font-weight:800;transform:translateZ(20px)}
+.card p{color:var(--muted);font-size:.97rem}
+.card .tag{font-family:var(--font-mono);font-size:.74rem;color:var(--accent);margin-top:auto;padding-top:6px}
 
-/* menu board */
-.board{background:var(--board);color:var(--board-ink);border-radius:24px;padding:clamp(24px,5vw,56px);display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,40px)}
-.item .two-col{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 32px}
-@media (max-width:560px){.item .two-col{grid-template-columns:1fr}}
-.board-title{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px dashed color-mix(in srgb,var(--board-ink) 30%,transparent);padding-bottom:20px}
-.board-title h2{color:var(--board-ink)}
-.board-title .eyebrow{color:var(--board-accent)}
-.item{display:flex;flex-direction:column;gap:14px}
-.item .row{display:flex;align-items:baseline;gap:8px}
-.item h3{font-size:var(--step-2);font-weight:900}
-.item .dots{flex:1;border-bottom:2px dotted color-mix(in srgb,var(--board-ink) 35%,transparent);transform:translateY(-6px)}
-.item .price{font-family:var(--font-mono);font-weight:600;font-size:var(--step-1);color:var(--board-accent);font-variant-numeric:tabular-nums}
-.item .size{font-family:var(--font-mono);font-size:.78rem;opacity:.7;letter-spacing:.06em;text-transform:uppercase}
-.item ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:.95rem;opacity:.9}
-.item li::before{content:"· ";color:var(--board-accent)}
-.item.house{position:relative}
-.item.house .badge{align-self:flex-start;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:var(--board-accent);color:var(--board);padding:3px 10px;border-radius:999px}
-.board-note{grid-column:1/-1;font-size:.85rem;opacity:.65}
-@media (max-width:860px){.board{grid-template-columns:1fr}}
+/* anatomy: exploded 3D stack */
+.anatomy .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,6vw,80px);align-items:center}
+@media (max-width:860px){.anatomy .wrap{grid-template-columns:1fr}}
+.iso{position:relative;height:460px;perspective:1400px;display:grid;place-items:center}
+.iso-stack{position:relative;width:300px;height:220px;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-38deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.iso:hover .iso-stack{transform:rotateX(52deg) rotateZ(-30deg)}
+.layer{position:absolute;inset:0;border-radius:18px;border:1.5px solid color-mix(in srgb,var(--accent) 45%,var(--line));background:color-mix(in srgb,var(--surface) 82%,transparent);transform:translateZ(calc(var(--i) * 62px));transition:transform .6s cubic-bezier(.2,.7,.2,1),border-color .3s,background .3s,box-shadow .3s;display:grid;padding:16px;gap:8px;box-shadow:0 30px 40px -30px rgba(0,0,0,.6)}
+.iso:hover .layer{transform:translateZ(calc(var(--i) * 84px))}
+.layer.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 22%,var(--surface));box-shadow:0 0 0 1px var(--accent),0 30px 60px -20px var(--accent)}
+.layer .lbl{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.l-host{grid-template-columns:repeat(4,1fr);align-content:end}
+.l-host span{height:18px;border-radius:5px;background:var(--surface-2);border:1px solid var(--line)}
+.l-back{grid-template-columns:1fr 1fr;align-content:end}
+.l-back span{height:44px;border-radius:8px;border:1px dashed color-mix(in srgb,var(--accent) 50%,var(--line))}
+.l-front{grid-template-rows:auto 1fr;}
+.l-front .bars{display:grid;grid-template-columns:2fr 1fr;gap:8px}
+.l-front .bars span{border-radius:8px;background:var(--surface-2)}
+.l-design{grid-template-rows:auto auto 1fr}
+.l-design .sw{display:flex;gap:6px}
+.l-design .sw span{width:22px;height:22px;border-radius:50%}
+.l-design .hl{height:14px;width:70%;border-radius:4px;background:var(--ink);opacity:.85}
+@media (max-width:520px){.iso{height:360px}.iso-stack{width:220px;height:160px}.layer{padding:12px}}
+.layers-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.layers-list li{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:16px 18px;border-radius:16px;border:1px solid transparent;cursor:default;transition:background .2s,border-color .2s}
+.layers-list li:hover,.layers-list li.on{background:var(--surface);border-color:var(--line)}
+.layers-list code{font-family:var(--font-mono);font-size:.78rem;color:var(--accent);padding-top:4px}
+.layers-list strong{display:block;font-size:1.06rem}
+.layers-list span{color:var(--muted);font-size:.95rem}
 
-/* demo */
-.demo .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
-@media (max-width:820px){.demo .wrap{grid-template-columns:1fr}}
-.phone{justify-self:center;width:min(300px,100%);background:var(--espresso);border-radius:40px;padding:12px;box-shadow:0 40px 70px -35px rgba(59,36,24,.5)}
-.screen{background:#FBF5EA;color:#3B2418;border-radius:30px;padding:22px 18px;display:flex;flex-direction:column;gap:14px;min-height:480px}
-.screen .shop{font-weight:900;font-size:1.25rem}
-.screen .meta{font-family:var(--font-mono);font-size:.72rem;color:#8A6E58}
-.screen .tabs{display:flex;gap:6px;flex-wrap:wrap}
-.screen .tabs span{font-size:.75rem;padding:4px 10px;border-radius:999px;border:1px solid #E3D2B8}
-.screen .tabs span.on{background:#3B2418;color:#FBF5EA;border-color:#3B2418}
-.screen .mi{display:flex;justify-content:space-between;gap:10px;font-size:.88rem;border-bottom:1px dashed #E3D2B8;padding-bottom:8px}
-.screen .mi small{display:block;color:#8A6E58;font-size:.72rem}
-.screen .mi b{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
-.screen .cta{margin-top:auto;background:#B8693C;color:#fff;text-align:center;font-weight:600;font-size:.88rem;padding:10px;border-radius:12px}
-.demo-points{display:flex;flex-direction:column;gap:18px;margin-top:28px;padding:0;list-style:none}
-.demo-points li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
-.demo-points code{font-family:var(--font-mono);font-size:.78rem;color:var(--caramel);padding-top:4px;min-width:5.5ch}
-.demo-points strong{display:block}
-.demo-points span{color:var(--muted);font-size:.95rem}
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+@media (max-width:900px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.plan.hot{background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 20%,var(--surface)),var(--surface) 60%);border-color:color-mix(in srgb,var(--accent) 60%,var(--line));position:relative}
+.plan .top{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:28px}
+.plan .kind{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.badge{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:4px 10px;border-radius:999px}
+.plan h3{font-size:var(--step-2);font-weight:900;letter-spacing:-.02em}
+.price{font-family:var(--font-display);font-weight:900;font-size:2.6rem;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.price small{font-family:var(--font-mono);font-size:.8rem;font-weight:400;color:var(--muted);letter-spacing:0;margin-right:6px}
+.plan p.for{color:var(--muted);font-size:.95rem}
+.plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;font-size:.96rem;border-top:1px solid var(--line);padding-top:18px}
+.plan li{display:grid;grid-template-columns:18px 1fr;gap:10px}
+.plan li::before{content:"";width:8px;height:8px;margin-top:9px;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
+.plan .btn{margin-top:auto;justify-content:center}
+.plans-note{margin-top:22px;color:var(--muted);font-size:.9rem;max-width:75ch}
 
 /* process */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s;list-style:none;padding:0;margin:0}
-.steps li{display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:2px solid var(--espresso)}
-.steps .when{font-family:var(--font-mono);font-size:.78rem;color:var(--caramel)}
-.steps h3{font-size:var(--step-1);font-weight:800}
-.steps p{color:var(--muted);font-size:.95rem}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:0;counter-reset:s}
 @media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:520px){.steps{grid-template-columns:1fr}}
+.steps li{counter-increment:s;display:flex;flex-direction:column;gap:10px;padding:24px;border-radius:20px;border:1px solid var(--line);background:var(--surface)}
+.steps li::before{content:"0" counter(s);font-family:var(--font-display);font-weight:900;font-size:2.6rem;line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.2px var(--accent)}
+.steps .when{font-family:var(--font-mono);font-size:.76rem;color:var(--accent)}
+.steps h3{font-size:var(--step-1);font-weight:800}
+.steps p{color:var(--muted);font-size:.95rem}
 
 /* faq */
-.faq{display:flex;flex-direction:column;max-width:780px}
-.faq details{border-bottom:1px solid var(--line);padding-block:18px}
-.faq summary{cursor:pointer;font-weight:600;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq{display:flex;flex-direction:column;max-width:800px}
+.faq details{border-bottom:1px solid var(--line);padding-block:20px}
+.faq summary{cursor:pointer;font-weight:700;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--font-mono);color:var(--caramel)}
+.faq summary::after{content:"+";font-family:var(--font-mono);color:var(--accent);font-size:1.2rem;line-height:1.3}
 .faq details[open] summary::after{content:"–"}
 .faq details p{color:var(--muted);margin-top:10px;max-width:65ch}
 
-footer{border-top:1px solid var(--line);padding-block:32px;font-size:.88rem;color:var(--muted)}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
-footer .code-line{font-size:.8rem}
-footer .contact-links{display:flex;flex-wrap:wrap;gap:8px 20px}
-footer .contact-links a{color:var(--espresso);text-decoration:none;font-weight:600}
-footer .contact-links a:hover{color:var(--caramel)}
+/* contact */
+.contact{background:var(--surface);border-top:1px solid var(--line)}
+.contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,72px)}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+.contact .section-head{margin-bottom:0}
+.direct{display:flex;flex-direction:column;gap:6px;margin-top:22px;font-family:var(--font-mono);font-size:.88rem;color:var(--muted)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-width:0}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+@media (max-width:520px){form{grid-template-columns:1fr}}
+label{font-size:.85rem;font-weight:600}
+input,select,textarea{font:inherit;font-size:1rem;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{min-height:120px;resize:vertical}
+.form-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.ok{font-size:.95rem;color:var(--accent)}
+
+footer{border-top:1px solid var(--line);padding-block:30px;font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+footer .logo{display:flex;flex-direction:column;gap:10px}
 </style>
 </head>
 <body>
 
 <nav class="nav" aria-label="Κύριο μενού">
   <div class="wrap">
-    <a class="brand" href="#top">Digital <span>Roast</span></a>
+    <a class="brand" href="#top" aria-label="Digital Roast, αρχή σελίδας"><span class="wordmark"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span></a>
     <ul>
-      <li><a href="#ti-kanoume">Τι κάνουμε</a></li>
-      <li><a href="#menou">Πακέτα</a></li>
+      <li><a href="#ypiresies">Υπηρεσίες</a></li>
+      <li><a href="#anatomia">Πώς χτίζεται</a></li>
+      <li><a href="#paketa">Πακέτα</a></li>
       <li><a href="#diadikasia">Διαδικασία</a></li>
       <li><a href="#faq">Ερωτήσεις</a></li>
     </ul>
-    <a class="btn small" href="rantevou.html">Ζήτα προσφορά</a>
+    <a class="btn small" href="#epikoinonia">Ζήτα προσφορά</a>
   </div>
 </nav>
 
 <header class="hero" id="top">
   <div class="wrap">
     <div class="stack">
-      <span class="eyebrow">Web agency για καφετέριες &amp; μπαρ</span>
-      <h1>Ψήνουμε websites που <em>γεμίζουν τραπέζια.</em></h1>
-      <p class="lede">Η Digital Roast φτιάχνει sites για καφετέριες και μπαρ. Ο πελάτης σε βρίσκει στο Google, βλέπει τον κατάλογο από το κινητό του και έρχεται.</p>
+      <span class="eyebrow">Web development studio</span>
+      <h1>Websites που <span class="out">φαίνονται</span> ωραία και <em>φέρνουν πελάτες.</em></h1>
+      <p class="lede">Η Digital Roast σχεδιάζει και αναπτύσσει εταιρικά sites, e-shops και web εφαρμογές για επιχειρήσεις κάθε κλάδου. Γρήγορα, σωστά στημένα για το Google και εύκολα στη διαχείριση.</p>
       <div class="actions">
-        <a class="btn" href="rantevou.html">Κλείσε ένα δωρεάν ραντεβού</a>
-        <a class="btn ghost" href="#menou">Δες τα πακέτα</a>
+        <a class="btn" href="#epikoinonia">Κλείσε δωρεάν γνωριμία</a>
+        <a class="btn ghost" href="#paketa">Δες τα πακέτα</a>
       </div>
-      <p class="code-line">&lt;site&gt; έτοιμο σε <b>2–3 μέρες</b> · φιλοξενία &amp; υποστήριξη <b>μέσα</b> &lt;/site&gt;</p>
+      <p class="code-line">&lt;project&gt; παράδοση από <b>2 εβδομάδες</b> · φιλοξενία &amp; υποστήριξη <b>μέσα</b> &lt;/project&gt;</p>
     </div>
-    <div class="saucer">
-      <img src="logo.jpg" alt="Λογότυπο Digital Roast Web Agency: φλιτζάνι καφέ με ατμό που γίνεται κώδικας">
-    </div>
+    <div class="scene" id="scene" aria-hidden="true"><div class="fallback"></div></div>
   </div>
 </header>
 
-<section class="alt" id="ti-kanoume">
+<div class="stackbar">
+  <div class="wrap">
+    <span>Δουλεύουμε με:</span><b>HTML/CSS</b><b>JavaScript</b><b>React · Next.js</b><b>WordPress</b><b>WooCommerce</b><b>Shopify</b><b>Node.js</b><b>Three.js</b>
+  </div>
+</div>
+
+<section id="ypiresies">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Τι σερβίρουμε</span>
-      <h2>Όλα όσα χρειάζεται ένα μαγαζί στο ίντερνετ</h2>
-      <p class="lede">Δουλεύουμε μόνο με χώρους εστίασης, οπότε ξέρουμε τι ψάχνει ο πελάτης πριν κάτσει.</p>
+      <span class="eyebrow">Τι φτιάχνουμε</span>
+      <h2>Από μια σελίδα παρουσίασης μέχρι ολόκληρη πλατφόρμα</h2>
+      <p class="lede">Κάθε project ξεκινά από το τι θέλεις να πετύχεις: τηλεφωνήματα, πωλήσεις, κρατήσεις ή εσωτερική οργάνωση. Η τεχνολογία έρχεται μετά.</p>
     </div>
-    <div class="features">
-      <article class="feature"><span class="tag">/website</span><h3>Site που φορτώνει γρήγορα</h3><p>Σχεδιασμένο πρώτα για κινητό, με φωτογραφίες του χώρου, ωράριο, χάρτη και κουμπί κλήσης.</p></article>
-      <article class="feature"><span class="tag">/menu</span><h3>Ο κατάλογος στο site</h3><p>Καφέδες, ροφήματα και τιμές σε μια σελίδα που διαβάζεται εύκολα στο κινητό. Ελληνικά και αγγλικά για τους τουρίστες.</p></article>
-      <article class="feature"><span class="tag">/google</span><h3>Google Business &amp; Maps</h3><p>Στήνουμε και φτιάχνουμε το προφίλ σου ώστε να βγαίνεις στο «καφέ κοντά μου».</p></article>
-      <article class="feature"><span class="tag">/instagram</span><h3>Σύνδεση με social</h3><p>Το Instagram σου μέσα στο site, ώστε οι νέες αναρτήσεις να φαίνονται αυτόματα.</p></article>
-    </div>
-  </div>
-</section>
-
-<section id="menou">
-  <div class="wrap">
-    <div class="board">
-      <div class="board-title">
-        <div>
-          <span class="eyebrow">Ο κατάλογός μας</span>
-          <h2>Ένα πακέτο, όλα μέσα</h2>
-        </div>
-        <span class="code-line" style="color:inherit;opacity:.7">εφάπαξ κόστος · τιμές χωρίς ΦΠΑ</span>
-      </div>
-
-      <div class="item house">
-        <span class="badge">Η πρόταση του barista</span>
-        <div class="row"><h3>Espresso</h3><span class="dots"></span><span class="price">250€</span></div>
-        <ul class="two-col">
-          <li>Σελίδα μίας ενότητας (one-page)</li>
-          <li>Ωράριο, χάρτης, τηλέφωνο</li>
-          <li>Σύνδεση με Instagram</li>
-          <li>Google Business προφίλ</li>
-          <li>Σελίδα με τον κατάλογο</li>
-          <li>Ελληνικά &amp; αγγλικά</li>
-        </ul>
-        <a class="btn" href="rantevou.html" style="align-self:flex-start;background:var(--board-accent);border-color:var(--board-accent);color:var(--board)">Κλείσε ραντεβού</a>
-      </div>
-
+    <div class="services">
+      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><rect x="6" y="10" width="40" height="30" rx="5" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><path d="M6 17h40" stroke="var(--accent)" stroke-width="1.5"/><rect x="11" y="22" width="16" height="4" rx="2" fill="var(--accent)"/><rect x="11" y="29" width="24" height="3" rx="1.5" fill="var(--muted)"/></svg><h3>Εταιρικά websites</h3><p>Σελίδες υπηρεσιών, ομάδα, blog και φόρμες επικοινωνίας. Το site που δείχνεις με σιγουριά σε κάθε νέο πελάτη.</p><span class="tag">/corporate</span></article>
+      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><path d="M10 14h5l5 20h18l4-14H18" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round" fill="var(--surface-2)"/><circle cx="22" cy="40" r="3" fill="var(--accent)"/><circle cx="35" cy="40" r="3" fill="var(--accent)"/></svg><h3>E-shop</h3><p>Κατάλογος προϊόντων, καλάθι, πληρωμές με κάρτα και αντικαταβολή, σύνδεση με courier και τιμολόγηση.</p><span class="tag">/e-commerce</span></article>
+      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><rect x="8" y="8" width="36" height="36" rx="6" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><rect x="14" y="15" width="24" height="5" rx="2" fill="var(--ink)" opacity=".8"/><rect x="14" y="24" width="16" height="3" rx="1.5" fill="var(--muted)"/><rect x="14" y="33" width="12" height="5" rx="2.5" fill="var(--accent)"/></svg><h3>Landing pages</h3><p>Μία σελίδα για μία καμπάνια ή ένα προϊόν, σχεδιασμένη να μετατρέπει επισκέπτες σε αιτήματα.</p><span class="tag">/landing</span></article>
+      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><rect x="6" y="10" width="40" height="32" rx="5" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><rect x="6" y="10" width="11" height="32" rx="5" fill="var(--accent)" opacity=".25"/><path d="M22 34l6-7 5 4 8-10" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Web εφαρμογές</h3><p>Πάνελ διαχείρισης, συστήματα κρατήσεων, πύλες πελατών και εργαλεία που φτιάχνονται για τη δική σου ροή.</p><span class="tag">/web-apps</span></article>
+      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="28" r="16" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><path d="M26 28l8-8" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><circle cx="26" cy="28" r="3" fill="var(--accent)"/></svg><h3>Redesign &amp; ταχύτητα</h3><p>Παίρνουμε ένα παλιό ή αργό site, το ξανασχεδιάζουμε και το κάνουμε να φορτώνει σε κάτω από 2 δευτερόλεπτα.</p><span class="tag">/redesign</span></article>
+      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><circle cx="23" cy="23" r="12" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><path d="M32 32l10 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M17 26l4-5 3 3 5-6" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>SEO &amp; συντήρηση</h3><p>Τεχνικό SEO, Google Business, αναλυτικά στοιχεία, ενημερώσεις ασφαλείας και αντίγραφα κάθε μέρα.</p><span class="tag">/care</span></article>
     </div>
   </div>
 </section>
 
-<section class="alt demo">
+<section class="anatomy" id="anatomia" style="background:var(--surface);border-block:1px solid var(--line)">
   <div class="wrap">
+    <div class="iso" id="iso" aria-hidden="true">
+      <div class="iso-stack">
+        <div class="layer l-host" style="--i:0" data-l="0"><span class="lbl">hosting</span><span></span><span></span><span></span><span></span></div>
+        <div class="layer l-back" style="--i:1" data-l="1"><span class="lbl" style="grid-column:1/-1">backend · cms</span><span></span><span></span></div>
+        <div class="layer l-front" style="--i:2" data-l="2"><span class="lbl">frontend</span><div class="bars"><span></span><span></span></div></div>
+        <div class="layer l-design" style="--i:3" data-l="3"><span class="lbl">design</span><div class="sw"><span style="background:var(--accent)"></span><span style="background:var(--accent-2)"></span><span style="background:var(--ink)"></span></div><span class="hl"></span></div>
+      </div>
+    </div>
     <div>
-      <div class="section-head" style="margin-bottom:0">
-        <span class="eyebrow">Στο κινητό</span>
-        <h2>Ο κατάλογός σου, όπως τον βλέπει ο πελάτης.</h2>
-        <p class="lede">Ένα παράδειγμα καταλόγου όπως τον στήνουμε. Το μαγαζί στην οθόνη είναι φανταστικό.</p>
+      <div class="section-head" style="margin-bottom:28px">
+        <span class="eyebrow">Πώς χτίζεται ένα site</span>
+        <h2>Τέσσερα στρώματα, μία ομάδα</h2>
+        <p class="lede">Δεν σε στέλνουμε σε γραφίστα, προγραμματιστή και εταιρεία φιλοξενίας. Τα αναλαμβάνουμε όλα και έχεις έναν άνθρωπο να μιλάς.</p>
       </div>
-      <ul class="demo-points">
-        <li><code>0,8s</code><div><strong>Ανοίγει αμέσως</strong><span>Χωρίς εφαρμογή, χωρίς PDF που μεγεθύνεις με τα δάχτυλα.</span></div></li>
-        <li><code>EL/EN</code><div><strong>Δύο γλώσσες με ένα πάτημα</strong><span>Ο τουρίστης βλέπει «Freddo Espresso», όχι μετάφραση από μηχανή.</span></div></li>
+      <ul class="layers-list" id="layers-list">
+        <li data-l="3"><code>design</code><div><strong>Σχεδιασμός UI/UX</strong><span>Wireframes και σχέδια σε Figma, με τα χρώματα και τη γραμματοσειρά της εταιρείας σου.</span></div></li>
+        <li data-l="2"><code>front</code><div><strong>Frontend</strong><span>Ο κώδικας που βλέπει ο επισκέπτης. Responsive, προσβάσιμος και γρήγορος σε κάθε κινητό.</span></div></li>
+        <li data-l="1"><code>back</code><div><strong>Backend &amp; CMS</strong><span>Διαχείριση περιεχομένου, βάσεις δεδομένων, πληρωμές και συνδέσεις με τα εργαλεία που ήδη χρησιμοποιείς.</span></div></li>
+        <li data-l="0"><code>host</code><div><strong>Φιλοξενία &amp; ασφάλεια</strong><span>Servers, SSL, domain, καθημερινά backups και παρακολούθηση ώστε το site να μένει online.</span></div></li>
       </ul>
     </div>
-    <div class="phone" aria-label="Παράδειγμα ψηφιακού καταλόγου σε κινητό">
-      <div class="screen">
-        <div>
-          <div class="shop">Καφέ Λιμάνι</div>
-          <div class="meta">ανοιχτά · 08:00–02:00</div>
-        </div>
-        <div class="tabs"><span class="on">Καφέδες</span><span>Brunch</span><span>Κοκτέιλ</span><span>EN</span></div>
-        <div class="mi"><div>Freddo Espresso<small>διπλός, μέτρια γλυκός</small></div><b>3,00€</b></div>
-        <div class="mi"><div>Freddo Cappuccino<small>με αφρόγαλα</small></div><b>3,50€</b></div>
-        <div class="mi"><div>Flat White<small>specialty, Αιθιοπία</small></div><b>3,80€</b></div>
-        <div class="mi"><div>Ελληνικός<small>μονός ή διπλός</small></div><b>2,50€</b></div>
-        <div class="mi"><div>Φρέντο με γάλα βρώμης<small>+0,50€ φυτικό γάλα</small></div><b>3,50€</b></div>
-        <div class="cta">Βρες μας στον χάρτη</div>
-      </div>
-    </div>
   </div>
 </section>
 
-<section id="diadikasia">
+<section id="paketa">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Πώς δουλεύουμε</span>
-      <h2>Από τον κόκκο στο φλιτζάνι</h2>
+      <span class="eyebrow">Πακέτα</span>
+      <h2>Ξεκάθαρες τιμές, χωρίς εκπλήξεις</h2>
+      <p class="lede">Εφάπαξ κόστος κατασκευής. Η τελική προσφορά βγαίνει μετά την πρώτη γνωριμία, ανάλογα με το εύρος.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <div class="top"><span class="kind">Launch</span></div>
+        <h3>Landing page</h3>
+        <div class="price"><small>από</small>450€</div>
+        <p class="for">Για νέα επιχείρηση, καμπάνια ή προϊόν που χρειάζεται παρουσία γρήγορα.</p>
+        <ul><li>Μία σελίδα με έως 6 ενότητες</li><li>Φόρμα επικοινωνίας</li><li>Βασικό SEO &amp; Google Analytics</li><li>Παράδοση σε 2 εβδομάδες</li></ul>
+        <a class="btn ghost" href="#epikoinonia" data-pack="Landing page">Ζήτα προσφορά</a>
+      </div>
+      <div class="plan hot">
+        <div class="top"><span class="kind">Business</span><span class="badge">Η πιο συχνή επιλογή</span></div>
+        <h3>Εταιρικό site</h3>
+        <div class="price"><small>από</small>950€</div>
+        <p class="for">Για επιχειρήσεις που θέλουν πλήρες site και να το ενημερώνουν μόνες τους.</p>
+        <ul><li>Έως 8 σελίδες με custom σχέδιο</li><li>Διαχείριση περιεχομένου (CMS)</li><li>Blog &amp; δύο γλώσσες</li><li>Τεχνικό SEO &amp; Google Business</li><li>Εκπαίδευση για τη διαχείριση</li></ul>
+        <a class="btn" href="#epikoinonia" data-pack="Εταιρικό site">Ζήτα προσφορά</a>
+      </div>
+      <div class="plan">
+        <div class="top"><span class="kind">Commerce</span></div>
+        <h3>E-shop</h3>
+        <div class="price"><small>από</small>1.650€</div>
+        <p class="for">Για όσους πουλάνε online και θέλουν ένα κατάστημα που τρέχει χωρίς προβλήματα.</p>
+        <ul><li>Ό,τι έχει το Εταιρικό site</li><li>Κατάλογος &amp; φίλτρα προϊόντων</li><li>Πληρωμές με κάρτα &amp; αντικαταβολή</li><li>Σύνδεση με courier</li></ul>
+        <a class="btn ghost" href="#epikoinonia" data-pack="E-shop">Ζήτα προσφορά</a>
+      </div>
+    </div>
+    <p class="plans-note">Τιμές χωρίς ΦΠΑ. Φιλοξενία, domain και τεχνική υποστήριξη από 15€ / μήνα. Για web εφαρμογές και custom έργα δίνουμε προσφορά μετά από ανάλυση αναγκών.</p>
+  </div>
+</section>
+
+<section id="diadikasia" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Διαδικασία</span>
+      <h2>Από την ιδέα στο online σε τέσσερα βήματα</h2>
     </div>
     <ol class="steps">
-      <li><span class="when">Ημέρα 1</span><h3>Γνωριμία</h3><p>Ερχόμαστε στο μαγαζί ή μιλάμε online. Μας λες τι σερβίρεις και ποιος είναι ο πελάτης σου.</p></li>
-      <li><span class="when">Ημέρα 1</span><h3>Σχέδιο</h3><p>Σου δείχνουμε πώς θα μοιάζει το site στο κινητό. Αλλάζουμε ό,τι θέλεις πριν γράψουμε κώδικα.</p></li>
-      <li><span class="when">Ημέρα 2</span><h3>Ψήσιμο</h3><p>Στήνουμε το site και τον κατάλογο. Ανεβάζουμε φωτογραφίες και τιμές.</p></li>
-      <li><span class="when">Ημέρα 3</span><h3>Σερβίρισμα</h3><p>Βγαίνει online και σου δείχνουμε πώς το διαχειρίζεσαι.</p></li>
+      <li><span class="when">Ημέρα 1</span><h3>Γνωριμία</h3><p>Μιλάμε για την επιχείρηση, τους πελάτες σου και τι πρέπει να κάνει το site.</p></li>
+      <li><span class="when">Εβδομάδα 1</span><h3>Σχέδιο</h3><p>Σου δείχνουμε πώς θα μοιάζει σε κινητό και υπολογιστή. Αλλάζουμε ό,τι θέλεις πριν γράψουμε κώδικα.</p></li>
+      <li><span class="when">Εβδομάδα 2–3</span><h3>Ανάπτυξη</h3><p>Γράφουμε τον κώδικα, στήνουμε το CMS και ανεβάζουμε κείμενα και φωτογραφίες.</p></li>
+      <li><span class="when">Εβδομάδα 3–4</span><h3>Launch</h3><p>Ελέγχουμε ταχύτητα και SEO, βγαίνει online και σου δείχνουμε πώς το διαχειρίζεσαι.</p></li>
     </ol>
   </div>
 </section>
 
-<section class="alt" id="faq">
+<section id="faq" style="padding-top:0">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Συχνές ερωτήσεις</span>
-      <h2>Πριν παραγγείλεις</h2>
+      <h2>Πριν ξεκινήσουμε</h2>
     </div>
     <div class="faq">
-      <details><summary>Έχω ήδη site. Μπορείτε να το φτιάξετε;</summary><p>Ναι. Κρατάμε το domain σου και ξαναστήνουμε το site ώστε να είναι γρήγορο στο κινητό και να βγαίνει στο Google.</p></details>
-      <details><summary>Τι γίνεται αν κάτι χαλάσει;</summary><p>Η μηνιαία υποστήριξη καλύπτει φιλοξενία, ενημερώσεις και διορθώσεις. Μας στέλνεις μήνυμα και το κοιτάμε την ίδια μέρα.</p></details>
-      <details><summary>Δουλεύετε και εκτός πόλης;</summary><p>Ναι, σε όλη την Ελλάδα. Τα περισσότερα τα κάνουμε online και για φωτογράφιση ερχόμαστε στο μαγαζί.</p></details>
+      <details open><summary>Μπορώ να αλλάζω μόνος μου κείμενα και φωτογραφίες;</summary><p>Ναι. Σε όλα τα πακέτα εκτός του landing page παίρνεις πίνακα διαχείρισης και μια σύντομη εκπαίδευση. Αλλάζεις κείμενα, φωτογραφίες και προϊόντα χωρίς να μας χρειάζεσαι.</p></details>
+      <details><summary>Έχω ήδη site. Μπορείτε να το ανανεώσετε;</summary><p>Ναι. Κρατάμε το domain και ό,τι περιεχόμενο αξίζει, και ξαναστήνουμε το site ώστε να είναι γρήγορο, σύγχρονο και να μη χάσει τη θέση του στο Google.</p></details>
+      <details><summary>Σε ποια τεχνολογία θα φτιαχτεί;</summary><p>Επιλέγουμε ανάλογα με το έργο: WordPress όταν θέλεις εύκολη διαχείριση, Shopify ή WooCommerce για e-shop, React και Next.js για εφαρμογές με απαιτήσεις. Σου εξηγούμε την επιλογή πριν ξεκινήσουμε.</p></details>
+      <details><summary>Τι γίνεται αν κάτι χαλάσει μετά την παράδοση;</summary><p>Η μηνιαία υποστήριξη καλύπτει φιλοξενία, ενημερώσεις ασφαλείας, backups και διορθώσεις. Μας στέλνεις μήνυμα και το κοιτάμε την ίδια μέρα.</p></details>
+      <details><summary>Δουλεύετε με πελάτες εκτός Ελλάδας;</summary><p>Ναι. Οι περισσότερες συναντήσεις γίνονται online, οπότε δουλεύουμε με επιχειρήσεις σε όλη την Ελλάδα και το εξωτερικό.</p></details>
     </div>
+  </div>
+</section>
+
+<section class="contact" id="epikoinonia">
+  <div class="wrap">
+    <div>
+      <div class="section-head">
+        <span class="eyebrow">Επικοινωνία</span>
+        <h2>Ας φτιάξουμε κάτι μαζί</h2>
+        <p class="lede">Πες μας για το project σου και σου στέλνουμε προσφορά μέσα σε 24 ώρες. Η πρώτη συνάντηση δεν κοστίζει τίποτα.</p>
+      </div>
+    </div>
+    <form id="contact-form" novalidate>
+      <div class="field"><label for="f-name">Όνομα</label><input id="f-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="f-company">Επιχείρηση</label><input id="f-company" name="company" autocomplete="organization"></div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="f-phone">Τηλέφωνο</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="f-type">Τι χρειάζεσαι;</label>
+        <select id="f-type" name="type"><option>Εταιρικό site</option><option>E-shop</option><option>Landing page</option><option>Web εφαρμογή</option><option>Redesign υπάρχοντος site</option><option>Δεν είμαι σίγουρος</option></select></div>
+      <div class="field"><label for="f-budget">Προϋπολογισμός</label>
+        <select id="f-budget" name="budget"><option>Έως 1.000€</option><option selected>1.000–3.000€</option><option>3.000–8.000€</option><option>Πάνω από 8.000€</option><option>Δεν ξέρω ακόμα</option></select></div>
+      <div class="field full"><label for="f-msg">Πες μας λίγα λόγια</label><textarea id="f-msg" name="msg" placeholder="π.χ. Έχουμε λογιστικό γραφείο και θέλουμε site με φόρμα για ραντεβού και ενότητα με νέα."></textarea></div>
+      <div class="form-actions">
+        <button class="btn" type="submit">Στείλε το αίτημα</button>
+        <p class="ok" id="form-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Digital Roast Web Agency</span>
-    <span class="contact-links">
-      <a href="tel:+306934361336">📞 693 436 1336</a>
-      <a href="mailto:digitalroast1@gmail.com">✉️ digitalroast1@gmail.com</a>
-      <a href="https://www.instagram.com/digitalroast.io/" target="_blank" rel="noopener">📷 @digitalroast.io</a>
-    </span>
+    <span class="logo"><span class="wordmark lg"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span><span>© 2026 Digital Roast · Web design · Development · E-shops</span></span>
     <span class="code-line">&lt;/made with ☕ &amp; code&gt;</span>
   </div>
 </footer>
 
-</body>
-</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Hero 3D scene ---------- */
+  var host = document.getElementById('scene');
+  function css(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  try {
+    if (!window.THREE) throw new Error('no three');
+    var renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, 0);
+    host.appendChild(renderer.domElement);
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    camera.position.set(0, 0, 11);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+    var key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(4, 6, 8); scene.add(key);
+    var warm = new THREE.PointLight(0xff9a5a, 1.4, 30); warm.position.set(-4, -2, 6); scene.add(warm);
+
+    function rr(c, x, y, w, h, r){ c.beginPath(); c.moveTo(x+r,y); c.arcTo(x+w,y,x+w,y+h,r); c.arcTo(x+w,y+h,x,y+h,r); c.arcTo(x,y+h,x,y,r); c.arcTo(x,y,x+w,y,r); c.closePath(); }
+    function windowTex(kind){
+      var W = 1024, H = 700, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+      var c = cv.getContext('2d');
+      var dark = kind === 'app';
+      var bg = dark ? '#1B1411' : '#FBF7F3', chrome = dark ? '#261C17' : '#EFE6DE', ink = dark ? '#F3EBE3' : '#22170F', soft = dark ? '#3A2C24' : '#E4D8CD', acc = '#EA8A4B';
+      rr(c, 0, 0, W, H, 34); c.fillStyle = bg; c.fill();
+      c.save(); rr(c,0,0,W,H,34); c.clip();
+      c.fillStyle = chrome; c.fillRect(0,0,W,64);
+      ['#F2665A','#F5BE4F','#5BC66A'].forEach(function(col,i){ c.beginPath(); c.arc(40+i*30,32,9,0,7); c.fillStyle=col; c.fill(); });
+      rr(c, 200, 18, 620, 28, 14); c.fillStyle = dark ? '#1B1411' : '#FFFFFF'; c.fill();
+      c.fillStyle = dark ? '#8E7D70' : '#9A8879'; c.font = '600 17px monospace';
+      c.fillText(kind==='shop' ? 'shop.example.gr' : kind==='app' ? 'app.example.gr/dashboard' : 'example.gr', 222, 38);
+      if (kind === 'landing') {
+        rr(c,60,120,420,30,8); c.fillStyle=ink; c.fill();
+        rr(c,60,164,340,30,8); c.fill();
+        rr(c,60,214,380,14,7); c.fillStyle=soft; c.fill();
+        rr(c,60,238,300,14,7); c.fill();
+        rr(c,60,286,170,52,14); c.fillStyle=acc; c.fill();
+        rr(c,246,286,140,52,14); c.strokeStyle=soft; c.lineWidth=3; c.stroke();
+        var g = c.createLinearGradient(540,110,960,420); g.addColorStop(0,'#F6C29A'); g.addColorStop(1,'#EA8A4B');
+        rr(c,540,110,420,300,24); c.fillStyle=g; c.fill();
+        c.beginPath(); c.arc(750,260,70,0,7); c.fillStyle='rgba(255,255,255,.35)'; c.fill();
+        for (var i=0;i<3;i++){ rr(c,60+i*305,460,280,180,20); c.fillStyle=soft; c.fill(); rr(c,84+i*305,488,60,60,14); c.fillStyle=acc; c.globalAlpha=.8; c.fill(); c.globalAlpha=1; rr(c,84+i*305,570,200,14,7); c.fillStyle=dark?'#4A3A30':'#D3C4B6'; c.fill(); }
+      } else if (kind === 'shop') {
+        rr(c,60,100,260,26,8); c.fillStyle=ink; c.fill();
+        var cols=['#F6C29A','#B9D3C7','#E9B8B0','#C9C3E6','#F1D9A0','#A9C8E8'];
+        for (var j=0;j<6;j++){ var x=60+(j%3)*310, y=160+Math.floor(j/3)*260;
+          rr(c,x,y,280,236,20); c.fillStyle=soft; c.fill();
+          rr(c,x+16,y+16,248,140,14); c.fillStyle=cols[j]; c.fill();
+          rr(c,x+16,y+172,150,14,7); c.fillStyle=dark?'#4A3A30':'#C9B9AB'; c.fill();
+          c.fillStyle=ink; c.font='800 24px sans-serif'; c.fillText((19+j*7)+',90€', x+16, y+218);
+          rr(c,x+200,y+190,64,34,10); c.fillStyle=acc; c.fill(); }
+      } else {
+        c.fillStyle='#211813'; c.fillRect(0,64,200,H-64);
+        for (var k=0;k<6;k++){ rr(c,28,110+k*56,144,18,9); c.fillStyle= k===1 ? acc : '#3A2C24'; c.fill(); }
+        var stats=['12.480','3,4%','1.920€'];
+        for (var s=0;s<3;s++){ rr(c,240+s*255,100,230,120,18); c.fillStyle='#261C17'; c.fill(); c.fillStyle='#F3EBE3'; c.font='800 40px sans-serif'; c.fillText(stats[s],264+s*255,178); rr(c,264+s*255,124,90,12,6); c.fillStyle='#4A3A30'; c.fill(); }
+        rr(c,240,250,740,400,20); c.fillStyle='#261C17'; c.fill();
+        c.strokeStyle='#3A2C24'; c.lineWidth=2; for (var gl=0;gl<5;gl++){ c.beginPath(); c.moveTo(270,300+gl*75); c.lineTo(950,300+gl*75); c.stroke(); }
+        var pts=[[270,560],[360,520],[450,540],[540,450],[630,470],[720,380],[810,400],[950,300]];
+        c.beginPath(); pts.forEach(function(p,i){ i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]); }); c.lineTo(950,600); c.lineTo(270,600); c.closePath();
+        var ga=c.createLinearGradient(0,300,0,600); ga.addColorStop(0,'rgba(234,138,75,.45)'); ga.addColorStop(1,'rgba(234,138,75,0)'); c.fillStyle=ga; c.fill();
+        c.beginPath(); pts.forEach(function(p,i){ i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]); }); c.strokeStyle=acc; c.lineWidth=6; c.lineJoin='round'; c.stroke();
+        c.beginPath(); c.arc(950,300,12,0,7); c.fillStyle=acc; c.fill();
+      }
+      c.restore();
+      var t = new THREE.CanvasTexture(cv); t.anisotropy = 4; return t;
+    }
+
+    var group = new THREE.Group(); scene.add(group);
+    var panelGeo = new THREE.PlaneGeometry(4.1, 2.8);
+    var defs = [
+      {kind:'app', pos:[1.2, 1.25, -1.6], rot:[0.05,-0.42,0.04]},
+      {kind:'shop', pos:[-1.3, -1.05, -0.4], rot:[-0.04,0.38,-0.03]},
+      {kind:'landing', pos:[0.35, 0.05, 0.9], rot:[0.02,-0.22,0]}
+    ];
+    var panels = defs.map(function(d, i){
+      var m = new THREE.Mesh(panelGeo, new THREE.MeshBasicMaterial({map:windowTex(d.kind), transparent:true, side:THREE.DoubleSide}));
+      var shadow = new THREE.Mesh(panelGeo, new THREE.MeshBasicMaterial({color:0x000000, transparent:true, opacity:.28}));
+      shadow.position.set(0.12,-0.16,-0.06); shadow.scale.set(1.02,1.02,1);
+      var holder = new THREE.Group(); holder.add(shadow); holder.add(m);
+      holder.position.set(d.pos[0], d.pos[1], d.pos[2]); holder.rotation.set(d.rot[0], d.rot[1], d.rot[2]);
+      holder.userData = {base:d.pos.slice(), phase:i*1.7};
+      group.add(holder); return holder;
+    });
+
+    var copper = new THREE.MeshStandardMaterial({color:0xE8894A, metalness:.65, roughness:.28});
+    var cream = new THREE.MeshStandardMaterial({color:0xF6E3D2, metalness:.1, roughness:.35});
+    var shapes = [
+      new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.2, 32, 80), copper),
+      new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 0), cream),
+      new THREE.Mesh(new THREE.SphereGeometry(0.28, 40, 40), copper),
+      new THREE.Mesh(new THREE.BoxGeometry(0.5,0.5,0.5), copper)
+    ];
+    var spots = [[-2.5,1.9,0.6],[2.7,-1.7,1.2],[2.6,2.3,0.4],[-2.6,-2.3,1.4]];
+    shapes.forEach(function(s,i){ s.position.set(spots[i][0],spots[i][1],spots[i][2]); s.userData={base:spots[i].slice(),phase:i*2.1}; group.add(s); });
+
+    var target = {x:0,y:0}, cur = {x:0,y:0};
+    host.parentElement.addEventListener('pointermove', function(e){
+      var r = host.getBoundingClientRect();
+      target.x = ((e.clientX - r.left)/r.width - .5); target.y = ((e.clientY - r.top)/r.height - .5);
+    });
+
+    function size(){
+      var w = host.clientWidth, h = host.clientHeight; if (!w || !h) return;
+      renderer.setSize(w, h, false); camera.aspect = w/h;
+      camera.position.z = w/h < 1.1 ? 12.5 : 11;
+      camera.updateProjectionMatrix();
+    }
+    size();
+    if (window.ResizeObserver) new ResizeObserver(size).observe(host); else window.addEventListener('resize', size);
+
+    var visible = true;
+    if (window.IntersectionObserver) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; if (visible && !reduce) loop(); }).observe(host);
+
+    var t0 = performance.now(), running = false;
+    function frame(now){
+      var t = (now - t0)/1000;
+      cur.x += (target.x - cur.x)*0.05; cur.y += (target.y - cur.y)*0.05;
+      group.rotation.y = -0.18 + cur.x*0.5 + (reduce?0:Math.sin(t*0.25)*0.06);
+      group.rotation.x = 0.06 + cur.y*0.3;
+      panels.forEach(function(p){ p.position.y = p.userData.base[1] + (reduce?0:Math.sin(t*0.9 + p.userData.phase)*0.09); });
+      shapes.forEach(function(s,i){
+        s.position.y = s.userData.base[1] + (reduce?0:Math.sin(t*1.1 + s.userData.phase)*0.15);
+        if (!reduce){ s.rotation.x = t*(0.3+i*0.1); s.rotation.y = t*(0.4+i*0.08); }
+      });
+      renderer.render(scene, camera);
+    }
+    function loop(){
+      if (running) return; running = true;
+      (function tick(now){ if (!visible){ running = false; return; } frame(now); requestAnimationFrame(tick); })(performance.now());
+    }
+    frame(performance.now());
+    host.classList.add('ready');
+    if (!reduce) loop();
+  } catch (err) { /* fallback card stays visible */ }
+
+  /* ---------- Tilt cards ---------- */
+  if (!reduce) document.querySelectorAll('.card').forEach(function(card){
+    card.addEventListener('pointermove', function(e){
+      var r = card.getBoundingClientRect(), x = (e.clientX - r.left)/r.width, y = (e.clientY - r.top)/r.height;
+      card.style.setProperty('--ry', ((x - .5)*12).toFixed(2)+'deg');
+      card.style.setProperty('--rx', ((.5 - y)*12).toFixed(2)+'deg');
+      card.style.setProperty('--mx', (x*100)+'%'); card.style.setProperty('--my', (y*100)+'%');
+    });
+    card.addEventListener('pointerleave', function(){ card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg'); });
+  });
+
+  /* ---------- Anatomy highlight ---------- */
+  var layers = document.querySelectorAll('.layer'), items = document.querySelectorAll('#layers-list li');
+  function highlight(n){
+    layers.forEach(function(l){ l.classList.toggle('on', l.dataset.l === n); });
+    items.forEach(function(li){ li.classList.toggle('on', li.dataset.l === n); });
+  }
+  items.forEach(function(li){ li.addEventListener('pointerenter', function(){ highlight(li.dataset.l); }); });
+  highlight('3');
+
+  /* ---------- Package buttons prefill ---------- */
+  var typeSel = document.getElementById('f-type');
+  document.querySelectorAll('[data-pack]').forEach(function(a){
+    a.addEventListener('click', function(){ var v = a.dataset.pack; for (var i=0;i<typeSel.options.length;i++){ if (typeSel.options[i].text === v) typeSel.selectedIndex = i; } });
+  });
+
+  /* ---------- Form ---------- */
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var status = document.getElementById('form-status');
+    var missing = ['f-name','f-email'].filter(function (id) { return !document.getElementById(id).value.trim(); });
+    if (missing.length) { status.textContent = 'Συμπλήρωσε όνομα και email για να σου απαντήσουμε.'; document.getElementById(missing[0]).focus(); return; }
+    status.textContent = 'Δοκιμαστική λειτουργία: η φόρμα δεν στέλνει ακόμα μηνύματα, οπότε το αίτημα δεν καταχωρήθηκε.';
+  });
+})();
+</script>
+
+</body></html>
