@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Digital Roast · Στοιχεία για το website σας</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Client intake form: same dark/bronze palette as the main site; cards A–F, files go out as email attachments via FormSubmit. */
+:root{
+  color-scheme:dark;
+  --bg:#0A0A0B;--surface:#121214;--surface-2:#1B1B1E;--ink:#ECEAE6;--muted:#9A968F;--line:#26262A;
+  --accent:#B89A6A;--accent-2:#D9C3A0;--accent-ink:#14110C;--glow:rgba(184,154,106,.13);--danger:#E07A6E;
+  --wm-a:#FFFFFF;--wm-b:#D6D3D8;--wm-x:#7E2610;--wm-cursor:#FFFFFF;--wm-cursor-line:#111111;
+  --font:"Commissioner","Helvetica Neue",Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(900px 500px at 110% -5%,var(--glow),transparent 60%),var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6}
+.wrap{width:min(760px,calc(100% - 32px));margin-inline:auto}
+a{color:var(--accent-2)}
+
+.wordmark{display:inline-flex;align-items:flex-start;font-weight:900;font-size:1.6rem;line-height:1;letter-spacing:-.06em;white-space:nowrap;padding-bottom:3px}
+.wordmark .wm{filter:drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x))}
+.wordmark .wm-d{background:linear-gradient(180deg,var(--wm-a),var(--wm-b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wordmark .wm-r{background:linear-gradient(180deg,#FF9447,#F2511A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wordmark svg{width:1em;height:1em;margin-left:.04em;margin-top:-.22em;flex:none}
+
+.hero{margin-block:26px 18px;background:linear-gradient(150deg,color-mix(in srgb,var(--accent) 20%,var(--surface)),var(--surface) 65%);border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line));border-radius:22px;padding:30px 30px 28px}
+.brandrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brandrow .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border-left:1px solid var(--line);padding-left:14px}
+.hero h1{font-size:clamp(1.6rem,4.4vw,2.2rem);font-weight:900;letter-spacing:-.025em;line-height:1.1;margin:20px 0 10px}
+.hero p{margin:0;color:var(--muted);max-width:60ch}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin-block:14px}
+@media (max-width:560px){.card{padding:20px 18px}.hero{padding:24px 20px}}
+.card h2{font-size:1.2rem;font-weight:800;margin:0 0 6px;display:flex;align-items:center;gap:12px}
+.num{flex:none;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font:600 .85rem var(--mono);color:var(--accent-ink);background:var(--accent)}
+label{display:block;font-weight:700;font-size:.92rem;margin:16px 0 5px}
+.req{color:var(--danger)}
+.hint{color:var(--muted);font-size:.8rem;margin:-2px 0 7px}
+input[type=text],input[type=email],input[type=tel],textarea,select{width:100%;font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;transition:border-color .15s,box-shadow .15s}
+input::placeholder,textarea::placeholder{color:#6E6A64}
+textarea{min-height:88px;resize:vertical}
+input:hover,textarea:hover,select:hover{border-color:color-mix(in srgb,var(--accent) 50%,var(--line))}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--glow)}
+.radio-row{display:flex;gap:10px;flex-wrap:wrap}
+.radio-row label{display:flex;align-items:center;gap:8px;font-weight:600;background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 16px;margin:0;cursor:pointer}
+.radio-row input{accent-color:var(--accent)}
+.file{display:block;border:1.5px dashed color-mix(in srgb,var(--accent) 55%,var(--line));border-radius:12px;padding:18px;background:var(--bg);text-align:center;cursor:pointer;font-weight:600;transition:background .15s}
+.file:hover{background:var(--surface-2)}
+.file input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.file:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px var(--glow)}
+.file .ico{font-size:1.5rem;display:block}
+.file small{display:block;color:var(--muted);font-weight:500;font-size:.8rem;margin-top:3px}
+.file .picked{color:var(--accent-2);font-weight:700;font-size:.85rem;margin-top:6px}
+.submit{display:block;width:100%;font:800 1rem var(--font);color:var(--accent-ink);background:var(--accent);border:none;border-radius:999px;padding:15px;cursor:pointer;box-shadow:0 10px 30px -12px var(--accent);transition:transform .15s}
+.submit:hover{transform:translateY(-1px)}
+.submit:disabled{opacity:.6;cursor:default;transform:none}
+.note{font-size:.8rem;color:var(--muted);text-align:center;margin-block:10px 40px}
+
+.draft-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.draft-tools p{flex:1 1 300px;margin:0;color:var(--muted);font-size:.82rem;line-height:1.45}
+.draft-tools strong{color:var(--ink)}
+.draft-action{font:700 .82rem var(--font);border:1px solid color-mix(in srgb,var(--accent) 50%,var(--line));border-radius:999px;padding:9px 14px;color:var(--accent-2);background:transparent;cursor:pointer}
+.draft-action:hover{background:var(--surface-2)}
+.draft-action.muted{color:var(--muted);border-color:var(--line)}
+.errbox{background:color-mix(in srgb,var(--danger) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--danger) 45%,var(--line));color:#F3C1BA;border-radius:12px;padding:12px 14px;margin-block:14px;font-size:.9rem;font-weight:600}
+.success{text-align:center;padding:60px 26px}
+.success .big{font-size:3.2rem}
+.success h2{font-size:1.8rem;font-weight:900;margin:10px 0}
+.success p{color:var(--muted)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header class="hero">
+  <div class="brandrow">
+    <a href="/" aria-label="Digital Roast, αρχική" style="text-decoration:none"><span class="wordmark"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span></a>
+    <span class="tag">Στοιχεία πελάτη</span>
+  </div>
+  <h1>Καλώς ήρθατε στη Digital Roast</h1>
+  <p>Συμπληρώστε τη φόρμα (~15 λεπτά) και ανεβάστε λογότυπο &amp; φωτογραφίες. Μόλις την υποβάλετε, τα στοιχεία σας έρχονται σε εμάς και ξεκινάμε το website σας.</p>
+</header>
+
+<div class="draft-tools" id="draftTools" hidden>
+  <p id="draftStatus" role="status" aria-live="polite">Η πρόοδός σας αποθηκεύεται αυτόματα σε αυτόν τον browser, ώστε να συνεχίσετε αργότερα από εκεί που σταματήσατε.</p>
+  <button class="draft-action" id="saveDraftBtn" type="button">Αποθήκευση προόδου</button>
+  <button class="draft-action muted" id="discardDraftBtn" type="button" hidden>Νέα συμπλήρωση</button>
+</div>
+
+<div class="errbox" id="errbox" role="alert" hidden></div>
+
+<form id="intakeForm" action="https://formsubmit.co/konips005@gmail.com" method="POST" enctype="multipart/form-data" autocomplete="on">
+  <input type="hidden" name="_subject" id="subjectField" value="Νέα φόρμα πελάτη · Digital Roast">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://digitalroast.gr/intake/?sent=1">
+  <!-- honeypot: hidden anti-spam field; people never see it, bots fill it -->
+  <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+
+  <section class="card">
+    <h2><span class="num">A</span> Στοιχεία επιχείρησης</h2>
+    <label for="f-business">Όνομα επιχείρησης / brand <span class="req">*</span></label>
+    <div class="hint">Πώς θέλετε να εμφανίζεται (π.χ. «Γραφείο Τελετών Παπαδόπουλος»).</div>
+    <input type="text" id="f-business" name="Επιχείρηση" required>
+
+    <label for="f-type">Είδος επιχείρησης <span class="req">*</span></label>
+    <select id="f-type" name="Είδος" required>
+      <option value="" disabled selected>Επιλέξτε…</option>
+      <option>Γραφείο τελετών</option><option>Καφετέρια</option><option>Μπαρ</option><option>All-day καφέ-μπαρ</option><option>Άλλο</option>
+    </select>
+    <div id="typeOtherWrap" hidden>
+      <label for="f-type-other">Τι είδους επιχείρηση έχετε; <span class="req">*</span></label>
+      <input type="text" id="f-type-other" name="Είδος (άλλο)" placeholder="Γράψτε εδώ">
+    </div>
+
+    <label for="f-owner">Ονοματεπώνυμο υπεύθυνου <span class="req">*</span></label>
+    <input type="text" id="f-owner" name="Υπεύθυνος" autocomplete="name" placeholder="π.χ. Γιώργος Παπαδόπουλος" required>
+
+    <label for="f-bio">Λίγα λόγια για την επιχείρηση <span class="req">*</span></label>
+    <div class="hint">2-5 προτάσεις: από πότε λειτουργεί, αν είναι οικογενειακή, τι σας ξεχωρίζει.</div>
+    <textarea id="f-bio" name="Για την επιχείρηση" required></textarea>
+
+    <label for="f-slogan">Σλόγκαν / μήνυμα</label>
+    <input type="text" id="f-slogan" name="Σλόγκαν" placeholder="προαιρετικό">
+  </section>
+
+  <section class="card">
+    <h2><span class="num">B</span> Υπηρεσίες</h2>
+    <label for="f-services">Υπηρεσίες (λίστα) <span class="req">*</span></label>
+    <div class="hint">π.χ. οργάνωση κηδείας, μεταφορά σορού, στεφάνια, μνημόσυνα, αποτέφρωση…</div>
+    <textarea id="f-services" name="Υπηρεσίες" required></textarea>
+    <label for="f-service-desc">Σύντομη περιγραφή ανά υπηρεσία</label>
+    <textarea id="f-service-desc" name="Περιγραφή υπηρεσιών" placeholder="προαιρετικό"></textarea>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">C</span> Επικοινωνία &amp; τοποθεσία</h2>
+    <label for="f-phone">Τηλέφωνο <span class="req">*</span></label>
+    <input type="tel" id="f-phone" name="Τηλέφωνο" autocomplete="tel" required>
+    <label for="f-phone24">Τηλέφωνο 24 ωρών</label>
+    <div class="hint">Αν είναι διαφορετικό από το παραπάνω (προαιρετικό).</div>
+    <input type="tel" id="f-phone24" name="Τηλέφωνο 24 ωρών">
+    <label for="f-email">Email <span class="req">*</span></label>
+    <div class="hint">Εδώ θα σας απαντάμε για το website σας.</div>
+    <input type="email" id="f-email" name="email" autocomplete="email" required>
+    <label for="f-address">Διεύθυνση <span class="req">*</span></label>
+    <div class="hint">Πλήρης διεύθυνση + σύνδεσμος Google Maps αν έχετε.</div>
+    <input type="text" id="f-address" name="Διεύθυνση" autocomplete="street-address" required>
+    <label for="f-hours">Ωράριο λειτουργίας <span class="req">*</span></label>
+    <textarea id="f-hours" name="Ωράριο" required></textarea>
+    <label for="f-social">Social media</label>
+    <input type="text" id="f-social" name="Social media" placeholder="Instagram, Facebook… (προαιρετικό)">
+    <label for="f-gbp">Google Business Profile</label>
+    <input type="text" id="f-gbp" name="Google Business" placeholder="σύνδεσμος αν υπάρχει (προαιρετικό)">
+  </section>
+
+  <section class="card">
+    <h2><span class="num">D</span> Οπτικό υλικό</h2>
+    <label for="logoInput">Λογότυπο</label>
+    <label class="file">
+      <span class="ico">🖼️</span>
+      <div>Κάντε κλικ για να ανεβάσετε το λογότυπο</div>
+      <small>PNG/SVG κατά προτίμηση με διαφάνεια</small>
+      <div class="picked" id="logoPicked"></div>
+      <input type="file" id="logoInput" name="Λογότυπο" accept="image/*">
+    </label>
+
+    <label for="photosInput" style="margin-top:18px">Φωτογραφίες</label>
+    <label class="file">
+      <span class="ico">📸</span>
+      <div>Κάντε κλικ για να ανεβάσετε φωτογραφίες</div>
+      <small>Χώρος, βιτρίνα, οχήματα, ομάδα (έως 15 φωτογραφίες)</small>
+      <div class="picked" id="photosPicked"></div>
+      <input type="file" id="photosInput" accept="image/*" multiple>
+    </label>
+
+    <label for="f-video" style="margin-top:18px">Βίντεο</label>
+    <div class="hint">Επικολλήστε σύνδεσμο (Google Drive / WeTransfer / YouTube / Instagram).</div>
+    <input type="text" id="f-video" name="Βίντεο" placeholder="Σύνδεσμος βίντεο">
+
+    <label for="f-colors">Προτίμηση χρωμάτων</label>
+    <input type="text" id="f-colors" name="Χρώματα" placeholder="αν έχετε brand χρώματα (προαιρετικό)">
+    <label for="f-reviews">Κριτικές</label>
+    <textarea id="f-reviews" name="Κριτικές" placeholder="λόγια πελατών ή κριτικές από το Google (προαιρετικό)"></textarea>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">E</span> Domain</h2>
+    <label id="domainLbl">Έχετε ήδη domain/website; <span class="req">*</span></label>
+    <div class="radio-row" role="radiogroup" aria-labelledby="domainLbl">
+      <label><input type="radio" name="Έχει domain" value="Ναι" required> Ναι</label>
+      <label><input type="radio" name="Έχει domain" value="Όχι"> Όχι</label>
+    </div>
+    <label for="f-domain" style="margin-top:16px">Domain (υπάρχον ή επιθυμητό)</label>
+    <input type="text" id="f-domain" name="Domain" placeholder="π.χ. www.epixeirisi.gr">
+  </section>
+
+  <section class="card">
+    <h2><span class="num">F</span> Άλλες πληροφορίες</h2>
+    <label for="f-extra">Κάτι άλλο που χρειάζεται να ξέρουμε;</label>
+    <div class="hint">Ό,τι επιπλέον θέλετε να μας πείτε (προαιρετικό).</div>
+    <textarea id="f-extra" name="Άλλες πληροφορίες" placeholder="Γράψτε εδώ…"></textarea>
+  </section>
+
+  <div id="photoSlots" hidden></div>
+
+  <section class="card">
+    <button type="submit" class="submit" id="submitBtn">Υποβολή στοιχείων →</button>
+  </section>
+  <p class="note">🔒 Τα στοιχεία σας χρησιμοποιούνται αποκλειστικά για τη δημιουργία του website σας.</p>
+</form>
+
+<div class="success" id="success" hidden>
+  <div class="big">✅</div>
+  <h2>Ευχαριστούμε!</h2>
+  <p>Λάβαμε τα στοιχεία σας και ξεκινάμε το website σας. Θα έχετε νέα μας πολύ σύντομα.</p>
+</div>
+</div>
+
+<script>
+(function () {
+  var MAX_TOTAL = 9.5 * 1024 * 1024; // FormSubmit limit is 10MB for all files together
+  var MAX_PHOTOS = 15, MAX_DIM = 1600, JPEG_Q = 0.8;
+  var DRAFT_KEY = 'digitalroast_intake_draft_v1';
+
+  var form = document.getElementById('intakeForm');
+  var errbox = document.getElementById('errbox');
+  var submitBtn = document.getElementById('submitBtn');
+  var logoInput = document.getElementById('logoInput');
+  var photosInput = document.getElementById('photosInput');
+  var slots = document.getElementById('photoSlots');
+
+  /* ---------- After FormSubmit redirects back ---------- */
+  if (/[?&]sent=1/.test(location.search)) {
+    form.hidden = true;
+    document.getElementById('success').hidden = false;
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    return;
+  }
+
+  function showError(msg) { errbox.textContent = msg; errbox.hidden = false; errbox.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+
+  /* ---------- "Other" business type ---------- */
+  var typeSel = document.getElementById('f-type'), otherWrap = document.getElementById('typeOtherWrap'), otherInput = document.getElementById('f-type-other');
+  function syncType() {
+    var isOther = typeSel.value === 'Άλλο';
+    otherWrap.hidden = !isOther; otherInput.required = isOther;
+    if (!isOther) otherInput.value = '';
+  }
+  typeSel.addEventListener('change', syncType);
+
+  /* ---------- File pickers ---------- */
+  logoInput.addEventListener('change', function () {
+    document.getElementById('logoPicked').textContent = logoInput.files[0] ? '✓ ' + logoInput.files[0].name : '';
+  });
+  photosInput.addEventListener('change', function () {
+    var n = photosInput.files.length;
+    document.getElementById('photosPicked').textContent = n ? '✓ ' + n + ' αρχεία' + (n > MAX_PHOTOS ? ' (θα σταλούν οι πρώτες ' + MAX_PHOTOS + ')' : '') : '';
+  });
+
+  function compress(file) {
+    return new Promise(function (res) {
+      if (!/^image\/(jpeg|png|webp|heic|heif)$/i.test(file.type)) return res(file);
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function () {
+        var w = img.naturalWidth, h = img.naturalHeight;
+        if (w > MAX_DIM || h > MAX_DIM) { var s = Math.min(MAX_DIM / w, MAX_DIM / h); w = Math.round(w * s); h = Math.round(h * s); }
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        c.getContext('2d').drawImage(img, 0, 0, w, h);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (blob) {
+          if (!blob || blob.size >= file.size) return res(file);
+          res(new File([blob], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' }));
+        }, 'image/jpeg', JPEG_Q);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); res(file); };
+      img.src = url;
+    });
+  }
+
+  function setFile(input, file) {
+    var dt = new DataTransfer(); dt.items.add(file); input.files = dt.files;
+  }
+
+  /* ---------- Submit: compress photos, one file per field, then post natively ---------- */
+  var canRewriteFiles = (function () { try { new DataTransfer(); return true; } catch (e) { return false; } })();
+  if (!canRewriteFiles) photosInput.name = 'Φωτογραφίες';
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errbox.hidden = true;
+    if (!form.reportValidity()) return;
+
+    var biz = document.getElementById('f-business').value.trim();
+    document.getElementById('subjectField').value = 'Νέα φόρμα πελάτη · ' + biz;
+
+    submitBtn.disabled = true; submitBtn.textContent = 'Ετοιμάζουμε τα αρχεία…';
+
+    var photos = Array.prototype.slice.call(photosInput.files, 0, MAX_PHOTOS);
+    var work = canRewriteFiles ? Promise.all(photos.map(compress)) : Promise.resolve(null);
+    var logoWork = canRewriteFiles && logoInput.files[0] && logoInput.files[0].size > 1024 * 1024 ? compress(logoInput.files[0]) : Promise.resolve(null);
+
+    Promise.all([work, logoWork]).then(function (out) {
+      var small = out[0], smallLogo = out[1];
+      var total = 0;
+      if (smallLogo) setFile(logoInput, smallLogo);
+      if (logoInput.files[0]) total += logoInput.files[0].size;
+      if (small) {
+        slots.innerHTML = '';
+        small.forEach(function (f, i) {
+          var inp = document.createElement('input');
+          inp.type = 'file'; inp.name = 'Φωτογραφία ' + (i + 1);
+          slots.appendChild(inp); setFile(inp, f); total += f.size;
+        });
+      } else {
+        for (var i = 0; i < photosInput.files.length; i++) total += photosInput.files[i].size;
+      }
+      if (total > MAX_TOTAL) {
+        slots.innerHTML = '';
+        submitBtn.disabled = false; submitBtn.textContent = 'Υποβολή στοιχείων →';
+        showError('Τα αρχεία είναι ' + (total / 1048576).toFixed(1) + 'MB και το όριο είναι 10MB. Ανεβάστε λιγότερες φωτογραφίες ή στείλτε τις υπόλοιπες με σύνδεσμο (Google Drive / WeTransfer) στο πεδίο «Άλλες πληροφορίες».');
+        return;
+      }
+      saveDraft();
+      submitBtn.textContent = 'Αποστολή…';
+      form.submit();
+    });
+  });
+
+  /* ---------- Draft: keep typed answers in this browser ---------- */
+  var store = (function () { try { localStorage.setItem('__dr', '1'); localStorage.removeItem('__dr'); return localStorage; } catch (e) { return null; } })();
+  var draftTools = document.getElementById('draftTools'), draftStatus = document.getElementById('draftStatus');
+  var saveBtn = document.getElementById('saveDraftBtn'), discardBtn = document.getElementById('discardDraftBtn');
+  var fields = Array.prototype.filter.call(form.elements, function (el) {
+    return el.name && el.name.charAt(0) !== '_' && el.type !== 'file' && el.type !== 'hidden' && el.type !== 'submit';
+  });
+
+  function collect() {
+    var v = {};
+    fields.forEach(function (el) {
+      if (el.type === 'radio') { if (el.checked) v[el.name] = el.value; }
+      else if (el.value) v[el.name] = el.value;
+    });
+    return v;
+  }
+  function apply(v) {
+    fields.forEach(function (el) {
+      if (el.type === 'radio') el.checked = v[el.name] === el.value;
+      else if (Object.prototype.hasOwnProperty.call(v, el.name)) el.value = v[el.name];
+    });
+    syncType();
+    if (v['Είδος (άλλο)']) otherInput.value = v['Είδος (άλλο)'];
+  }
+  function fmt(t) { try { return new Date(t).toLocaleString('el-GR', { dateStyle: 'short', timeStyle: 'short' }); } catch (e) { return ''; } }
+  function saveDraft(manual) {
+    if (!store) return;
+    try {
+      var data = collect();
+      if (!Object.keys(data).length) return;
+      var at = Date.now();
+      store.setItem(DRAFT_KEY, JSON.stringify({ at: at, values: data }));
+      discardBtn.hidden = false;
+      draftStatus.innerHTML = (manual ? '<strong>Αποθηκεύτηκε.</strong> ' : '') + 'Τελευταία αποθήκευση: ' + fmt(at) + '. Οι φωτογραφίες δεν αποθηκεύονται, θα χρειαστεί να τις ξαναεπιλέξετε.';
+    } catch (e) {}
+  }
+
+  if (store) {
+    draftTools.hidden = false;
+    try {
+      var saved = JSON.parse(store.getItem(DRAFT_KEY) || 'null');
+      if (saved && saved.values) {
+        apply(saved.values);
+        discardBtn.hidden = false;
+        draftStatus.innerHTML = '<strong>Συνεχίζετε από εκεί που σταματήσατε</strong> (' + fmt(saved.at) + ').';
+      }
+    } catch (e) {}
+    var timer;
+    form.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(saveDraft, 800); });
+    form.addEventListener('change', function () { saveDraft(); });
+    saveBtn.addEventListener('click', function () { saveDraft(true); });
+    discardBtn.addEventListener('click', function () {
+      try { store.removeItem(DRAFT_KEY); } catch (e) {}
+      form.reset(); syncType();
+      document.getElementById('logoPicked').textContent = ''; document.getElementById('photosPicked').textContent = '';
+      discardBtn.hidden = true;
+      draftStatus.textContent = 'Ξεκινάτε από την αρχή. Η πρόοδός σας αποθηκεύεται αυτόματα σε αυτόν τον browser.';
+    });
+  }
+})();
+</script>
+</body>
+</html>
