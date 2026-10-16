@@ -115,13 +115,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
       <option>Οδοντίατρος</option><option>Καρδιολόγος</option><option>Δερματολόγος</option>
       <option>Γυναικολόγος</option><option>Ορθοπαιδικός</option><option>Παθολόγος</option>
       <option>Παιδίατρος</option><option>Πλαστικός Χειρουργός</option>
-      <option>Γραφείο τελετών</option><option>Καφετέρια</option><option>Μπαρ</option><option>All-day καφέ-μπαρ</option>
-      <option>Άλλο</option>
     </select>
-    <div id="typeOtherWrap" hidden>
-      <label for="f-type-other">Ποια είναι η ειδικότητά σας; <span class="req">*</span></label>
-      <input type="text" id="f-type-other" name="Ειδικότητα (άλλο)" placeholder="Γράψτε εδώ την ειδικότητά σας">
-    </div>
 
     <label for="f-owner">Ονοματεπώνυμο υπεύθυνου <span class="req">*</span></label>
     <input type="text" id="f-owner" name="Υπεύθυνος" autocomplete="name" placeholder="π.χ. Γιώργος Παπαδόπουλος" required>
@@ -250,14 +244,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
 
   function showError(msg) { errbox.textContent = msg; errbox.hidden = false; errbox.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
 
-  /* ---------- "Other" specialty ---------- */
-  var typeSel = document.getElementById('f-type'), otherWrap = document.getElementById('typeOtherWrap'), otherInput = document.getElementById('f-type-other');
-  function syncType() {
-    var isOther = typeSel.value === 'Άλλο';
-    otherWrap.hidden = !isOther; otherInput.required = isOther;
-    if (!isOther) otherInput.value = '';
-  }
-  typeSel.addEventListener('change', syncType);
 
   /* ---------- File pickers ---------- */
   logoInput.addEventListener('change', function () {
@@ -358,8 +344,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
       if (el.type === 'radio') el.checked = v[el.name] === el.value;
       else if (Object.prototype.hasOwnProperty.call(v, el.name)) el.value = v[el.name];
     });
-    syncType();
-    if (v['Ειδικότητα (άλλο)']) otherInput.value = v['Ειδικότητα (άλλο)'];
   }
   function fmt(t) { try { return new Date(t).toLocaleString('el-GR', { dateStyle: 'short', timeStyle: 'short' }); } catch (e) { return ''; } }
   function saveDraft(manual) {
@@ -390,7 +374,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     saveBtn.addEventListener('click', function () { saveDraft(true); });
     discardBtn.addEventListener('click', function () {
       try { store.removeItem(DRAFT_KEY); } catch (e) {}
-      form.reset(); syncType();
+      form.reset();
       document.getElementById('logoPicked').textContent = ''; document.getElementById('photosPicked').textContent = '';
       discardBtn.hidden = true;
       draftStatus.textContent = 'Ξεκινάτε από την αρχή. Η πρόοδός σας αποθηκεύεται αυτόματα σε αυτόν τον browser.';
