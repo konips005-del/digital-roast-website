@@ -109,14 +109,18 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     <div class="hint">Πώς θέλετε να εμφανίζεται (π.χ. «Γραφείο Τελετών Παπαδόπουλος»).</div>
     <input type="text" id="f-business" name="Επιχείρηση" required>
 
-    <label for="f-type">Είδος επιχείρησης <span class="req">*</span></label>
-    <select id="f-type" name="Είδος" required>
+    <label for="f-type">Ειδικότητα <span class="req">*</span></label>
+    <select id="f-type" name="Ειδικότητα" required>
       <option value="" disabled selected>Επιλέξτε…</option>
-      <option>Γραφείο τελετών</option><option>Καφετέρια</option><option>Μπαρ</option><option>All-day καφέ-μπαρ</option><option>Άλλο</option>
+      <option>Οδοντίατρος</option><option>Καρδιολόγος</option><option>Δερματολόγος</option>
+      <option>Γυναικολόγος</option><option>Ορθοπαιδικός</option><option>Παθολόγος</option>
+      <option>Παιδίατρος</option><option>Πλαστικός Χειρουργός</option>
+      <option>Γραφείο τελετών</option><option>Καφετέρια</option><option>Μπαρ</option><option>All-day καφέ-μπαρ</option>
+      <option>Άλλο</option>
     </select>
     <div id="typeOtherWrap" hidden>
-      <label for="f-type-other">Τι είδους επιχείρηση έχετε; <span class="req">*</span></label>
-      <input type="text" id="f-type-other" name="Είδος (άλλο)" placeholder="Γράψτε εδώ">
+      <label for="f-type-other">Ποια είναι η ειδικότητά σας; <span class="req">*</span></label>
+      <input type="text" id="f-type-other" name="Ειδικότητα (άλλο)" placeholder="Γράψτε εδώ την ειδικότητά σας">
     </div>
 
     <label for="f-owner">Ονοματεπώνυμο υπεύθυνου <span class="req">*</span></label>
@@ -246,7 +250,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
 
   function showError(msg) { errbox.textContent = msg; errbox.hidden = false; errbox.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
 
-  /* ---------- "Other" business type ---------- */
+  /* ---------- "Other" specialty ---------- */
   var typeSel = document.getElementById('f-type'), otherWrap = document.getElementById('typeOtherWrap'), otherInput = document.getElementById('f-type-other');
   function syncType() {
     var isOther = typeSel.value === 'Άλλο';
@@ -355,7 +359,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
       else if (Object.prototype.hasOwnProperty.call(v, el.name)) el.value = v[el.name];
     });
     syncType();
-    if (v['Είδος (άλλο)']) otherInput.value = v['Είδος (άλλο)'];
+    if (v['Ειδικότητα (άλλο)']) otherInput.value = v['Ειδικότητα (άλλο)'];
   }
   function fmt(t) { try { return new Date(t).toLocaleString('el-GR', { dateStyle: 'short', timeStyle: 'short' }); } catch (e) { return ''; } }
   function saveDraft(manual) {
