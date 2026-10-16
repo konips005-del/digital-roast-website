@@ -137,7 +137,7 @@ footer a:hover{color:var(--ink)}
   function size() {
     var dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
     cv.width = W * dpr; cv.height = H * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var n = Math.round(Math.min(90, W * H / 14000)); pts = [];
+    var n = Math.round(Math.min(300, W * H / 4500)); pts = [];
     for (var i = 0; i < n; i++) { var z = .3 + Math.random() * .7; pts.push({ x: Math.random() * W, y: Math.random() * H, z: z, r: .5 + z * 1.4, vy: -(.04 + z * .14), vx: (Math.random() - .5) * .06, ph: Math.random() * 6.3 }); }
   }
   function frame(now) {

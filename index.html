@@ -355,7 +355,7 @@ footer nav a:hover{color:var(--ink)}
     function size() {
       dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
       cv.width = W * dpr; cv.height = H * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.round(Math.min(150, W * H / 9000));
+      var n = Math.round(Math.min(420, W * H / 3200));
       pts = []; for (var i = 0; i < n; i++) pts.push(make(Math.random() * H));
     }
     function make(y) { var z = .3 + Math.random() * .7; return { x: Math.random() * W, y: y, z: z, r: .5 + z * 1.5, vy: -(.05 + z * .18), vx: (Math.random() - .5) * .08, ph: Math.random() * 6.3 }; }
@@ -377,16 +377,16 @@ footer nav a:hover{color:var(--ink)}
         var tw = .55 + .45 * Math.sin(t * .0016 + p.ph);
         c.beginPath(); c.arc(x, y, p.r, 0, 6.283);
         c.fillStyle = 'rgba(255,224,170,' + (tw * p.z * .8 * ease).toFixed(3) + ')'; c.fill();
-        if (fine) { var d = Math.hypot(x - mouse.x, y - mouse.y); if (d < 170) near.push({ x: x, y: y, d: d }); }
+        if (fine) { var d = Math.hypot(x - mouse.x, y - mouse.y); if (d < 240) near.push({ x: x, y: y, d: d }); }
       }
       /* constellation around the cursor */
       for (var a = 0; a < near.length; a++) {
         var A = near[a];
-        c.strokeStyle = 'rgba(227,207,168,' + (.32 * (1 - A.d / 170)).toFixed(3) + ')'; c.lineWidth = .7;
+        c.strokeStyle = 'rgba(227,207,168,' + (.45 * (1 - A.d / 240)).toFixed(3) + ')'; c.lineWidth = .7;
         c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(mouse.x, mouse.y); c.stroke();
         for (var b = a + 1; b < near.length; b++) {
           var B = near[b], dd = Math.hypot(A.x - B.x, A.y - B.y);
-          if (dd < 90) { c.strokeStyle = 'rgba(227,207,168,' + (.22 * (1 - dd / 90)).toFixed(3) + ')'; c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.stroke(); }
+          if (dd < 140) { c.strokeStyle = 'rgba(227,207,168,' + (.34 * (1 - dd / 140)).toFixed(3) + ')'; c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.stroke(); }
         }
       }
       /* a falling star every few seconds */
