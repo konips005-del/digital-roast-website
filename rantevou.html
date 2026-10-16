@@ -2,54 +2,156 @@
 <html lang="el">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Κλείσε ραντεβού · Digital Roast</title>
+<meta name="description" content="Κλείσε μια δωρεάν γνωριμία 30 λεπτών με τη Digital Roast.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%2308080A'/%3E%3Cg stroke='%23fff' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 10l3 3'/%3E%3Cpath d='M15 5v4'/%3E%3Cpath d='M23 8l-3 3'/%3E%3C/g%3E%3Cpath d='M13 15l15 8-6 2 4 7-4 2-3-7-6 4z' fill='%23F2511A' stroke='%23fff' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
+/* Booking: the same night sky as the home page; one calendar, framed like a lit window. */
 :root{
-  --paper:#F7EEDD;
-  --espresso:#3B2418;
-  --caramel:#B8693C;
-  --line:#E3D2B8;
-  --muted:#7C6553;
-  --logo-bg:#F8F0E2;
-  --font-body:"Commissioner", "Helvetica Neue", Arial, sans-serif;
-  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme:dark;
+  --ink:#EDE9E3;--soft:#A39E96;--hair:rgba(237,233,227,.14);
+  --bronze:#B89A6A;--bronze-2:#E3CFA8;--bronze-ink:#15110B;
+  --wm-a:#FFFFFF;--wm-b:#D6D3D8;--wm-x:#7E2610;--wm-cursor:#FFFFFF;--wm-cursor-line:#111111;
+  --sans:"Commissioner","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --gutter:max(16px,min(6vw,96px));
+  --header-h:72px;
 }
-@media (prefers-color-scheme: dark){
-  :root{color-scheme:dark;--paper:#1C130E;--espresso:#F3E6D3;--caramel:#E0995F;--line:#3E2C21;--muted:#B39A85}
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--espresso);font-family:var(--font-body);line-height:1.6}
-.wrap{max-width:960px;margin-inline:auto;padding-inline:clamp(16px,4vw,32px);padding-block:32px 48px;display:flex;flex-direction:column;align-items:center;gap:24px}
-.back{align-self:flex-start;font-size:.95rem;color:var(--muted);text-decoration:none}
-.back:hover{color:var(--espresso)}
-.logo{background:var(--logo-bg);border:1px solid var(--line);border-radius:24px;padding:14px;width:min(220px,60%)}
-.logo img{display:block;width:100%;height:auto;border-radius:12px}
-.eyebrow{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--caramel)}
-h1{margin:0;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;text-align:center;text-wrap:balance;line-height:1.15}
-.lede{margin:0;color:var(--muted);text-align:center;max-width:55ch}
-.calendar{width:100%;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
-.calendly-inline-widget{min-width:320px;height:700px}
-:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
+@view-transition{navigation:auto}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:#08080A}
+html,body{overflow-x:clip}
+body{font-family:var(--sans);font-size:1.0625rem;line-height:1.65;color:var(--ink);background:transparent;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--bronze);outline-offset:4px;border-radius:6px}
+.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
+.shell{padding-inline:max(var(--gutter),env(safe-area-inset-left,0px)) max(var(--gutter),env(safe-area-inset-right,0px))}
+#sky{position:fixed;inset:0;z-index:-2;background:radial-gradient(120% 80% at 70% 0%,#17130F,#060607 70%)}
+#motes{position:fixed;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none}
+
+.wordmark{display:inline-flex;align-items:flex-start;font-weight:900;font-size:1.55rem;line-height:1;letter-spacing:-.06em;white-space:nowrap;padding-bottom:3px}
+.wordmark .wm{filter:drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x))}
+.wordmark .wm-d{background:linear-gradient(180deg,var(--wm-a),var(--wm-b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wordmark .wm-r{background:linear-gradient(180deg,#FF9447,#F2511A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wordmark svg{width:1em;height:1em;margin-left:.04em;margin-top:-.22em;flex:none}
+
+header.top{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:linear-gradient(rgba(8,8,10,.72),rgba(8,8,10,.35));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.cells{display:flex;align-items:stretch;height:var(--header-h);border-bottom:1px solid var(--hair)}
+.cell{display:flex;align-items:center;padding-inline:22px;border-right:1px solid var(--hair);text-decoration:none;color:var(--soft);font-size:.95rem;transition:color .25s,background .25s}
+.cell:first-child{padding-left:0}
+.cell:last-child{border-right:0;padding-right:0}
+a.cell:hover{color:var(--ink);background:rgba(237,233,227,.03)}
+.cell.grow{flex:1;border-right:0}
+@media (max-width:620px){.cell.opt{display:none}}
+
+.book{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,6vw,90px);align-items:start;padding-block:clamp(48px,10vh,110px) clamp(60px,10vh,120px)}
+@media (max-width:900px){.book{grid-template-columns:1fr}}
+.intro{position:sticky;top:calc(var(--header-h) + 40px)}
+@media (max-width:900px){.intro{position:static}.steps{display:none}}
+.kicker-line{display:flex;align-items:center;gap:14px;color:var(--bronze)}
+.kicker-line::before{content:"";width:42px;height:1px;background:var(--bronze)}
+h1{font-size:clamp(2.6rem,6.4vw,5.4rem);font-weight:800;line-height:1;letter-spacing:-.045em;margin-top:24px;text-wrap:balance}
+h1 em{font-style:normal;font-weight:300;color:var(--bronze-2)}
+.lede{color:var(--soft);font-size:clamp(1.05rem,1.5vw,1.2rem);max-width:44ch;margin-top:24px}
+.steps{list-style:none;margin-top:36px;border-top:1px solid var(--hair)}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:16px 0;border-bottom:1px solid var(--hair);color:var(--soft)}
+.steps b{font-family:var(--mono);font-weight:500;color:var(--bronze);font-size:.85rem;padding-top:2px}
+.direct{display:flex;flex-direction:column;gap:8px;margin-top:32px}
+.direct span{color:var(--soft)}
+.direct a{text-decoration:none;font-weight:600;width:fit-content;border-bottom:1px solid transparent;transition:border-color .25s,color .25s}
+.direct a:hover{color:var(--bronze-2);border-color:var(--bronze)}
+
+.window{position:relative;border-radius:24px;padding:10px;background:linear-gradient(160deg,rgba(227,207,168,.28),rgba(227,207,168,.04) 40%,rgba(227,207,168,.12));box-shadow:0 0 120px 10px rgba(184,154,106,.10),0 40px 80px -40px rgba(0,0,0,.8);min-width:0}
+.window::before{content:"";position:absolute;inset:-80px;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,150,.10),transparent);animation:breathe 6s ease-in-out infinite;pointer-events:none}
+@keyframes breathe{0%,100%{transform:scale(.92);opacity:.7}50%{transform:scale(1.05);opacity:1}}
+.calendar{border-radius:16px;overflow:hidden;background:#fff;min-height:700px}
+.calendly-inline-widget{width:100%;height:700px}
+@media (max-width:520px){.calendly-inline-widget{height:1000px}.calendar{min-height:1000px}}
+
+footer{border-top:1px solid var(--hair);padding-block:28px calc(28px + env(safe-area-inset-bottom,0px));color:var(--soft);font-size:.9rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<main class="wrap">
-  <a class="back" href="index.html">← Πίσω στην αρχική</a>
-  <a class="logo" href="index.html"><img src="logo.jpg" alt="Digital Roast Web Agency"></a>
-  <span class="eyebrow">Δωρεάν γνωριμία · 30 λεπτά</span>
-  <h1>Κλείσε ραντεβού για καφέ</h1>
-  <p class="lede">Διάλεξε μέρα και ώρα. Θα μιλήσουμε για το μαγαζί σου και θα σου πούμε τι χρειάζεσαι, χωρίς καμία δέσμευση.</p>
+<div id="sky"></div>
+<canvas id="motes" aria-hidden="true"></canvas>
 
-  <div class="calendar">
-    <!-- Calendly inline widget begin -->
-    <div class="calendly-inline-widget" data-url="https://calendly.com/konips005/30min?hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-    <!-- Calendly inline widget end -->
+<header class="top shell">
+  <div class="cells">
+    <a class="cell" href="index.html" aria-label="Digital Roast, αρχική"><span class="wordmark"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span></a>
+    <span class="cell grow"></span>
+    <a class="cell opt" href="index.html#paketo">Πακέτο</a>
+    <a class="cell" href="index.html">← Αρχική</a>
+  </div>
+</header>
+
+<main class="book shell">
+  <div class="intro">
+    <span class="kicker-line mono rv">Δωρεάν γνωριμία · 30 λεπτά</span>
+    <h1 class="rv" style="--d:1">Κλείσε <em>ραντεβού.</em></h1>
+    <p class="lede rv" style="--d:2">Διάλεξε μέρα και ώρα. Μιλάμε για το γραφείο σου και σου λέμε ειλικρινά τι χρειάζεται, χωρίς καμία δέσμευση.</p>
+    <ol class="steps rv" style="--d:3">
+      <li><b>01</b>Διαλέγεις μέρα και ώρα στο ημερολόγιο</li>
+      <li><b>02</b>Σου έρχεται email με το link της κλήσης</li>
+      <li><b>03</b>Μιλάμε 30 λεπτά, online</li>
+    </ol>
+    <div class="direct rv" style="--d:4">
+      <span>Προτιμάς τηλέφωνο;</span>
+      <a href="tel:+306934361336">693 436 1336</a>
+      <a href="mailto:digitalroast1@gmail.com">digitalroast1@gmail.com</a>
+    </div>
+  </div>
+
+  <div class="window rv" style="--d:2">
+    <div class="calendar">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/konips005/30min?hide_gdpr_banner=1&amp;hide_event_type_details=1"></div>
+      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
   </div>
 </main>
+
+<footer class="shell">
+  <span>© 2026 Digital Roast · Websites για γραφεία τελετών</span>
+  <a href="https://www.instagram.com/digitalroast.io/" target="_blank" rel="noopener">@digitalroast.io</a>
+</footer>
+
+<script>
+(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Reveals */
+  requestAnimationFrame(function () { document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); }); });
+
+  /* Motes: the same warm light as the home page, quieter */
+  var cv = document.getElementById('motes'), c = cv.getContext('2d'), W, H, pts = [], t0 = performance.now();
+  function size() {
+    var dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.round(Math.min(90, W * H / 14000)); pts = [];
+    for (var i = 0; i < n; i++) { var z = .3 + Math.random() * .7; pts.push({ x: Math.random() * W, y: Math.random() * H, z: z, r: .5 + z * 1.4, vy: -(.04 + z * .14), vx: (Math.random() - .5) * .06, ph: Math.random() * 6.3 }); }
+  }
+  function frame(now) {
+    var t = now - t0; c.clearRect(0, 0, W, H);
+    pts.forEach(function (p) {
+      if (!reduce) { p.x += p.vx; p.y += p.vy; }
+      if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+      var tw = .55 + .45 * Math.sin(t * .0016 + p.ph);
+      c.beginPath(); c.arc(p.x, p.y, p.r, 0, 6.283); c.fillStyle = 'rgba(255,224,170,' + (tw * p.z * .7).toFixed(3) + ')'; c.fill();
+    });
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  size(); addEventListener('resize', size); requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>

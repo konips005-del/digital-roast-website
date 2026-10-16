@@ -1,511 +1,455 @@
-<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
-<title>Digital Roast</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Digital Roast · Websites για γραφεία τελετών</title>
+<meta name="description" content="Websites για γραφεία τελετών. Ένα πακέτο, 250€, έτοιμο σε 2–3 μέρες.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%2308080A'/%3E%3Cg stroke='%23fff' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 10l3 3'/%3E%3Cpath d='M15 5v4'/%3E%3Cpath d='M23 8l-3 3'/%3E%3C/g%3E%3Cpath d='M13 15l15 8-6 2 4 7-4 2-3-7-6 4z' fill='%23F2511A' stroke='%23fff' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: a studio at night. Dark-first page; a live 3D scene of floating browser windows in the hero, an exploded 3D "anatomy of a website" stack, tilt cards for services, a copper accent carried over from the Roast brand. */
+/* Draft: "candlelight at night". A dusk page that scrolls into night, warm motes of light,
+   cursor constellations, a package that orbits, a process drawn as one line. */
 :root{
   color-scheme:dark;
-  --bg:#0A0A0B;
-  --surface:#121214;
-  --surface-2:#1B1B1E;
-  --ink:#ECEAE6;
-  --muted:#9A968F;
-  --line:#26262A;
-  --accent:#B89A6A;
-  --accent-2:#D9C3A0;
-  --accent-ink:#14110C;
-  --glow:rgba(184,154,106,.13);
+  --sky-a:#1E1813;--sky-b:#0C0A09;
+  --ink:#EDE9E3;--soft:#A39E96;--hair:rgba(237,233,227,.14);
+  --bronze:#B89A6A;--bronze-2:#E3CFA8;--bronze-ink:#15110B;
   --wm-a:#FFFFFF;--wm-b:#D6D3D8;--wm-x:#7E2610;--wm-cursor:#FFFFFF;--wm-cursor-line:#111111;
-  --font-display:"Commissioner","Helvetica Neue",Arial,sans-serif;
-  --font-body:"Commissioner","Helvetica Neue",Arial,sans-serif;
-  --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
-  --step-0:1rem;--step-1:1.25rem;--step-2:1.6rem;--step-3:clamp(1.9rem,3.6vw,2.7rem);--step-4:clamp(2.5rem,6.2vw,4.9rem);
-  --wrap:1180px;
+  --sans:"Commissioner","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --gutter:max(16px,min(6vw,96px));
+  --header-h:72px;
 }
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden}
-.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-@media (min-width:700px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
-h1,h2,h3{font-family:var(--font-display);line-height:1.04;text-wrap:balance;margin:0}
-h2{font-size:var(--step-3);font-weight:800;letter-spacing:-.025em}
-p{margin:0}
+@view-transition{navigation:auto}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:#08080A;scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{font-family:var(--sans);font-size:1.0625rem;line-height:1.65;color:var(--ink);background:transparent;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
-.eyebrow{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.lede{color:var(--muted);max-width:58ch;font-size:1.06rem}
+:focus-visible{outline:2px solid var(--bronze);outline-offset:4px;border-radius:6px}
+.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
+.shell{padding-inline:max(var(--gutter),env(safe-area-inset-left,0px)) max(var(--gutter),env(safe-area-inset-right,0px))}
 
-/* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
-.brand{display:inline-flex;text-decoration:none;border-radius:8px}
-.wordmark{display:inline-flex;align-items:flex-start;font-family:var(--font-display);font-weight:900;font-size:1.7rem;line-height:1;letter-spacing:-.06em;white-space:nowrap;padding-bottom:3px}
+/* sky + motes */
+#sky{position:fixed;inset:0;z-index:-2;background:radial-gradient(120% 80% at 70% 0%,var(--sky-a),var(--sky-b) 70%)}
+#motes{position:fixed;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none}
+
+/* loader */
+.loader{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#08080A;transition:opacity .7s ease,visibility .7s}
+.loader.done{opacity:0;visibility:hidden}
+.loader-stage{display:flex;flex-direction:column;align-items:center;gap:22px}
+.loader-bar{width:min(220px,60vw);height:1px;background:var(--hair);overflow:hidden}
+.loader-bar i{display:block;height:100%;width:0;background:var(--bronze);transition:width .25s linear}
+.loader .mono{color:var(--soft)}
+
+/* wordmark */
+.wordmark{display:inline-flex;align-items:flex-start;font-weight:900;font-size:1.55rem;line-height:1;letter-spacing:-.06em;white-space:nowrap;padding-bottom:3px}
 .wordmark .wm{filter:drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x))}
 .wordmark .wm-d{background:linear-gradient(180deg,var(--wm-a),var(--wm-b));-webkit-background-clip:text;background-clip:text;color:transparent}
 .wordmark .wm-r{background:linear-gradient(180deg,#FF9447,#F2511A);-webkit-background-clip:text;background-clip:text;color:transparent}
 .wordmark svg{width:1em;height:1em;margin-left:.04em;margin-top:-.22em;flex:none}
-.wordmark.lg{font-size:clamp(2rem,5vw,2.6rem)}
-@media (max-width:400px){.wordmark{font-size:1.4rem}}
-.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:.95rem}
-.nav ul a{text-decoration:none;color:var(--muted)}
-.nav ul a:hover{color:var(--ink)}
-@media (max-width:820px){.nav ul{display:none}}
-.btn{display:inline-flex;align-items:center;gap:8px;font:700 .98rem var(--font-body);padding:13px 22px;border-radius:14px;border:1.5px solid var(--accent);background:var(--accent);color:var(--accent-ink);text-decoration:none;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 10px 30px -12px var(--accent)}
-.btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px var(--accent)}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);box-shadow:none}
-.btn.ghost:hover{border-color:var(--accent)}
-.btn.small{padding:9px 16px;font-size:.9rem;border-radius:12px}
+.wordmark.lg{font-size:clamp(2rem,6vw,2.8rem)}
 
-/* hero */
-.hero{position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:70%;aspect-ratio:1;background:radial-gradient(closest-side,var(--glow),transparent 70%);pointer-events:none}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:center;padding-block:clamp(40px,7vw,88px)}
-.hero .stack{display:flex;flex-direction:column;gap:24px;min-width:0}
-.hero h1{font-size:var(--step-4);font-weight:900;letter-spacing:-.04em}
-.hero h1 .out{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero .actions{display:flex;flex-wrap:wrap;gap:12px}
-.code-line{font-family:var(--font-mono);font-size:.84rem;color:var(--muted)}
-.code-line b{color:var(--accent);font-weight:600}
-.scene{position:relative;width:100%;max-width:100%;aspect-ratio:1/1;min-height:300px}
-.scene canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block}
-.scene .fallback{position:absolute;inset:12%;border-radius:24px;border:1px solid var(--line);background:linear-gradient(135deg,var(--surface-2),var(--surface));transform:perspective(900px) rotateY(-18deg) rotateX(8deg);box-shadow:0 40px 80px -40px var(--accent)}
-.scene.ready .fallback{display:none}
-@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.scene{max-width:520px;justify-self:center;aspect-ratio:4/3}}
+/* header: a quiet strip of cells */
+header.top{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:linear-gradient(rgba(8,8,10,.72),rgba(8,8,10,.35));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.cells{display:flex;align-items:stretch;height:var(--header-h);border-bottom:1px solid var(--hair)}
+.cell{display:flex;align-items:center;padding-inline:22px;border-right:1px solid var(--hair);text-decoration:none;color:var(--soft);font-size:.95rem;transition:color .25s,background .25s}
+.cell:first-child{padding-left:0}
+.cell:last-child{border-right:0;padding-right:0}
+a.cell:hover{color:var(--ink);background:rgba(237,233,227,.03)}
+.cell.grow{flex:1;border-right:0}
+.brand-cell{color:var(--ink)}
+.menu-btn{display:none;background:none;border:0;color:var(--ink);font:inherit;cursor:pointer}
+.nav-panel{display:none}
+@media (max-width:820px){
+  .cell.nav{display:none}
+  .menu-btn{display:flex}
+  .nav-panel{display:flex;flex-direction:column;gap:6px;max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+  .nav-panel.open{max-height:320px}
+  .nav-panel a{padding:14px 0;border-bottom:1px solid var(--hair);text-decoration:none;font-size:1.2rem;font-weight:600}
+}
 
-.stackbar{border-block:1px solid var(--line);background:var(--surface)}
-.stackbar .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;padding-block:18px;font-family:var(--font-mono);font-size:.82rem;color:var(--muted);align-items:center}
-.stackbar b{color:var(--ink);font-weight:600}
+/* buttons */
+.btn{--mx:0px;--my:0px;display:inline-flex;align-items:center;gap:10px;font:700 1rem var(--sans);padding:16px 26px;border-radius:999px;background:var(--bronze);color:var(--bronze-ink);text-decoration:none;border:1px solid var(--bronze);transform:translate(var(--mx),var(--my));transition:transform .35s var(--ease),box-shadow .35s;box-shadow:0 0 0 0 rgba(184,154,106,0)}
+.btn:hover{box-shadow:0 0 40px 2px rgba(184,154,106,.35)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--hair)}
+.btn.ghost:hover{border-color:var(--bronze);box-shadow:none}
+.btn.sm{padding:10px 18px;font-size:.9rem}
+.btn .arr{transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
 
-/* sections */
-section{padding-block:clamp(60px,9vw,110px)}
-.section-head{display:flex;flex-direction:column;gap:14px;margin-bottom:44px;max-width:760px}
+/* candle: the one drifting light */
+.candle{position:absolute;width:14px;height:14px;border-radius:50%;background:#FFF3DC;box-shadow:0 0 18px 6px rgba(255,214,150,.65),0 0 90px 30px rgba(184,154,106,.25);animation:drift 14s ease-in-out infinite;transition:left 1.2s var(--ease),top 1.2s var(--ease)}
+.candle::after{content:"";position:absolute;inset:-50px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,150,.18),transparent);animation:breathe 5s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0)}25%{transform:translate(18px,-14px)}50%{transform:translate(-6px,-26px)}75%{transform:translate(-20px,-8px)}}
+@keyframes breathe{0%,100%{transform:scale(.85);opacity:.7}50%{transform:scale(1.15);opacity:1}}
 
-/* services: tilt cards */
-.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media (max-width:960px){.services{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:600px){.services{grid-template-columns:1fr}}
-.card{--rx:0deg;--ry:0deg;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:12px;transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .25s ease,border-color .25s ease;min-width:0}
-.card:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
-.card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),var(--glow),transparent 45%);opacity:0;transition:opacity .25s;pointer-events:none}
-.card:hover::after{opacity:1}
-.card .ico{width:52px;height:52px;transform:translateZ(30px)}
-.card h3{font-size:var(--step-1);font-weight:800;transform:translateZ(20px)}
-.card p{color:var(--muted);font-size:.97rem}
-.card .tag{font-family:var(--font-mono);font-size:.74rem;color:var(--accent);margin-top:auto;padding-top:6px}
+/* hero: one viewport, action at the bottom edge */
+.hero{position:relative;min-height:calc(100svh - var(--header-h));display:flex;flex-direction:column;justify-content:space-between;padding-block:clamp(36px,8vh,90px) clamp(28px,5vh,48px)}
+.hero .candle{left:72%;top:22%}
+.hero.settle .candle{left:calc(var(--gutter) + 90px);top:calc(100% - 150px);animation-play-state:paused}
+.kicker-line{display:flex;align-items:center;gap:14px;color:var(--bronze)}
+.kicker-line::before{content:"";width:42px;height:1px;background:var(--bronze)}
+.hero h1{font-size:clamp(2.8rem,9.4vw,8.6rem);font-weight:800;line-height:.98;letter-spacing:-.045em;max-width:12ch;margin-top:28px}
+.hero h1 em{font-style:normal;font-weight:300;color:var(--bronze-2)}
+.hero-foot{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;border-top:1px solid var(--hair);padding-top:26px;margin-top:40px}
+.hero-foot p{color:var(--soft);max-width:44ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.scroll-hint{display:flex;align-items:center;gap:10px;color:var(--soft)}
+.scroll-hint i{width:1px;height:34px;background:linear-gradient(var(--bronze),transparent);animation:hint 2.2s ease-in-out infinite}
+@keyframes hint{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* anatomy: exploded 3D stack */
-.anatomy .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,6vw,80px);align-items:center}
-@media (max-width:860px){.anatomy .wrap{grid-template-columns:1fr}}
-.iso{position:relative;height:460px;perspective:1400px;display:grid;place-items:center}
-.iso-stack{position:relative;width:300px;height:220px;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-38deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.iso:hover .iso-stack{transform:rotateX(52deg) rotateZ(-30deg)}
-.layer{position:absolute;inset:0;border-radius:18px;border:1.5px solid color-mix(in srgb,var(--accent) 45%,var(--line));background:color-mix(in srgb,var(--surface) 82%,transparent);transform:translateZ(calc(var(--i) * 62px));transition:transform .6s cubic-bezier(.2,.7,.2,1),border-color .3s,background .3s,box-shadow .3s;display:grid;padding:16px;gap:8px;box-shadow:0 30px 40px -30px rgba(0,0,0,.6)}
-.iso:hover .layer{transform:translateZ(calc(var(--i) * 84px))}
-.layer.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 22%,var(--surface));box-shadow:0 0 0 1px var(--accent),0 30px 60px -20px var(--accent)}
-.layer .lbl{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.l-host{grid-template-columns:repeat(4,1fr);align-content:end}
-.l-host span{height:18px;border-radius:5px;background:var(--surface-2);border:1px solid var(--line)}
-.l-back{grid-template-columns:1fr 1fr;align-content:end}
-.l-back span{height:44px;border-radius:8px;border:1px dashed color-mix(in srgb,var(--accent) 50%,var(--line))}
-.l-front{grid-template-rows:auto 1fr;}
-.l-front .bars{display:grid;grid-template-columns:2fr 1fr;gap:8px}
-.l-front .bars span{border-radius:8px;background:var(--surface-2)}
-.l-design{grid-template-rows:auto auto 1fr}
-.l-design .sw{display:flex;gap:6px}
-.l-design .sw span{width:22px;height:22px;border-radius:50%}
-.l-design .hl{height:14px;width:70%;border-radius:4px;background:var(--ink);opacity:.85}
-@media (max-width:520px){.iso{height:360px}.iso-stack{width:220px;height:160px}.layer{padding:12px}}
-.layers-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-.layers-list li{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:16px 18px;border-radius:16px;border:1px solid transparent;cursor:default;transition:background .2s,border-color .2s}
-.layers-list li:hover,.layers-list li.on{background:var(--surface);border-color:var(--line)}
-.layers-list code{font-family:var(--font-mono);font-size:.78rem;color:var(--accent);padding-top:4px}
-.layers-list strong{display:block;font-size:1.06rem}
-.layers-list span{color:var(--muted);font-size:.95rem}
+/* movements */
+section{padding-block:clamp(90px,16vh,180px);position:relative}
+.label{color:var(--bronze);margin-bottom:22px;display:block}
+h2{font-size:clamp(2.2rem,6vw,5rem);font-weight:800;letter-spacing:-.04em;line-height:1.02;text-wrap:balance}
+h2 em{font-style:normal;font-weight:300;color:var(--bronze-2)}
+.lede{color:var(--soft);font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:56ch;margin-top:26px}
 
-/* pricing */
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
-@media (max-width:900px){.plans{grid-template-columns:1fr}}
-.plan{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:18px;min-width:0}
-.plan.hot{background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 20%,var(--surface)),var(--surface) 60%);border-color:color-mix(in srgb,var(--accent) 60%,var(--line));position:relative}
-.plan .top{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:28px}
-.plan .kind{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.badge{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:4px 10px;border-radius:999px}
-.plan h3{font-size:var(--step-2);font-weight:900;letter-spacing:-.02em}
-.price{font-family:var(--font-display);font-weight:900;font-size:2.6rem;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
-.price small{font-family:var(--font-mono);font-size:.8rem;font-weight:400;color:var(--muted);letter-spacing:0;margin-right:6px}
-.plan p.for{color:var(--muted);font-size:.95rem}
-.plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;font-size:.96rem;border-top:1px solid var(--line);padding-top:18px}
-.plan li{display:grid;grid-template-columns:18px 1fr;gap:10px}
-.plan li::before{content:"";width:8px;height:8px;margin-top:9px;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
-.plan .btn{margin-top:auto;justify-content:center}
-.services.one,.plans.one{grid-template-columns:1fr;max-width:520px}
+.statement h2{max-width:14ch}
 
-/* process */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:0;counter-reset:s}
-@media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.steps{grid-template-columns:1fr}}
-.steps li{counter-increment:s;display:flex;flex-direction:column;gap:10px;padding:24px;border-radius:20px;border:1px solid var(--line);background:var(--surface)}
-.steps li::before{content:"0" counter(s);font-family:var(--font-display);font-weight:900;font-size:2.6rem;line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.2px var(--accent)}
-.steps .when{font-family:var(--font-mono);font-size:.76rem;color:var(--accent)}
-.steps h3{font-size:var(--step-1);font-weight:800}
-.steps p{color:var(--muted);font-size:.95rem}
+/* marquee: one quiet moving line */
+.marquee{border-block:1px solid var(--hair);overflow:hidden;padding-block:26px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:roll 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-set{display:flex;gap:56px;padding-right:56px;font-size:clamp(1.1rem,2vw,1.5rem);font-weight:300;white-space:nowrap;color:var(--soft)}
+.marquee-set span::after{content:"✦";margin-left:56px;color:var(--bronze);font-size:.7em;vertical-align:middle}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* orbit: the package and everything it carries */
+.orbit-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,6vw,90px);align-items:center}
+.orbit{position:relative;aspect-ratio:1;width:100%;max-width:560px;justify-self:center}
+.planet{position:absolute;left:50%;top:50%;width:46%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 30%,#3A3128,#141210 62%,#0A0909);box-shadow:inset -18px -24px 60px rgba(0,0,0,.7),0 0 120px 10px rgba(184,154,106,.12),0 0 0 1px rgba(227,207,168,.12);display:grid;place-items:center;text-align:center;z-index:5}
+.planet b{display:block;font-size:clamp(2.4rem,6vw,4rem);font-weight:900;letter-spacing:-.04em;line-height:1}
+.planet small{display:block;color:var(--soft);margin-top:8px}
+.ring{position:absolute;left:50%;top:50%;width:96%;height:34%;transform:translate(-50%,-50%) rotate(-12deg);border:1px solid rgba(227,207,168,.18);border-radius:50%}
+.chip{position:absolute;left:0;top:0;white-space:nowrap;font-size:.92rem;font-weight:600;padding:9px 16px;border-radius:999px;background:rgba(18,16,14,.85);border:1px solid rgba(227,207,168,.25);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);will-change:transform,opacity}
+.chip::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--bronze);margin-right:9px;vertical-align:middle;box-shadow:0 0 8px var(--bronze)}
+.feature-list{list-style:none;display:none;flex-direction:column;gap:10px;margin-top:30px}
+.feature-list li{padding:14px 0;border-bottom:1px solid var(--hair)}
+.feature-list li::before{content:"✦";color:var(--bronze);margin-right:12px;font-size:.8em}
+.orbit.static .chip,.orbit.static .ring{display:none}
+.orbit.static + .feature-list,.no-orbit .feature-list{display:flex}
+.price-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+@media (max-width:860px){.orbit-wrap{grid-template-columns:1fr}.orbit{max-width:420px}}
+
+/* process: one constellation */
+.stations{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:70px;list-style:none}
+.stations svg{position:absolute;left:0;top:7px;width:100%;height:2px;overflow:visible}
+.stations svg line{stroke:var(--bronze);stroke-width:1;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s var(--ease) .3s;opacity:.6}
+.stations.in svg line{stroke-dashoffset:0}
+.station{position:relative;padding-top:42px}
+.station::before{content:"";position:absolute;left:0;top:0;width:16px;height:16px;border-radius:50%;background:#FFF3DC;box-shadow:0 0 14px 4px rgba(255,214,150,.45);transform:scale(0);transition:transform .6s var(--ease) calc(.4s + var(--i) * .45s)}
+.stations.in .station::before{transform:scale(1)}
+.station .mono{color:var(--bronze)}
+.station h3{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;margin:10px 0 8px}
+.station p{color:var(--soft);font-size:.98rem}
+@media (max-width:820px){
+  .stations{grid-template-columns:1fr;gap:38px;padding-left:34px}
+  .stations svg{left:7px;top:0;width:2px;height:100%}
+  .station{padding-top:0}
+  .station::before{left:-34px;top:6px}
+}
 
 /* faq */
-.faq{display:flex;flex-direction:column;max-width:800px}
-.faq details{border-bottom:1px solid var(--line);padding-block:20px}
-.faq summary{cursor:pointer;font-weight:700;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq{max-width:860px;margin-top:50px;border-top:1px solid var(--hair)}
+.faq details{border-bottom:1px solid var(--hair)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;padding:26px 0;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--font-mono);color:var(--accent);font-size:1.2rem;line-height:1.3}
-.faq details[open] summary::after{content:"–"}
-.faq details p{color:var(--muted);margin-top:10px;max-width:65ch}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--bronze);transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--soft);padding-bottom:26px;max-width:62ch}
 
-/* contact */
-.contact{background:var(--surface);border-top:1px solid var(--line)}
-.contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,72px)}
-@media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
-.contact .section-head{margin-bottom:0}
-.direct{display:flex;flex-direction:column;gap:6px;margin-top:22px;font-family:var(--font-mono);font-size:.88rem;color:var(--muted)}
-.direct{font-size:1rem;gap:12px}
-.direct a{color:var(--ink);text-decoration:none;font-weight:600;font-family:var(--font-body)}
-.direct a:hover{color:var(--accent)}
-.cal{min-width:0;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#fff}
-.calendly-inline-widget{width:100%;height:700px}
-footer .contact-links{display:flex;flex-wrap:wrap;gap:8px 20px}
-footer .contact-links a{color:var(--ink);text-decoration:none;font-weight:600}
-footer .contact-links a:hover{color:var(--accent)}
+/* close: one light, breathing, behind the call */
+.close{text-align:center;overflow:hidden}
+.close .glow{position:absolute;left:50%;top:50%;width:min(720px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,150,.16),rgba(184,154,106,.05) 55%,transparent);animation:breathe 6s ease-in-out infinite;pointer-events:none}
+.close h2{font-size:clamp(3rem,11vw,9rem);position:relative}
+.close .lede{margin-inline:auto;position:relative}
+.close .hero-cta{justify-content:center;margin-top:40px;position:relative}
+.direct{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;margin-top:44px;position:relative}
+.direct a{text-decoration:none;font-weight:600;color:var(--ink);border-bottom:1px solid transparent;transition:border-color .25s,color .25s}
+.direct a:hover{color:var(--bronze-2);border-color:var(--bronze)}
 
-footer{border-top:1px solid var(--line);padding-block:30px;font-size:.88rem;color:var(--muted)}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
-footer .logo{display:flex;flex-direction:column;gap:10px}
+/* footer */
+footer{border-top:1px solid var(--hair);padding-block:40px calc(32px + env(safe-area-inset-bottom,0px));color:var(--soft);font-size:.9rem}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 24px}
+footer nav a{text-decoration:none}
+footer nav a:hover{color:var(--ink)}
+
+/* scroll reveals: rise into place, staggered */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  .stations svg line{stroke-dashoffset:0}
+  .station::before{transform:scale(1)}
+}
 </style>
 </head>
 <body>
 
-<nav class="nav" aria-label="Κύριο μενού">
-  <div class="wrap">
-    <a class="brand" href="#top" aria-label="Digital Roast, αρχή σελίδας"><span class="wordmark"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span></a>
-    <ul>
-      <li><a href="#ypiresies">Υπηρεσίες</a></li>
-      <li><a href="#anatomia">Πώς χτίζεται</a></li>
-      <li><a href="#paketa">Πακέτα</a></li>
-      <li><a href="#diadikasia">Διαδικασία</a></li>
-      <li><a href="#faq">Ερωτήσεις</a></li>
-    </ul>
-    <a class="btn small" href="#epikoinonia">Ζήτα προσφορά</a>
-  </div>
-</nav>
-
-<header class="hero" id="top">
-  <div class="wrap">
-    <div class="stack">
-      <span class="eyebrow">Websites για γραφεία τελετών</span>
-      <h1>Websites που εμπνέουν εμπιστοσύνη <em>όταν σε χρειάζονται.</em></h1>
-      <p class="lede">Η Digital Roast φτιάχνει sites για γραφεία τελετών. Οι οικογένειες σε βρίσκουν στο Google, βλέπουν τις υπηρεσίες σου και σε καλούν με ένα πάτημα, όποια ώρα κι αν είναι.</p>
-      <div class="actions">
-        <a class="btn" href="#epikoinonia">Κλείσε δωρεάν γνωριμία</a>
-        <a class="btn ghost" href="#paketa">Δες το πακέτο</a>
-      </div>
-      <p class="code-line">&lt;site&gt; έτοιμο σε <b>2–3 μέρες</b> · φιλοξενία <b>μέσα</b> &lt;/site&gt;</p>
-    </div>
-    <div class="scene" id="scene" aria-hidden="true"><div class="fallback"></div></div>
-  </div>
-</header>
-
-<div class="stackbar">
-  <div class="wrap">
-    <span>Δουλεύουμε με:</span><b>HTML/CSS</b><b>JavaScript</b><b>React · Next.js</b><b>WordPress</b><b>Node.js</b><b>Three.js</b>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-stage">
+    <span class="wordmark lg"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span>
+    <div class="loader-bar"><i id="loader-bar"></i></div>
+    <span class="mono">Ανάβουμε τα φώτα</span>
   </div>
 </div>
 
-<section id="ypiresies">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Τι φτιάχνουμε</span>
-      <h2>Κάνουμε ένα πράγμα, και το κάνουμε σωστά</h2>
-      <p class="lede">Δεν φτιάχνουμε e-shops ούτε εφαρμογές. Φτιάχνουμε sites για γραφεία τελετών: σοβαρά, διακριτικά και γρήγορα στο κινητό.</p>
-    </div>
-    <div class="services one">
-      <article class="card"><svg class="ico" viewBox="0 0 52 52" fill="none"><rect x="6" y="10" width="40" height="30" rx="5" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="1.5"/><path d="M6 17h40" stroke="var(--accent)" stroke-width="1.5"/><rect x="11" y="22" width="16" height="4" rx="2" fill="var(--accent)"/><rect x="11" y="29" width="24" height="3" rx="1.5" fill="var(--muted)"/></svg><h3>Κατασκευή website</h3><p>Οι υπηρεσίες σου, τηλέφωνο 24 ωρών, διεύθυνση και χάρτης σε ένα site με σχέδιο που δείχνει σεβασμό. Στημένο ώστε να σε βρίσκουν στο Google.</p><span class="tag">/website</span></article>
-    </div>
-  </div>
-</section>
+<div id="sky"></div>
+<canvas id="motes" aria-hidden="true"></canvas>
 
-<section class="anatomy" id="anatomia" style="background:var(--surface);border-block:1px solid var(--line)">
-  <div class="wrap">
-    <div class="iso" id="iso" aria-hidden="true">
-      <div class="iso-stack">
-        <div class="layer l-host" style="--i:0" data-l="0"><span class="lbl">hosting</span><span></span><span></span><span></span><span></span></div>
-        <div class="layer l-back" style="--i:1" data-l="1"><span class="lbl" style="grid-column:1/-1">backend · cms</span><span></span><span></span></div>
-        <div class="layer l-front" style="--i:2" data-l="2"><span class="lbl">frontend</span><div class="bars"><span></span><span></span></div></div>
-        <div class="layer l-design" style="--i:3" data-l="3"><span class="lbl">design</span><div class="sw"><span style="background:var(--accent)"></span><span style="background:var(--accent-2)"></span><span style="background:var(--ink)"></span></div><span class="hl"></span></div>
-      </div>
-    </div>
+<header class="top shell">
+  <div class="cells">
+    <a class="cell brand-cell" href="#top" aria-label="Digital Roast, αρχή σελίδας"><span class="wordmark"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span></a>
+    <span class="cell grow"></span>
+    <a class="cell nav" href="#paketo">Πακέτο</a>
+    <a class="cell nav" href="#diadikasia">Διαδικασία</a>
+    <a class="cell nav" href="#faq">Ερωτήσεις</a>
+    <span class="cell nav"><a class="btn sm magnetic" href="rantevou.html">Κλείσε ραντεβού</a></span>
+    <button class="cell menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-panel">Μενού</button>
+  </div>
+  <nav class="nav-panel" id="nav-panel" aria-label="Κύριο μενού">
+    <a href="#paketo">Πακέτο</a>
+    <a href="#diadikasia">Διαδικασία</a>
+    <a href="#faq">Ερωτήσεις</a>
+    <a href="rantevou.html">Κλείσε ραντεβού</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero shell" id="hero" style="padding-top:clamp(36px,8vh,90px)">
+    <span class="candle" aria-hidden="true"></span>
     <div>
-      <div class="section-head" style="margin-bottom:28px">
-        <span class="eyebrow">Πώς χτίζεται ένα site</span>
-        <h2>Τέσσερα στρώματα, μία ομάδα</h2>
-        <p class="lede">Δεν σε στέλνουμε σε γραφίστα, προγραμματιστή και εταιρεία φιλοξενίας. Τα αναλαμβάνουμε όλα και έχεις έναν άνθρωπο να μιλάς.</p>
-      </div>
-      <ul class="layers-list" id="layers-list">
-        <li data-l="3"><code>design</code><div><strong>Σχεδιασμός UI/UX</strong><span>Wireframes και σχέδια σε Figma, με τα χρώματα και τη γραμματοσειρά της εταιρείας σου.</span></div></li>
-        <li data-l="2"><code>front</code><div><strong>Frontend</strong><span>Ο κώδικας που βλέπει ο επισκέπτης. Responsive, προσβάσιμος και γρήγορος σε κάθε κινητό.</span></div></li>
-        <li data-l="1"><code>back</code><div><strong>Backend &amp; CMS</strong><span>Το περιεχόμενο του site και η σύνδεση με το Google Business και τους χάρτες.</span></div></li>
-        <li data-l="0"><code>host</code><div><strong>Φιλοξενία &amp; ασφάλεια</strong><span>Servers, SSL, domain, καθημερινά backups και παρακολούθηση ώστε το site να μένει online.</span></div></li>
-      </ul>
+      <span class="kicker-line mono rv">Websites για γραφεία τελετών</span>
+      <h1 class="rv" style="--d:1">Σε βρίσκουν <em>όταν σε χρειάζονται.</em></h1>
     </div>
-  </div>
-</section>
-
-<section id="paketa">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Πακέτα</span>
-      <h2>Ένα πακέτο, όλα μέσα</h2>
-      <p class="lede">Μία τιμή, εφάπαξ. Χωρίς κρυφές χρεώσεις.</p>
-    </div>
-    <div class="plans one">
-      <div class="plan hot">
-        <div class="top"><span class="kind">Website</span></div>
-        <h3>Website γραφείου τελετών</h3>
-        <div class="price">250€</div>
-        <p class="for">Για γραφεία τελετών που θέλουν να τα βρίσκουν οι οικογένειες στο Google.</p>
-        <ul><li>Site μίας σελίδας σε σοβαρό, σκούρο σχέδιο</li><li>Υπηρεσίες &amp; τηλέφωνο 24 ωρών με ένα πάτημα</li><li>Διεύθυνση &amp; χάρτης</li><li>Google Business</li><li>Ελληνικά &amp; αγγλικά</li><li>Φιλοξενία μέσα</li><li>Έτοιμο σε 2–3 μέρες</li></ul>
-        <a class="btn" href="#epikoinonia">Κλείσε ραντεβού</a>
+    <div class="hero-foot rv" style="--d:2">
+      <p>Ένα σοβαρό, διακριτικό site για το γραφείο σου. Οι οικογένειες σε βρίσκουν στο Google και σε καλούν με ένα πάτημα, όποια ώρα κι αν είναι.</p>
+      <div class="hero-cta" id="hero-cta">
+        <a class="btn magnetic" href="rantevou.html">Κλείσε δωρεάν ραντεβού <span class="arr">→</span></a>
+        <span class="scroll-hint mono"><i></i>Κύλισε</span>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <section class="statement shell">
+    <span class="label mono rv">Τι κάνουμε</span>
+    <h2 class="rv" style="--d:1">Μόνο γραφεία τελετών. <em>Τίποτα άλλο.</em></h2>
+    <p class="lede rv" style="--d:2">Δεν φτιάχνουμε e-shops ούτε εφαρμογές. Φτιάχνουμε sites για γραφεία τελετών, με τον σεβασμό που χρειάζεται η δουλειά σου και την ταχύτητα που χρειάζεται μια οικογένεια που ψάχνει τηλέφωνο.</p>
+  </section>
 
-<section id="diadikasia" style="padding-top:0">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Διαδικασία</span>
-      <h2>Από την πρώτη κουβέντα στο online σε τρεις μέρες</h2>
+  <div class="marquee" aria-label="Τι περιλαμβάνει το πακέτο">
+    <div class="marquee-track">
+      <div class="marquee-set"><span>Τηλέφωνο 24 ωρών</span><span>Οι υπηρεσίες σου</span><span>Διεύθυνση &amp; χάρτης</span><span>Google Business</span><span>Ελληνικά &amp; αγγλικά</span><span>Φιλοξενία μέσα</span><span>Έτοιμο σε 2–3 μέρες</span></div>
+      <div class="marquee-set" aria-hidden="true"><span>Τηλέφωνο 24 ωρών</span><span>Οι υπηρεσίες σου</span><span>Διεύθυνση &amp; χάρτης</span><span>Google Business</span><span>Ελληνικά &amp; αγγλικά</span><span>Φιλοξενία μέσα</span><span>Έτοιμο σε 2–3 μέρες</span></div>
     </div>
-    <ol class="steps">
-      <li><span class="when">Ημέρα 1</span><h3>Γνωριμία</h3><p>Μιλάμε για την επιχείρηση, τους πελάτες σου και τι πρέπει να κάνει το site.</p></li>
-      <li><span class="when">Ημέρα 1</span><h3>Σχέδιο</h3><p>Σου δείχνουμε πώς θα μοιάζει σε κινητό και υπολογιστή. Αλλάζουμε ό,τι θέλεις πριν γράψουμε κώδικα.</p></li>
-      <li><span class="when">Ημέρα 2</span><h3>Κατασκευή</h3><p>Γράφουμε τον κώδικα και ανεβάζουμε κείμενα και φωτογραφίες.</p></li>
-      <li><span class="when">Ημέρα 3</span><h3>Online</h3><p>Ελέγχουμε ταχύτητα και Google, και το site βγαίνει online.</p></li>
+  </div>
+
+  <section class="shell" id="paketo">
+    <div class="orbit-wrap">
+      <div>
+        <span class="label mono rv">Πακέτο</span>
+        <h2 class="rv" style="--d:1">Ένα πακέτο, <em>όλα μέσα.</em></h2>
+        <p class="lede rv" style="--d:2">Μία τιμή, εφάπαξ, χωρίς κρυφές χρεώσεις. Site μίας σελίδας σε σοβαρό, σκούρο σχέδιο, με ό,τι χρειάζεται για να σε βρουν και να σε καλέσουν.</p>
+        <ul class="feature-list" id="feature-list">
+          <li>Υπηρεσίες &amp; τηλέφωνο 24 ωρών με ένα πάτημα</li><li>Διεύθυνση &amp; χάρτης</li><li>Google Business</li><li>Ελληνικά &amp; αγγλικά</li><li>Φιλοξενία μέσα</li><li>Έτοιμο σε 2–3 μέρες</li>
+        </ul>
+        <div class="price-row rv" style="--d:3"><a class="btn magnetic" href="rantevou.html">Κλείσε ραντεβού <span class="arr">→</span></a></div>
+      </div>
+      <div class="orbit rv" id="orbit" aria-hidden="true">
+        <div class="ring"></div>
+        <div class="planet"><div><b>250€</b><small class="mono">εφάπαξ</small></div></div>
+        <span class="chip">Τηλέφωνο 24 ωρών</span><span class="chip">Υπηρεσίες</span><span class="chip">Χάρτης</span><span class="chip">Google Business</span><span class="chip">EL / EN</span><span class="chip">Φιλοξενία</span><span class="chip">2–3 μέρες</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell" id="diadikasia" style="padding-top:0">
+    <span class="label mono rv">Διαδικασία</span>
+    <h2 class="rv" style="--d:1">Από την πρώτη κουβέντα <em>στο online σε τρεις μέρες.</em></h2>
+    <ol class="stations" id="stations">
+      <svg aria-hidden="true" preserveAspectRatio="none"><line id="st-line" x1="0" y1="0" x2="100%" y2="0" pathLength="1"/></svg>
+      <li class="station" style="--i:0"><span class="mono">Ημέρα 1</span><h3>Γνωριμία</h3><p>Μιλάμε για το γραφείο σου και τι πρέπει να βρίσκει μια οικογένεια στο site.</p></li>
+      <li class="station" style="--i:1"><span class="mono">Ημέρα 1</span><h3>Σχέδιο</h3><p>Σου δείχνουμε πώς θα μοιάζει σε κινητό και υπολογιστή, και αλλάζουμε ό,τι θέλεις.</p></li>
+      <li class="station" style="--i:2"><span class="mono">Ημέρα 2</span><h3>Κατασκευή</h3><p>Γράφουμε τον κώδικα και ανεβάζουμε κείμενα και φωτογραφίες.</p></li>
+      <li class="station" style="--i:3"><span class="mono">Ημέρα 3</span><h3>Online</h3><p>Ελέγχουμε ταχύτητα και Google, και το site βγαίνει online.</p></li>
     </ol>
-  </div>
-</section>
+  </section>
 
-<section id="faq" style="padding-top:0">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Συχνές ερωτήσεις</span>
-      <h2>Πριν ξεκινήσουμε</h2>
-    </div>
-    <div class="faq">
-      <details open><summary>Έχω ήδη site. Μπορείτε να το ανανεώσετε;</summary><p>Ναι. Κρατάμε το domain και ό,τι περιεχόμενο αξίζει, και ξαναστήνουμε το site ώστε να είναι γρήγορο, σύγχρονο και να μη χάσει τη θέση του στο Google.</p></details>
+  <section class="shell" id="faq" style="padding-top:0">
+    <span class="label mono rv">Συχνές ερωτήσεις</span>
+    <h2 class="rv" style="--d:1">Πριν ξεκινήσουμε</h2>
+    <div class="faq rv" style="--d:2">
+      <details><summary>Έχω ήδη site. Μπορείτε να το ανανεώσετε;</summary><p>Ναι. Κρατάμε το domain και ό,τι περιεχόμενο αξίζει, και ξαναστήνουμε το site ώστε να είναι γρήγορο, σύγχρονο και να μη χάσει τη θέση του στο Google.</p></details>
       <details><summary>Τι γίνεται αν κάτι χαλάσει μετά την παράδοση;</summary><p>Μας στέλνεις μήνυμα και το κοιτάμε την ίδια μέρα.</p></details>
-      <details><summary>Δουλεύετε με πελάτες εκτός Ελλάδας;</summary><p>Ναι. Οι περισσότερες συναντήσεις γίνονται online, οπότε δουλεύουμε με επιχειρήσεις σε όλη την Ελλάδα και το εξωτερικό.</p></details>
+      <details><summary>Δουλεύετε με πελάτες εκτός Αθήνας;</summary><p>Ναι. Οι περισσότερες συναντήσεις γίνονται online, οπότε δουλεύουμε με γραφεία σε όλη την Ελλάδα.</p></details>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="contact" id="epikoinonia">
-  <div class="wrap">
-    <div>
-      <div class="section-head">
-        <span class="eyebrow">Επικοινωνία</span>
-        <h2>Ας φτιάξουμε κάτι μαζί</h2>
-        <p class="lede">Κλείσε μια δωρεάν γνωριμία 30 λεπτών, χωρίς δέσμευση. Ή πάρε μας κατευθείαν τηλέφωνο.</p>
-      </div>
-      <p class="direct">
-        <a href="tel:+306934361336">📞 693 436 1336</a>
-        <a href="mailto:digitalroast1@gmail.com">✉️ digitalroast1@gmail.com</a>
-        <a href="https://www.instagram.com/digitalroast.io/" target="_blank" rel="noopener">📷 @digitalroast.io</a>
-      </p>
+  <section class="close shell" id="epikoinonia">
+    <span class="glow" aria-hidden="true"></span>
+    <span class="label mono rv">Επικοινωνία</span>
+    <h2 class="rv" style="--d:1">Ας μιλήσουμε.</h2>
+    <p class="lede rv" style="--d:2">Μία κουβέντα 30 λεπτών, δωρεάν και χωρίς δέσμευση. Βλέπουμε το γραφείο σου και σου λέμε ειλικρινά τι χρειάζεται.</p>
+    <div class="hero-cta rv" style="--d:3"><a class="btn magnetic" href="rantevou.html">Κλείσε ραντεβού <span class="arr">→</span></a><a class="btn ghost magnetic" href="tel:+306934361336">Πάρε τηλέφωνο</a></div>
+    <div class="direct rv" style="--d:4">
+      <a href="tel:+306934361336">693 436 1336</a>
+      <a href="mailto:digitalroast1@gmail.com">digitalroast1@gmail.com</a>
+      <a href="https://www.instagram.com/digitalroast.io/" target="_blank" rel="noopener">@digitalroast.io</a>
     </div>
-    <div class="cal">
-      <div class="calendly-inline-widget" data-url="https://calendly.com/konips005/30min?hide_gdpr_banner=1"></div>
-      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<footer>
-  <div class="wrap">
-    <span class="logo"><span class="wordmark lg"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span><span>© 2026 Digital Roast · Websites για γραφεία τελετών</span></span>
-    <span class="contact-links">
-      <a href="tel:+306934361336">📞 693 436 1336</a>
-      <a href="mailto:digitalroast1@gmail.com">✉️ digitalroast1@gmail.com</a>
-      <a href="https://www.instagram.com/digitalroast.io/" target="_blank" rel="noopener">📷 @digitalroast.io</a>
-    </span>
-    <span class="code-line">&lt;/made with ☕ &amp; code&gt;</span>
+<footer class="shell">
+  <div class="row">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span class="wordmark lg"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      <span>© 2026 Digital Roast · Websites για γραφεία τελετών</span>
+    </div>
+    <nav aria-label="Footer">
+      <a href="#paketo">Πακέτο</a><a href="#diadikasia">Διαδικασία</a><a href="rantevou.html">Ραντεβού</a><a href="tel:+306934361336">693 436 1336</a><a href="https://www.instagram.com/digitalroast.io/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-(function(){
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = matchMedia('(pointer: fine)').matches;
 
-  /* ---------- Hero 3D scene ---------- */
-  var host = document.getElementById('scene');
-  function css(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
-  try {
-    if (!window.THREE) throw new Error('no three');
-    var renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setClearColor(0x000000, 0);
-    host.appendChild(renderer.domElement);
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-    camera.position.set(0, 0, 11);
+  /* ---------- Loader: once per session ---------- */
+  var loader = document.getElementById('loader'), bar = document.getElementById('loader-bar');
+  var seen = false;
+  try { seen = sessionStorage.getItem('dr-seen') === '1'; sessionStorage.setItem('dr-seen', '1'); } catch (e) {}
+  var arrival = !seen && !reduce;
+  if (!arrival) { loader.classList.add('done'); }
+  else {
+    var p = 0, ti = setInterval(function () { p = Math.min(100, p + 8 + Math.random() * 18); bar.style.width = p + '%'; if (p >= 100) { clearInterval(ti); setTimeout(reveal, 250); } }, 110);
+  }
+  function reveal() { loader.classList.add('done'); motes.arrive(); }
+  setTimeout(function () { loader.classList.add('done'); }, 4000); /* safety */
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-    var key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(4, 6, 8); scene.add(key);
-    var warm = new THREE.PointLight(0xd9c3a0, 0.8, 30); warm.position.set(-4, -2, 6); scene.add(warm);
+  /* ---------- Sky: dusk → night, scrubbed by scroll ---------- */
+  var sky = document.documentElement.style;
+  var dusk = [[30, 24, 19], [12, 10, 9]], night = [[9, 10, 16], [4, 4, 6]];
+  function mix(a, b, t) { return 'rgb(' + a.map(function (v, i) { return Math.round(v + (b[i] - v) * t); }).join(',') + ')'; }
+  function paintSky() {
+    var max = document.documentElement.scrollHeight - innerHeight, t = max > 0 ? Math.min(1, scrollY / max) : 0;
+    t = t * t * (3 - 2 * t);
+    sky.setProperty('--sky-a', mix(dusk[0], night[0], t));
+    sky.setProperty('--sky-b', mix(dusk[1], night[1], t));
+  }
 
-    function rr(c, x, y, w, h, r){ c.beginPath(); c.moveTo(x+r,y); c.arcTo(x+w,y,x+w,y+h,r); c.arcTo(x+w,y+h,x,y+h,r); c.arcTo(x,y+h,x,y,r); c.arcTo(x,y,x+w,y,r); c.closePath(); }
-    function windowTex(kind){
-      var W = 1024, H = 700, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
-      var c = cv.getContext('2d');
-      var dark = kind === 'app';
-      var bg = dark ? '#1B1411' : '#FBF7F3', chrome = dark ? '#261C17' : '#EFE6DE', ink = dark ? '#F3EBE3' : '#22170F', soft = dark ? '#3A2C24' : '#E4D8CD', acc = '#B89A6A';
-      rr(c, 0, 0, W, H, 34); c.fillStyle = bg; c.fill();
-      c.save(); rr(c,0,0,W,H,34); c.clip();
-      c.fillStyle = chrome; c.fillRect(0,0,W,64);
-      ['#F2665A','#F5BE4F','#5BC66A'].forEach(function(col,i){ c.beginPath(); c.arc(40+i*30,32,9,0,7); c.fillStyle=col; c.fill(); });
-      rr(c, 200, 18, 620, 28, 14); c.fillStyle = dark ? '#1B1411' : '#FFFFFF'; c.fill();
-      c.fillStyle = dark ? '#8E7D70' : '#9A8879'; c.font = '600 17px monospace';
-      c.fillText(kind==='shop' ? 'shop.example.gr' : kind==='app' ? 'app.example.gr/dashboard' : 'example.gr', 222, 38);
-      if (kind === 'landing') {
-        rr(c,60,120,420,30,8); c.fillStyle=ink; c.fill();
-        rr(c,60,164,340,30,8); c.fill();
-        rr(c,60,214,380,14,7); c.fillStyle=soft; c.fill();
-        rr(c,60,238,300,14,7); c.fill();
-        rr(c,60,286,170,52,14); c.fillStyle=acc; c.fill();
-        rr(c,246,286,140,52,14); c.strokeStyle=soft; c.lineWidth=3; c.stroke();
-        var g = c.createLinearGradient(540,110,960,420); g.addColorStop(0,'#D9C3A0'); g.addColorStop(1,'#B89A6A');
-        rr(c,540,110,420,300,24); c.fillStyle=g; c.fill();
-        c.beginPath(); c.arc(750,260,70,0,7); c.fillStyle='rgba(255,255,255,.35)'; c.fill();
-        for (var i=0;i<3;i++){ rr(c,60+i*305,460,280,180,20); c.fillStyle=soft; c.fill(); rr(c,84+i*305,488,60,60,14); c.fillStyle=acc; c.globalAlpha=.8; c.fill(); c.globalAlpha=1; rr(c,84+i*305,570,200,14,7); c.fillStyle=dark?'#4A3A30':'#D3C4B6'; c.fill(); }
-      } else if (kind === 'shop') {
-        rr(c,60,100,260,26,8); c.fillStyle=ink; c.fill();
-        var cols=['#D9C3A0','#B9D3C7','#E9B8B0','#C9C3E6','#F1D9A0','#A9C8E8'];
-        for (var j=0;j<6;j++){ var x=60+(j%3)*310, y=160+Math.floor(j/3)*260;
-          rr(c,x,y,280,236,20); c.fillStyle=soft; c.fill();
-          rr(c,x+16,y+16,248,140,14); c.fillStyle=cols[j]; c.fill();
-          rr(c,x+16,y+172,150,14,7); c.fillStyle=dark?'#4A3A30':'#C9B9AB'; c.fill();
-          c.fillStyle=ink; c.font='800 24px sans-serif'; c.fillText((19+j*7)+',90€', x+16, y+218);
-          rr(c,x+200,y+190,64,34,10); c.fillStyle=acc; c.fill(); }
-      } else {
-        c.fillStyle='#211813'; c.fillRect(0,64,200,H-64);
-        for (var k=0;k<6;k++){ rr(c,28,110+k*56,144,18,9); c.fillStyle= k===1 ? acc : '#3A2C24'; c.fill(); }
-        var stats=['12.480','3,4%','1.920€'];
-        for (var s=0;s<3;s++){ rr(c,240+s*255,100,230,120,18); c.fillStyle='#261C17'; c.fill(); c.fillStyle='#F3EBE3'; c.font='800 40px sans-serif'; c.fillText(stats[s],264+s*255,178); rr(c,264+s*255,124,90,12,6); c.fillStyle='#4A3A30'; c.fill(); }
-        rr(c,240,250,740,400,20); c.fillStyle='#261C17'; c.fill();
-        c.strokeStyle='#3A2C24'; c.lineWidth=2; for (var gl=0;gl<5;gl++){ c.beginPath(); c.moveTo(270,300+gl*75); c.lineTo(950,300+gl*75); c.stroke(); }
-        var pts=[[270,560],[360,520],[450,540],[540,450],[630,470],[720,380],[810,400],[950,300]];
-        c.beginPath(); pts.forEach(function(p,i){ i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]); }); c.lineTo(950,600); c.lineTo(270,600); c.closePath();
-        var ga=c.createLinearGradient(0,300,0,600); ga.addColorStop(0,'rgba(184,154,106,.45)'); ga.addColorStop(1,'rgba(184,154,106,0)'); c.fillStyle=ga; c.fill();
-        c.beginPath(); pts.forEach(function(p,i){ i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]); }); c.strokeStyle=acc; c.lineWidth=6; c.lineJoin='round'; c.stroke();
-        c.beginPath(); c.arc(950,300,12,0,7); c.fillStyle=acc; c.fill();
+  /* ---------- Motes: warm light, cursor constellations, a falling star now and then ---------- */
+  var motes = (function () {
+    var cv = document.getElementById('motes'), c = cv.getContext('2d'), W, H, dpr, pts = [], mouse = { x: -999, y: -999 }, t0 = performance.now(), arriveAt = -1, star = null, nextStar = 4000;
+    function size() {
+      dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
+      cv.width = W * dpr; cv.height = H * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(150, W * H / 9000));
+      pts = []; for (var i = 0; i < n; i++) pts.push(make(Math.random() * H));
+    }
+    function make(y) { var z = .3 + Math.random() * .7; return { x: Math.random() * W, y: y, z: z, r: .5 + z * 1.5, vy: -(.05 + z * .18), vx: (Math.random() - .5) * .08, ph: Math.random() * 6.3 }; }
+    addEventListener('pointermove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+    document.addEventListener('pointerleave', function () { mouse.x = mouse.y = -999; });
+    var lastScroll = scrollY;
+    function frame(now) {
+      var t = now - t0, dy = (scrollY - lastScroll); lastScroll = scrollY;
+      c.clearRect(0, 0, W, H);
+      var k = arriveAt < 0 ? 1 : Math.min(1, (now - arriveAt) / 1600), ease = 1 - Math.pow(1 - k, 4);
+      var near = [];
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i];
+        if (!reduce) { p.x += p.vx; p.y += p.vy - dy * p.z * .25; }
+        if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; } if (p.y > H + 10) { p.y = -10; p.x = Math.random() * W; }
+        if (p.x < -10) p.x = W + 10; if (p.x > W + 10) p.x = -10;
+        var x = p.x, y = p.y;
+        if (k < 1) { var s = 1 + (1 - ease) * 3.2; x = W / 2 + (x - W / 2) * s; y = H / 2 + (y - H / 2) * s; }
+        var tw = .55 + .45 * Math.sin(t * .0016 + p.ph);
+        c.beginPath(); c.arc(x, y, p.r, 0, 6.283);
+        c.fillStyle = 'rgba(255,224,170,' + (tw * p.z * .8 * ease).toFixed(3) + ')'; c.fill();
+        if (fine) { var d = Math.hypot(x - mouse.x, y - mouse.y); if (d < 170) near.push({ x: x, y: y, d: d }); }
       }
-      c.restore();
-      var t = new THREE.CanvasTexture(cv); t.anisotropy = 4; return t;
+      /* constellation around the cursor */
+      for (var a = 0; a < near.length; a++) {
+        var A = near[a];
+        c.strokeStyle = 'rgba(227,207,168,' + (.32 * (1 - A.d / 170)).toFixed(3) + ')'; c.lineWidth = .7;
+        c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(mouse.x, mouse.y); c.stroke();
+        for (var b = a + 1; b < near.length; b++) {
+          var B = near[b], dd = Math.hypot(A.x - B.x, A.y - B.y);
+          if (dd < 90) { c.strokeStyle = 'rgba(227,207,168,' + (.22 * (1 - dd / 90)).toFixed(3) + ')'; c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.stroke(); }
+        }
+      }
+      /* a falling star every few seconds */
+      if (!reduce && t > nextStar && !star) { star = { x: Math.random() * W * .7 + W * .2, y: Math.random() * H * .35, life: 0 }; nextStar = t + 6000 + Math.random() * 6000; }
+      if (star) {
+        star.life += 16; var q = star.life / 900, sx = star.x - q * 260, sy = star.y + q * 130;
+        var g = c.createLinearGradient(sx, sy, sx + 90, sy - 45); g.addColorStop(0, 'rgba(255,240,215,' + (1 - q) + ')'); g.addColorStop(1, 'rgba(255,240,215,0)');
+        c.strokeStyle = g; c.lineWidth = 1.4; c.beginPath(); c.moveTo(sx, sy); c.lineTo(sx + 90, sy - 45); c.stroke();
+        if (q >= 1) star = null;
+      }
+      requestAnimationFrame(frame);
     }
+    size(); addEventListener('resize', size);
+    requestAnimationFrame(frame);
+    return { arrive: function () { arriveAt = performance.now(); }, hold: function () { arriveAt = Infinity; } };
+  })();
+  if (arrival) motes.hold();
 
-    var group = new THREE.Group(); scene.add(group);
-    var panelGeo = new THREE.PlaneGeometry(4.1, 2.8);
-    var defs = [
-      {kind:'landing', pos:[1.2, 1.25, -1.6], rot:[0.05,-0.42,0.04]},
-      {kind:'landing', pos:[-1.3, -1.05, -0.4], rot:[-0.04,0.38,-0.03]},
-      {kind:'landing', pos:[0.35, 0.05, 0.9], rot:[0.02,-0.22,0]}
-    ];
-    var panels = defs.map(function(d, i){
-      var m = new THREE.Mesh(panelGeo, new THREE.MeshBasicMaterial({map:windowTex(d.kind), transparent:true, side:THREE.DoubleSide}));
-      var shadow = new THREE.Mesh(panelGeo, new THREE.MeshBasicMaterial({color:0x000000, transparent:true, opacity:.28}));
-      shadow.position.set(0.12,-0.16,-0.06); shadow.scale.set(1.02,1.02,1);
-      var holder = new THREE.Group(); holder.add(shadow); holder.add(m);
-      holder.position.set(d.pos[0], d.pos[1], d.pos[2]); holder.rotation.set(d.rot[0], d.rot[1], d.rot[2]);
-      holder.userData = {base:d.pos.slice(), phase:i*1.7};
-      group.add(holder); return holder;
+  /* ---------- Scroll reveals ---------- */
+  var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .18, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.rv, #stations').forEach(function (el) { io.observe(el); });
+
+  /* ---------- Orbit: features ride a tilted ring around the package ---------- */
+  var orbit = document.getElementById('orbit'), chips = [].slice.call(orbit.querySelectorAll('.chip'));
+  function orbitFits() { return orbit.clientWidth >= 340 && !reduce; }
+  function placeOrbit(now) {
+    if (!orbitFits()) { orbit.classList.add('static'); return; }
+    orbit.classList.remove('static');
+    var w = orbit.clientWidth, cx = w / 2, cy = w / 2, half = chips.reduce(function (m, ch) { return Math.max(m, ch.offsetWidth / 2); }, 0), rx = Math.max(w * .3, w / 2 - half - 6), ry = w * .17, tilt = -12 * Math.PI / 180, spin = now * .00012;
+    chips.forEach(function (ch, i) {
+      var a = spin + i / chips.length * 6.283, x = Math.cos(a) * rx, y = Math.sin(a) * ry;
+      var X = cx + x * Math.cos(tilt) - y * Math.sin(tilt), Y = cy + x * Math.sin(tilt) + y * Math.cos(tilt);
+      var front = Math.sin(a), s = .82 + .18 * (front + 1) / 2;
+      ch.style.transform = 'translate(' + (X - ch.offsetWidth / 2).toFixed(1) + 'px,' + (Y - ch.offsetHeight / 2).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+      ch.style.zIndex = front > 0 ? 6 : 4;
+      ch.style.opacity = front > 0 ? 1 : (.35 + .4 * (1 + front));
     });
+  }
+  (function spinLoop(now) { placeOrbit(now); requestAnimationFrame(spinLoop); })(performance.now());
 
-    var copper = new THREE.MeshStandardMaterial({color:0x9C8459, metalness:.65, roughness:.28});
-    var cream = new THREE.MeshStandardMaterial({color:0xF6E3D2, metalness:.1, roughness:.35});
-    var shapes = [
-      new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.2, 32, 80), copper),
-      new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 0), cream),
-      new THREE.Mesh(new THREE.SphereGeometry(0.28, 40, 40), copper),
-      new THREE.Mesh(new THREE.BoxGeometry(0.5,0.5,0.5), copper)
-    ];
-    var spots = [[-2.5,1.9,0.6],[2.7,-1.7,1.2],[2.6,2.3,0.4],[-2.6,-2.3,1.4]];
-    shapes.forEach(function(s,i){ s.position.set(spots[i][0],spots[i][1],spots[i][2]); s.userData={base:spots[i].slice(),phase:i*2.1}; group.add(s); });
+  /* ---------- Process line: horizontal or vertical ---------- */
+  var line = document.getElementById('st-line');
+  function shapeLine() { var v = innerWidth <= 820; line.setAttribute('x2', v ? '0' : '100%'); line.setAttribute('y2', v ? '100%' : '0'); }
+  shapeLine(); addEventListener('resize', shapeLine);
 
-    var target = {x:0,y:0}, cur = {x:0,y:0};
-    host.parentElement.addEventListener('pointermove', function(e){
-      var r = host.getBoundingClientRect();
-      target.x = ((e.clientX - r.left)/r.width - .5); target.y = ((e.clientY - r.top)/r.height - .5);
-    });
-
-    function size(){
-      var w = host.clientWidth, h = host.clientHeight; if (!w || !h) return;
-      renderer.setSize(w, h, false); camera.aspect = w/h;
-      camera.position.z = w/h < 1.1 ? 12.5 : 11;
-      camera.updateProjectionMatrix();
-    }
-    size();
-    if (window.ResizeObserver) new ResizeObserver(size).observe(host); else window.addEventListener('resize', size);
-
-    var visible = true;
-    if (window.IntersectionObserver) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; if (visible && !reduce) loop(); }).observe(host);
-
-    var t0 = performance.now(), running = false;
-    function frame(now){
-      var t = (now - t0)/1000;
-      cur.x += (target.x - cur.x)*0.05; cur.y += (target.y - cur.y)*0.05;
-      group.rotation.y = -0.18 + cur.x*0.5 + (reduce?0:Math.sin(t*0.25)*0.06);
-      group.rotation.x = 0.06 + cur.y*0.3;
-      panels.forEach(function(p){ p.position.y = p.userData.base[1] + (reduce?0:Math.sin(t*0.9 + p.userData.phase)*0.09); });
-      shapes.forEach(function(s,i){
-        s.position.y = s.userData.base[1] + (reduce?0:Math.sin(t*1.1 + s.userData.phase)*0.15);
-        if (!reduce){ s.rotation.x = t*(0.3+i*0.1); s.rotation.y = t*(0.4+i*0.08); }
-      });
-      renderer.render(scene, camera);
-    }
-    function loop(){
-      if (running) return; running = true;
-      (function tick(now){ if (!visible){ running = false; return; } frame(now); requestAnimationFrame(tick); })(performance.now());
-    }
-    frame(performance.now());
-    host.classList.add('ready');
-    if (!reduce) loop();
-  } catch (err) { /* fallback card stays visible */ }
-
-  /* ---------- Tilt cards ---------- */
-  if (!reduce) document.querySelectorAll('.card').forEach(function(card){
-    card.addEventListener('pointermove', function(e){
-      var r = card.getBoundingClientRect(), x = (e.clientX - r.left)/r.width, y = (e.clientY - r.top)/r.height;
-      card.style.setProperty('--ry', ((x - .5)*12).toFixed(2)+'deg');
-      card.style.setProperty('--rx', ((.5 - y)*12).toFixed(2)+'deg');
-      card.style.setProperty('--mx', (x*100)+'%'); card.style.setProperty('--my', (y*100)+'%');
-    });
-    card.addEventListener('pointerleave', function(){ card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg'); });
+  /* ---------- Magnetic buttons ---------- */
+  if (fine && !reduce) document.querySelectorAll('.magnetic').forEach(function (b) {
+    b.addEventListener('pointermove', function (e) { var r = b.getBoundingClientRect(); b.style.setProperty('--mx', ((e.clientX - r.left - r.width / 2) * .25).toFixed(1) + 'px'); b.style.setProperty('--my', ((e.clientY - r.top - r.height / 2) * .35).toFixed(1) + 'px'); });
+    b.addEventListener('pointerleave', function () { b.style.setProperty('--mx', '0px'); b.style.setProperty('--my', '0px'); });
   });
 
-  /* ---------- Anatomy highlight ---------- */
-  var layers = document.querySelectorAll('.layer'), items = document.querySelectorAll('#layers-list li');
-  function highlight(n){
-    layers.forEach(function(l){ l.classList.toggle('on', l.dataset.l === n); });
-    items.forEach(function(li){ li.classList.toggle('on', li.dataset.l === n); });
-  }
-  items.forEach(function(li){ li.addEventListener('pointerenter', function(){ highlight(li.dataset.l); }); });
-  highlight('3');
+  /* ---------- Hero: the light settles while the visitor aims at the action ---------- */
+  var hero = document.getElementById('hero'), cta = document.getElementById('hero-cta');
+  if (fine) { cta.addEventListener('pointerenter', function () { hero.classList.add('settle'); }); cta.addEventListener('pointerleave', function () { hero.classList.remove('settle'); }); }
 
+  /* ---------- Mobile menu ---------- */
+  var mb = document.getElementById('menu-btn'), panel = document.getElementById('nav-panel');
+  mb.addEventListener('click', function () { var o = panel.classList.toggle('open'); mb.setAttribute('aria-expanded', o); mb.textContent = o ? 'Κλείσιμο' : 'Μενού'; });
+  panel.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { panel.classList.remove('open'); mb.setAttribute('aria-expanded', 'false'); mb.textContent = 'Μενού'; }); });
+
+  addEventListener('scroll', function () { requestAnimationFrame(paintSky); }, { passive: true });
+  paintSky();
 })();
 </script>
-
-</body></html>
+</body>
+</html>
