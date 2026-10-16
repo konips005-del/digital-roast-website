@@ -6,6 +6,7 @@
 <title>Digital Roast · Websites για γραφεία τελετών</title>
 <meta name="description" content="Websites για γραφεία τελετών. Ένα πακέτο, 250€, έτοιμο σε 2–3 μέρες.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%2308080A'/%3E%3Cg stroke='%23fff' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 10l3 3'/%3E%3Cpath d='M15 5v4'/%3E%3Cpath d='M23 8l-3 3'/%3E%3C/g%3E%3Cpath d='M13 15l15 8-6 2 4 7-4 2-3-7-6 4z' fill='%23F2511A' stroke='%23fff' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script>try{if(!sessionStorage.getItem('dr-seen')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -38,13 +39,33 @@ a{color:inherit}
 #sky{position:fixed;inset:0;z-index:-2;background:radial-gradient(120% 80% at 70% 0%,var(--sky-a),var(--sky-b) 70%)}
 #motes{position:fixed;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none}
 
-/* loader */
-.loader{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#08080A;transition:opacity .7s ease,visibility .7s}
-.loader.done{opacity:0;visibility:hidden}
-.loader-stage{display:flex;flex-direction:column;align-items:center;gap:22px}
-.loader-bar{width:min(220px,60vw);height:1px;background:var(--hair);overflow:hidden}
-.loader-bar i{display:block;height:100%;width:0;background:var(--bronze);transition:width .25s linear}
+/* intro: the logo among twinkling stars; the brightest one flies to its post in the hero */
+.loader{display:none}
+html.intro{overflow:hidden}
+html.intro .loader{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px;background:radial-gradient(70% 60% at 50% 45%,#16120E,#060607 75%)}
+.loader-stage{position:relative;transition:transform .6s var(--ease),filter .6s var(--ease)}
+.loader-stage .wordmark{font-size:clamp(2.4rem,9vw,4.4rem);opacity:0;transform:translateY(10px) scale(.96);animation:logo-in .9s var(--ease) .15s forwards}
+@keyframes logo-in{to{opacity:1;transform:none}}
+.loader-stage svg.sp{position:absolute;fill:#FFF3DC;filter:drop-shadow(0 0 6px rgba(255,214,150,.9)) drop-shadow(0 0 18px rgba(184,154,106,.6));opacity:0;animation:sp-in .6s var(--ease) forwards,twinkle 1.4s ease-in-out infinite alternate}
+.loader-stage svg.sp:nth-of-type(1){width:28px;top:-58%;left:-14%;animation-delay:.35s,.95s}
+.loader-stage svg.sp:nth-of-type(2){width:14px;top:-80%;left:52%;animation-delay:.5s,1.1s}
+.loader-stage svg.sp:nth-of-type(3){width:20px;top:-22%;right:-16%;animation-delay:.65s,1.25s}
+.loader-stage svg.sp:nth-of-type(4){width:12px;bottom:-62%;right:8%;animation-delay:.8s,1.4s}
+.loader-stage svg.sp:nth-of-type(5){width:17px;bottom:-48%;left:-6%;animation-delay:.95s,1.55s}
+.loader-stage svg.sp:nth-of-type(6){width:10px;top:14%;left:-26%;animation-delay:1.1s,1.7s}
+@keyframes sp-in{from{opacity:0;transform:scale(0) rotate(-45deg)}to{opacity:1;transform:none}}
+@keyframes twinkle{from{opacity:.4;transform:scale(.88)}to{opacity:1;transform:scale(1.08)}}
+.loader-foot{display:flex;flex-direction:column;align-items:center;gap:16px;opacity:0;animation:logo-in .8s var(--ease) .5s forwards}
+.loader-bar{width:min(260px,60vw);height:1px;background:var(--hair);overflow:hidden}
+.loader-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--bronze),#FFF3DC);transform-origin:left;transform:scaleX(0);animation:load 1.9s cubic-bezier(.65,0,.35,1) .3s forwards}
+@keyframes load{to{transform:scaleX(1)}}
 .loader .mono{color:var(--soft)}
+.loader.leaving{opacity:0;transition:opacity .55s var(--ease) .1s}
+.loader.leaving .loader-stage{transform:scale(1.12);filter:blur(4px)}
+html.intro .hero .rv,html.intro header.top{opacity:0;transform:translateY(28px)}
+header.top{transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.candle.waiting{opacity:0}
+.candle{transition:opacity .5s ease,left 1.2s var(--ease),top 1.2s var(--ease)}
 
 /* wordmark */
 .wordmark{display:inline-flex;align-items:flex-start;font-weight:900;font-size:1.55rem;line-height:1;letter-spacing:-.06em;white-space:nowrap;padding-bottom:3px}
@@ -83,7 +104,7 @@ a.cell:hover{color:var(--ink);background:rgba(237,233,227,.03)}
 .btn:hover .arr{transform:translateX(4px)}
 
 /* candle: the one drifting light */
-.candle{position:absolute;width:14px;height:14px;border-radius:50%;background:#FFF3DC;box-shadow:0 0 18px 6px rgba(255,214,150,.65),0 0 90px 30px rgba(184,154,106,.25);animation:drift 14s ease-in-out infinite;transition:left 1.2s var(--ease),top 1.2s var(--ease)}
+.candle{position:absolute;width:14px;height:14px;border-radius:50%;background:#FFF3DC;box-shadow:0 0 18px 6px rgba(255,214,150,.65),0 0 90px 30px rgba(184,154,106,.25);animation:drift 14s ease-in-out infinite}
 .candle::after{content:"";position:absolute;inset:-50px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,214,150,.18),transparent);animation:breathe 5s ease-in-out infinite}
 @keyframes drift{0%,100%{transform:translate(0,0)}25%{transform:translate(18px,-14px)}50%{transform:translate(-6px,-26px)}75%{transform:translate(-20px,-8px)}}
 @keyframes breathe{0%,100%{transform:scale(.85);opacity:.7}50%{transform:scale(1.15);opacity:1}}
@@ -198,8 +219,11 @@ footer nav a:hover{color:var(--ink)}
 
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader-stage">
-    <span class="wordmark lg"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span>
-    <div class="loader-bar"><i id="loader-bar"></i></div>
+    <span class="wordmark"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span>
+    <svg class="sp" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.4 16.6 11.1 24 12c-7.4.9-11.1 4.6-12 12-.9-7.4-4.6-11.1-12-12 7.4-.9 11.1-4.6 12-12Z"/></svg><svg class="sp" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.4 16.6 11.1 24 12c-7.4.9-11.1 4.6-12 12-.9-7.4-4.6-11.1-12-12 7.4-.9 11.1-4.6 12-12Z"/></svg><svg class="sp" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.4 16.6 11.1 24 12c-7.4.9-11.1 4.6-12 12-.9-7.4-4.6-11.1-12-12 7.4-.9 11.1-4.6 12-12Z"/></svg><svg class="sp" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.4 16.6 11.1 24 12c-7.4.9-11.1 4.6-12 12-.9-7.4-4.6-11.1-12-12 7.4-.9 11.1-4.6 12-12Z"/></svg><svg class="sp" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.4 16.6 11.1 24 12c-7.4.9-11.1 4.6-12 12-.9-7.4-4.6-11.1-12-12 7.4-.9 11.1-4.6 12-12Z"/></svg><svg class="sp" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 7.4 16.6 11.1 24 12c-7.4.9-11.1 4.6-12 12-.9-7.4-4.6-11.1-12-12 7.4-.9 11.1-4.6 12-12Z"/></svg>
+  </div>
+  <div class="loader-foot">
+    <div class="loader-bar"><i></i></div>
     <span class="mono">Ανάβουμε τα φώτα</span>
   </div>
 </div>
@@ -326,17 +350,41 @@ footer nav a:hover{color:var(--ink)}
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = matchMedia('(pointer: fine)').matches;
 
-  /* ---------- Loader: once per session ---------- */
-  var loader = document.getElementById('loader'), bar = document.getElementById('loader-bar');
-  var seen = false;
-  try { seen = sessionStorage.getItem('dr-seen') === '1'; sessionStorage.setItem('dr-seen', '1'); } catch (e) {}
-  var arrival = !seen && !reduce;
-  if (!arrival) { loader.classList.add('done'); }
-  else {
-    var p = 0, ti = setInterval(function () { p = Math.min(100, p + 8 + Math.random() * 18); bar.style.width = p + '%'; if (p >= 100) { clearInterval(ti); setTimeout(reveal, 250); } }, 110);
+  /* ---------- Intro: once per session ---------- */
+  var root = document.documentElement, loader = document.getElementById('loader');
+  var arrival = root.classList.contains('intro');
+  var candle = document.querySelector('.hero .candle');
+  function leave() {
+    if (loader.classList.contains('leaving')) return;
+    loader.classList.add('leaving');
+    /* the brightest star travels to the candle's post in the hero */
+    var from = loader.querySelector('svg.sp'), r1 = from.getBoundingClientRect();
+    candle.classList.add('waiting');
+    setTimeout(finish, 450);
+    if (!from.animate || !r1.width) { candle.classList.remove('waiting'); return; }
+    var flyer = from.cloneNode(true);
+    flyer.style.cssText = 'position:fixed;left:' + r1.left + 'px;top:' + r1.top + 'px;width:' + r1.width + 'px;height:' + r1.height + 'px;z-index:120;fill:#FFF3DC;opacity:1;animation:none;filter:drop-shadow(0 0 8px rgba(255,214,150,.95)) drop-shadow(0 0 26px rgba(184,154,106,.7))';
+    document.body.appendChild(flyer);
+    requestAnimationFrame(function () {
+      var r2 = candle.getBoundingClientRect(), dx = r2.left + r2.width / 2 - (r1.left + r1.width / 2), dy = r2.top + r2.height / 2 - (r1.top + r1.height / 2);
+      flyer.animate([
+        { transform: 'translate(0,0) rotate(0) scale(1)' },
+        { transform: 'translate(' + dx * .55 + 'px,' + (dy * .55 - 60) + 'px) rotate(140deg) scale(1.5)', offset: .55 },
+        { transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(270deg) scale(' + (r2.width / r1.width) + ')' }
+      ], { duration: 1100, easing: 'cubic-bezier(.45,0,.2,1)', fill: 'forwards' }).finished.then(done, done);
+      function done() { candle.classList.remove('waiting'); flyer.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 400, fill: 'forwards' }).finished.then(function () { flyer.remove(); }, function () { flyer.remove(); }); }
+    });
   }
-  function reveal() { loader.classList.add('done'); motes.arrive(); }
-  setTimeout(function () { if (!loader.classList.contains('done')) reveal(); }, 4000); /* safety */
+  function finish() {
+    if (!root.classList.contains('intro')) return;
+    root.classList.remove('intro');
+    try { sessionStorage.setItem('dr-seen', '1'); } catch (e) {}
+    motes.arrive();
+  }
+  if (arrival) {
+    setTimeout(leave, 2400);
+    setTimeout(function () { finish(); candle.classList.remove('waiting'); }, 6000); /* safety */
+  }
 
   /* ---------- Sky: dusk → night, scrubbed by scroll ---------- */
   var sky = document.documentElement.style;
@@ -351,7 +399,7 @@ footer nav a:hover{color:var(--ink)}
 
   /* ---------- Motes: warm light, cursor constellations, a falling star now and then ---------- */
   var motes = (function () {
-    var cv = document.getElementById('motes'), c = cv.getContext('2d'), W, H, dpr, pts = [], mouse = { x: -999, y: -999 }, t0 = performance.now(), arriveAt = -1, star = null, nextStar = 4000;
+    var cv = document.getElementById('motes'), c = cv.getContext('2d'), W, H, dpr, pts = [], mouse = { x: -999, y: -999 }, t0 = performance.now(), arriveAt = -1, gatherAt = -1, G = null, star = null, nextStar = 4000;
     function size() {
       dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
       cv.width = W * dpr; cv.height = H * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -374,21 +422,53 @@ footer nav a:hover{color:var(--ink)}
       c.closePath(); c.fillStyle = 'rgba(255,240,215,' + a.toFixed(3) + ')'; c.fill();
     }
     var lastScroll = scrollY;
+    /* once per session, the sky gathers into a star of light, holds, then lets go */
+    function gatherTick(now) {
+      if (reduce || gatherAt < 0 || now < gatherAt) return;
+      if (!G) {
+        try { if (sessionStorage.getItem('dr-const')) { gatherAt = -1; return; } sessionStorage.setItem('dr-const', '1'); } catch (e) {}
+        var cx = W * (W < 700 ? .5 : .8), cy = H * (W < 700 ? .64 : .56), R = Math.min(W * .1, 120), tg = [], used = {}, mem = [];
+        for (var q = 0; q < 8; q++) { var an = q * Math.PI / 4 - Math.PI / 2, rr = q % 2 ? R * .32 : R; tg.push([cx + Math.cos(an) * rr, cy + Math.sin(an) * rr]); }
+        tg.forEach(function (tp) {
+          var best = -1, bd = 1e18;
+          pts.forEach(function (s, si) { if (used[si]) return; var dd = (s.x - tp[0]) * (s.x - tp[0]) + (s.y - tp[1]) * (s.y - tp[1]); if (dd < bd) { bd = dd; best = si; } });
+          used[best] = 1; var s = pts[best]; s.locked = true; s.tx = tp[0]; s.ty = tp[1]; mem.push(s);
+        });
+        G = { t0: now, mem: mem, pgr: 0, a: 0 };
+      }
+      var e = now - G.t0, IN = 1300, HOLD = 2200, OUT = 1200;
+      if (e < IN) G.pgr = 1 - Math.pow(1 - e / IN, 3);
+      else if (e < IN + HOLD) G.pgr = 1;
+      else if (e < IN + HOLD + OUT) { var r = (e - IN - HOLD) / OUT; G.pgr = 1 - (r < .5 ? 2 * r * r : 1 - Math.pow(-2 * r + 2, 2) / 2); }
+      else { G.mem.forEach(function (s) { s.locked = false; }); G = null; gatherAt = -1; return; }
+      G.a = e < IN ? Math.max(0, (e - 500) / 800) : e < IN + HOLD ? 1 : Math.max(0, 1 - (e - IN - HOLD) / 600);
+    }
+    function drawGather() {
+      if (!G || !G.a || !G.mem[0].sx) return;
+      c.strokeStyle = 'rgba(255,230,190,' + (.55 * G.a).toFixed(3) + ')'; c.lineWidth = 1;
+      c.beginPath(); G.mem.forEach(function (s, i) { i ? c.lineTo(s.sx, s.sy) : c.moveTo(s.sx, s.sy); }); c.closePath(); c.stroke();
+      var cx = 0, cy = 0; G.mem.forEach(function (s) { cx += s.sx; cy += s.sy; }); cx /= 8; cy /= 8;
+      var gl = c.createRadialGradient(cx, cy, 0, cx, cy, 160); gl.addColorStop(0, 'rgba(255,214,150,' + (.16 * G.a).toFixed(3) + ')'); gl.addColorStop(1, 'rgba(255,214,150,0)');
+      c.fillStyle = gl; c.beginPath(); c.arc(cx, cy, 160, 0, 6.283); c.fill();
+    }
     function frame(now) {
       var t = now - t0, dy = (scrollY - lastScroll); lastScroll = scrollY;
       c.clearRect(0, 0, W, H);
       var k = arriveAt < 0 ? 1 : Math.max(0, Math.min(1, (now - arriveAt) / 1600)), ease = 1 - Math.pow(1 - k, 4);
       var near = [];
+      gatherTick(performance.now());
       for (var i = 0; i < pts.length; i++) {
         var p = pts[i];
-        if (!reduce) { p.x += p.vx; p.y += p.vy - dy * p.z * .25; }
+        if (!reduce && !p.locked) { p.x += p.vx; p.y += p.vy - dy * p.z * .25; }
         if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; } if (p.y > H + 10) { p.y = -10; p.x = Math.random() * W; }
         if (p.x < -10) p.x = W + 10; if (p.x > W + 10) p.x = -10;
-        var x = p.x, y = p.y;
+        var x = p.x, y = p.y, boost = 1;
+        if (p.locked && G) { x = p.x + (p.tx - p.x) * G.pgr; y = p.y + (p.ty - p.y) * G.pgr; boost = 1 + G.pgr * 1.6; }
         if (k < 1) { var s = 1 + (1 - ease) * 3.2; x = W / 2 + (x - W / 2) * s; y = H / 2 + (y - H / 2) * s; }
         var tw = .55 + .45 * Math.sin(t * .0016 + p.ph);
-        c.beginPath(); c.arc(x, y, p.r, 0, 6.283);
-        c.fillStyle = 'rgba(255,224,170,' + (tw * p.z * .8 * ease).toFixed(3) + ')'; c.fill();
+        c.beginPath(); c.arc(x, y, p.r * boost, 0, 6.283);
+        c.fillStyle = 'rgba(255,224,170,' + Math.min(1, tw * p.z * .8 * ease * boost).toFixed(3) + ')'; c.fill();
+        if (p.locked) { p.sx = x; p.sy = y; }
         if (fine) { var d = Math.hypot(x - mouse.x, y - mouse.y); if (d < 200) near.push({ x: x, y: y, d: d }); }
       }
       for (var s2 = 0; s2 < placed.length; s2++) {
@@ -400,6 +480,7 @@ footer nav a:hover{color:var(--ink)}
         sparkle(px, py, 7 * grow * (.85 + .15 * Math.sin(t * .003 + P.ph)), .95);
         if (fine) { var d2 = Math.hypot(px - mouse.x, py - mouse.y); if (d2 < 200) near.push({ x: px, y: py, d: d2 }); }
       }
+      drawGather();
       /* constellation around the cursor */
       for (var a = 0; a < near.length; a++) {
         var A = near[a];
@@ -422,9 +503,9 @@ footer nav a:hover{color:var(--ink)}
     }
     size(); addEventListener('resize', size);
     requestAnimationFrame(frame);
-    return { arrive: function () { arriveAt = performance.now(); }, hold: function () { arriveAt = Infinity; } };
+    return { arrive: function () { arriveAt = performance.now(); gatherAt = arriveAt + 2600; }, hold: function () { arriveAt = Infinity; }, gather: function (ms) { gatherAt = performance.now() + ms; } };
   })();
-  if (arrival) motes.hold();
+  if (arrival) motes.hold(); else motes.gather(1200);
 
   /* ---------- Scroll reveals ---------- */
   var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .18, rootMargin: '0px 0px -6% 0px' });
