@@ -19,6 +19,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>try{if(!sessionStorage.getItem('dr-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700;800;900&family=Noto+Serif+Display:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -57,6 +58,29 @@ a{color:inherit}
 #embers{position:fixed;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none}
 .progress{position:fixed;left:0;top:0;right:0;height:2px;z-index:40;background:linear-gradient(90deg,var(--bronze),var(--bronze-2));transform-origin:left;transform:scaleX(var(--p,0))}
 
+/* intro, once per session: a single light opens into a line, the name rises from behind it,
+   then the screen parts along that line to reveal the page */
+.intro-screen{display:none}
+html.intro{overflow:hidden}
+html.intro .intro-screen,.intro-screen.opening{position:fixed;inset:0;z-index:100;display:block;cursor:pointer}
+.i-half{position:absolute;left:0;right:0;height:50.5%;background:#08080A;transition:transform 1.05s cubic-bezier(.76,0,.24,1)}
+.i-half.t{top:0;background:linear-gradient(180deg,#08080A,#120F0C)}
+.i-half.b{bottom:0;background:linear-gradient(0deg,#08080A,#120F0C)}
+.intro-screen.opening .i-half.t{transform:translateY(-100%)}
+.intro-screen.opening .i-half.b{transform:translateY(100%)}
+.i-mid{position:absolute;left:0;right:0;top:50%;height:0;display:flex;justify-content:center;transition:opacity .45s ease}
+.intro-screen.opening .i-mid{opacity:0}
+.i-light{position:absolute;top:-3px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:#FFF3DC;box-shadow:0 0 14px 4px rgba(255,214,150,.75),0 0 70px 24px rgba(184,154,106,.22);opacity:0;animation:i-light .7s ease-out .15s forwards}
+@keyframes i-light{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+.i-line{position:absolute;top:0;left:50%;width:min(520px,78vw);height:1px;margin-left:calc(min(520px,78vw) / -2);background:linear-gradient(90deg,transparent,var(--bronze) 20%,#FFF3DC 50%,var(--bronze) 80%,transparent);transform:scaleX(0);animation:i-line 1s cubic-bezier(.65,0,.35,1) .6s forwards}
+@keyframes i-line{to{transform:scaleX(1)}}
+.i-name{position:absolute;bottom:18px;left:0;right:0;display:flex;justify-content:center;overflow:hidden;padding:6px 0 2px}
+.i-name .wordmark{font-size:clamp(2.2rem,8vw,3.8rem);transform:translateY(110%);animation:i-up .95s cubic-bezier(.16,1,.3,1) 1.05s forwards}
+.i-tag{position:absolute;top:18px;left:0;right:0;text-align:center;color:var(--bronze-2);opacity:0;transform:translateY(-6px);animation:i-down .8s var(--ease) 1.35s forwards}
+@keyframes i-up{to{transform:none}}
+@keyframes i-down{to{opacity:1;transform:none}}
+html.intro .hero .rv,html.intro header.top{opacity:0;transform:translateY(24px)}
+
 /* wordmark */
 .wordmark{display:inline-flex;align-items:flex-start;font-weight:900;font-size:1.55rem;line-height:1;letter-spacing:-.06em;white-space:nowrap;padding-bottom:3px}
 .wordmark .wm{filter:drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x)) drop-shadow(1px 1px 0 var(--wm-x))}
@@ -66,7 +90,7 @@ a{color:inherit}
 .wordmark.lg{font-size:clamp(2rem,6vw,2.8rem)}
 
 /* header */
-header.top{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:rgba(10,10,12,.6);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid transparent;transition:border-color .3s}
+header.top{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:rgba(10,10,12,.6);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid transparent;transition:border-color .3s,opacity .9s var(--ease),transform .9s var(--ease)}
 header.top.scrolled{border-color:var(--hair)}
 .bar{display:flex;align-items:center;gap:30px;height:var(--header-h)}
 .bar nav{display:flex;gap:30px;margin-left:auto}
@@ -349,6 +373,15 @@ footer nav a:hover{color:var(--ink)}
   <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></g></symbol>
 </svg>
 
+<div class="intro-screen" id="intro" aria-hidden="true">
+  <div class="i-half t"></div><div class="i-half b"></div>
+  <div class="i-mid">
+    <div class="i-name"><span class="wordmark"><span class="wm wm-d">digital</span><span class="wm wm-r">roast</span><svg viewBox="0 0 40 40"><g stroke="var(--wm-a)" stroke-width="2.6" stroke-linecap="round"><path d="M4 9l4 4"/><path d="M14 3v5"/><path d="M24 7l-4 4"/></g><path d="M12 14l17 9-7 2 5 8-4 2-4-8-6 5z" fill="var(--wm-cursor)" stroke="var(--wm-cursor-line)" stroke-width="2" stroke-linejoin="round"/></svg></span></div>
+    <span class="i-line"></span><span class="i-light"></span>
+    <span class="i-tag mono">Websites για γραφεία τελετών</span>
+  </div>
+</div>
+
 <div id="sky"></div>
 <canvas id="embers" aria-hidden="true"></canvas>
 <div class="progress" id="progress" aria-hidden="true"></div>
@@ -576,6 +609,22 @@ footer nav a:hover{color:var(--ink)}
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = matchMedia('(pointer: fine)').matches;
   function clamp(v) { return Math.max(0, Math.min(1, v)); }
+
+  /* ---------- Intro: once per session; a click or any key opens it early ---------- */
+  var root = document.documentElement, intro = document.getElementById('intro');
+  if (root.classList.contains('intro')) {
+    var opened = false;
+    var open = function () {
+      if (opened) return; opened = true;
+      try { sessionStorage.setItem('dr-intro', '1'); } catch (e) {}
+      intro.classList.add('opening');
+      setTimeout(function () { root.classList.remove('intro'); }, 250);
+      setTimeout(function () { intro.remove(); }, 1300);
+    };
+    setTimeout(open, 2500);
+    intro.addEventListener('click', open);
+    addEventListener('keydown', open, { once: true });
+  }
 
   /* ---------- Embers: a few slow, faint lights rising ---------- */
   (function () {
