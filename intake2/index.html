@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Doctor/clinic intake form: light, calm teal palette; cards A–F, files go out as email attachments via FormSubmit. */
+/* General client intake form: light, calm teal palette; cards A–F, files go out as email attachments via FormSubmit. */
 :root{
   color-scheme:light;
   --bg:#F3F8FA;--surface:#FFFFFF;--surface-2:#EAF4F5;--ink:#1C2B36;--muted:#5E707D;--line:#DAE5EA;
@@ -76,6 +76,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
 .success .big{font-size:3.2rem}
 .success h2{font-size:1.8rem;font-weight:900;margin:10px 0}
 .success p{color:var(--muted)}
+.credit{text-align:right;font-size:.78rem;color:var(--muted);margin-block:0 24px}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -100,7 +101,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
 <div class="errbox" id="errbox" role="alert" hidden></div>
 
 <form id="intakeForm" action="https://formsubmit.co/konips005@gmail.com" method="POST" enctype="multipart/form-data" autocomplete="on">
-  <input type="hidden" name="_subject" id="subjectField" value="Νέα φόρμα γιατρού · Digital Roast">
+  <input type="hidden" name="_subject" id="subjectField" value="Νέα φόρμα πελάτη · Digital Roast">
   <input type="hidden" name="_template" value="table">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://digitalroast.gr/intake2/?sent=1">
@@ -110,48 +111,18 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
   <section class="card">
     <h2><span class="num">A</span> Στοιχεία επιχείρησης</h2>
     <label for="f-business">Όνομα επιχείρησης / brand <span class="req">*</span></label>
-    <div class="hint">Πώς θέλετε να εμφανίζεται (π.χ. «Οδοντιατρείο Παπαδόπουλος»).</div>
+    <div class="hint">Πώς θέλετε να εμφανίζεται στο website σας.</div>
     <input type="text" id="f-business" name="Επιχείρηση" required>
 
-    <label for="f-specialty">Ειδικότητα <span class="req">*</span></label>
-    <select id="f-specialty" name="Ειδικότητα" required>
-      <option value="">Επιλέξτε ειδικότητα…</option>
-      <option>Παθολόγος</option>
-      <option>Γενικός ιατρός</option>
-      <option>Οδοντίατρος</option>
-      <option>Ορθοδοντικός</option>
-      <option>Καρδιολόγος</option>
-      <option>Δερματολόγος</option>
-      <option>Παιδίατρος</option>
-      <option>Γυναικολόγος</option>
-      <option>Ορθοπαιδικός</option>
-      <option>Οφθαλμίατρος</option>
-      <option>ΩΡΛ (Ωτορινολαρυγγολόγος)</option>
-      <option>Ουρολόγος</option>
-      <option>Νευρολόγος</option>
-      <option>Ψυχίατρος</option>
-      <option>Ενδοκρινολόγος</option>
-      <option>Γαστρεντερολόγος</option>
-      <option>Πνευμονολόγος</option>
-      <option>Ακτινολόγος</option>
-      <option>Αγγειοχειρουργός</option>
-      <option>Γενικός χειρουργός</option>
-      <option>Πλαστικός χειρουργός</option>
-      <option>Φυσικοθεραπευτής</option>
-      <option>Διαιτολόγος</option>
-      <option>Ψυχολόγος</option>
-      <option value="Άλλη">Άλλη (γράψτε την παρακάτω)</option>
-    </select>
-    <div id="specialtyOtherWrap" hidden>
-      <label for="f-specialty-other">Ποια ειδικότητα; <span class="req">*</span></label>
-      <input type="text" id="f-specialty-other" name="Άλλη ειδικότητα" placeholder="π.χ. Ρευματολόγος">
-    </div>
+    <label for="f-type">Είδος επιχείρησης <span class="req">*</span></label>
+    <div class="hint">Με τι ασχολείστε, με λίγα λόγια.</div>
+    <input type="text" id="f-type" name="Είδος επιχείρησης" placeholder="π.χ. εστιατόριο, κομμωτήριο, λογιστικό γραφείο, ηλεκτρολόγος" required>
 
     <label for="f-owner">Ονοματεπώνυμο υπεύθυνου <span class="req">*</span></label>
-    <input type="text" id="f-owner" name="Υπεύθυνος" autocomplete="name" placeholder="π.χ. Δρ. Γιώργος Παπαδόπουλος" required>
+    <input type="text" id="f-owner" name="Υπεύθυνος" autocomplete="name" placeholder="π.χ. Γιώργος Παπαδόπουλος" required>
 
-    <label for="f-bio">Λίγα λόγια για το ιατρείο <span class="req">*</span></label>
-    <div class="hint">2-5 προτάσεις: σπουδές, εμπειρία, από πότε λειτουργεί το ιατρείο, τι σας ξεχωρίζει.</div>
+    <label for="f-bio">Λίγα λόγια για την επιχείρηση <span class="req">*</span></label>
+    <div class="hint">2-5 προτάσεις: από πότε λειτουργεί, ποιους εξυπηρετείτε, τι σας ξεχωρίζει.</div>
     <textarea id="f-bio" name="Για την επιχείρηση" required></textarea>
 
     <label for="f-slogan">Σλόγκαν / μήνυμα</label>
@@ -159,11 +130,11 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
   </section>
 
   <section class="card">
-    <h2><span class="num">B</span> Υπηρεσίες</h2>
-    <label for="f-services">Υπηρεσίες (λίστα) <span class="req">*</span></label>
-    <div class="hint">π.χ. προληπτικός έλεγχος, triplex καρδιάς, εμφυτεύματα, λεύκανση, κατ' οίκον επισκέψεις…</div>
+    <h2><span class="num">B</span> Υπηρεσίες ή προϊόντα</h2>
+    <label for="f-services">Υπηρεσίες ή προϊόντα (λίστα) <span class="req">*</span></label>
+    <div class="hint">Γράψτε ό,τι προσφέρετε, ένα σε κάθε γραμμή. Τα πιο σημαντικά πρώτα.</div>
     <textarea id="f-services" name="Υπηρεσίες" required></textarea>
-    <label for="f-service-desc">Σύντομη περιγραφή ανά υπηρεσία</label>
+    <label for="f-service-desc">Σύντομη περιγραφή για το καθένα</label>
     <textarea id="f-service-desc" name="Περιγραφή υπηρεσιών" placeholder="προαιρετικό"></textarea>
   </section>
 
@@ -171,14 +142,14 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     <h2><span class="num">C</span> Επικοινωνία &amp; τοποθεσία</h2>
     <label for="f-phone">Τηλέφωνο <span class="req">*</span></label>
     <input type="tel" id="f-phone" name="Τηλέφωνο" autocomplete="tel" required>
-    <label for="f-phone24">Τηλέφωνο 24 ωρών</label>
-    <div class="hint">Αν είναι διαφορετικό από το παραπάνω (προαιρετικό).</div>
-    <input type="tel" id="f-phone24" name="Τηλέφωνο 24 ωρών">
+    <label for="f-phone24">Δεύτερο τηλέφωνο</label>
+    <div class="hint">π.χ. κινητό ή τηλέφωνο για έκτακτα (προαιρετικό).</div>
+    <input type="tel" id="f-phone24" name="Δεύτερο τηλέφωνο">
     <label for="f-email">Email <span class="req">*</span></label>
     <div class="hint">Εδώ θα σας απαντάμε για το website σας.</div>
     <input type="email" id="f-email" name="email" autocomplete="email" required>
     <label for="f-address">Διεύθυνση <span class="req">*</span></label>
-    <div class="hint">Πλήρης διεύθυνση + σύνδεσμος Google Maps αν έχετε.</div>
+    <div class="hint">Πλήρης διεύθυνση + σύνδεσμος Google Maps αν έχετε. Αν δεν έχετε φυσικό χώρο, γράψτε «online» ή την περιοχή που εξυπηρετείτε.</div>
     <input type="text" id="f-address" name="Διεύθυνση" autocomplete="street-address" required>
     <label for="f-hours">Ωράριο λειτουργίας <span class="req">*</span></label>
     <textarea id="f-hours" name="Ωράριο" required></textarea>
@@ -203,7 +174,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     <label class="file">
       <span class="ico">📸</span>
       <div>Κάντε κλικ για να ανεβάσετε φωτογραφίες</div>
-      <small>Ιατρείο, αίθουσα αναμονής, εξοπλισμός, ομάδα (έως 15 φωτογραφίες)</small>
+      <small>Χώρος, προϊόντα, δουλειές σας, ομάδα (έως 15 φωτογραφίες)</small>
       <div class="picked" id="photosPicked"></div>
       <input type="file" id="photosInput" accept="image/*" multiple>
     </label>
@@ -215,7 +186,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     <label for="f-colors">Προτίμηση χρωμάτων</label>
     <input type="text" id="f-colors" name="Χρώματα" placeholder="αν έχετε brand χρώματα (προαιρετικό)">
     <label for="f-reviews">Κριτικές</label>
-    <textarea id="f-reviews" name="Κριτικές" placeholder="λόγια ασθενών ή κριτικές από το Google (προαιρετικό)"></textarea>
+    <textarea id="f-reviews" name="Κριτικές" placeholder="λόγια πελατών ή κριτικές από το Google (προαιρετικό)"></textarea>
   </section>
 
   <section class="card">
@@ -226,7 +197,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
       <label><input type="radio" name="Έχει domain" value="Όχι"> Όχι</label>
     </div>
     <label for="f-domain" style="margin-top:16px">Domain (υπάρχον ή επιθυμητό)</label>
-    <input type="text" id="f-domain" name="Domain" placeholder="π.χ. www.dr-papadopoulos.gr">
+    <input type="text" id="f-domain" name="Domain" placeholder="π.χ. www.epixeirisi.gr">
   </section>
 
   <section class="card">
@@ -249,13 +220,14 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
   <h2>Ευχαριστούμε!</h2>
   <p>Λάβαμε τα στοιχεία σας και ξεκινάμε το website σας. Θα έχετε νέα μας πολύ σύντομα.</p>
 </div>
+<footer class="credit"><a href="https://digitalroast.gr" target="_blank" rel="noopener">Made by Digital Roast</a></footer>
 </div>
 
 <script>
 (function () {
   var MAX_TOTAL = 9.5 * 1024 * 1024; // FormSubmit limit is 10MB for all files together
   var MAX_PHOTOS = 15, MAX_DIM = 1600, JPEG_Q = 0.8;
-  var DRAFT_KEY = 'digitalroast_intake2_draft_v1';
+  var DRAFT_KEY = 'digitalroast_intake2_draft_v2';
 
   var form = document.getElementById('intakeForm');
   var errbox = document.getElementById('errbox');
@@ -271,16 +243,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
     return;
   }
-
-  /* ---------- Specialty: "Άλλη" reveals a free-text field ---------- */
-  var specSel = document.getElementById('f-specialty');
-  var specOther = document.getElementById('f-specialty-other');
-  var specWrap = document.getElementById('specialtyOtherWrap');
-  function syncSpecialty() {
-    var other = specSel.value === 'Άλλη';
-    specWrap.hidden = !other; specOther.required = other;
-  }
-  specSel.addEventListener('change', syncSpecialty);
 
   function showError(msg) { errbox.textContent = msg; errbox.hidden = false; errbox.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
 
@@ -328,8 +290,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     if (!form.reportValidity()) return;
 
     var biz = document.getElementById('f-business').value.trim();
-    var spec = specSel.value === 'Άλλη' ? specOther.value.trim() : specSel.value;
-    document.getElementById('subjectField').value = 'Νέα φόρμα γιατρού · ' + biz + (spec ? ' (' + spec + ')' : '');
+    document.getElementById('subjectField').value = 'Νέα φόρμα πελάτη · ' + biz + ' (' + document.getElementById('f-type').value.trim() + ')';
 
     submitBtn.disabled = true; submitBtn.textContent = 'Ετοιμάζουμε τα αρχεία…';
 
@@ -405,7 +366,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
       var saved = JSON.parse(store.getItem(DRAFT_KEY) || 'null');
       if (saved && saved.values) {
         apply(saved.values);
-        syncSpecialty();
         discardBtn.hidden = false;
         draftStatus.innerHTML = '<strong>Συνεχίζετε από εκεί που σταματήσατε</strong> (' + fmt(saved.at) + ').';
       }
@@ -417,7 +377,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     discardBtn.addEventListener('click', function () {
       try { store.removeItem(DRAFT_KEY); } catch (e) {}
       form.reset();
-      syncSpecialty();
       document.getElementById('logoPicked').textContent = ''; document.getElementById('photosPicked').textContent = '';
       discardBtn.hidden = true;
       draftStatus.textContent = 'Ξεκινάτε από την αρχή. Η πρόοδός σας αποθηκεύεται αυτόματα σε αυτόν τον browser.';
