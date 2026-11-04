@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Client intake form: same dark/bronze palette as the main site; cards A–F, files go out as email attachments via FormSubmit. */
+/* Client intake form: same dark/bronze palette as the main site; cards A–F, answers and images go to Google Apps Script (apps-script/Code.gs). */
 :root{
   color-scheme:dark;
   --bg:#0A0A0B;--surface:#121214;--surface-2:#1B1B1E;--ink:#ECEAE6;--muted:#9A968F;--line:#26262A;
@@ -99,11 +99,8 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
 
 <div class="errbox" id="errbox" role="alert" hidden></div>
 
-<form id="intakeForm" action="https://formsubmit.co/konips005@gmail.com" method="POST" enctype="multipart/form-data" autocomplete="on">
+<form id="intakeForm" autocomplete="on">
   <input type="hidden" name="_subject" id="subjectField" value="Νέα φόρμα πελάτη · Digital Roast">
-  <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://digitalroast.gr/intake/?sent=1">
   <!-- honeypot: hidden anti-spam field; people never see it, bots fill it -->
   <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 
@@ -202,8 +199,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     <textarea id="f-extra" name="Άλλες πληροφορίες" placeholder="Γράψτε εδώ…"></textarea>
   </section>
 
-  <div id="photoSlots" hidden></div>
-
   <section class="card">
     <button type="submit" class="submit" id="submitBtn">Υποβολή στοιχείων →</button>
   </section>
@@ -219,7 +214,9 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
 
 <script>
 (function () {
-  var MAX_TOTAL = 9.5 * 1024 * 1024; // FormSubmit limit is 10MB for all files together
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbyf2S2HjmLvNMgBCkUsYfx4eWAtH9VkKA4gdWdoDBPQqvv_8H8DTaLHkrG-xhhX8_9tZw/exec'; // Apps Script web app URL
+  var FORM_ID = 'intake';
+  var MAX_TOTAL = 30 * 1024 * 1024, SEND_TIMEOUT = 180000;
   var MAX_PHOTOS = 15, MAX_DIM = 1600, JPEG_Q = 0.8;
   var DRAFT_KEY = 'digitalroast_intake_draft_v1';
 
@@ -228,15 +225,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
   var submitBtn = document.getElementById('submitBtn');
   var logoInput = document.getElementById('logoInput');
   var photosInput = document.getElementById('photosInput');
-  var slots = document.getElementById('photoSlots');
-
-  /* ---------- After FormSubmit redirects back ---------- */
-  if (/[?&]sent=1/.test(location.search)) {
-    form.hidden = true;
-    document.getElementById('success').hidden = false;
-    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
-    return;
-  }
 
   function showError(msg) { errbox.textContent = msg; errbox.hidden = false; errbox.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
 
@@ -270,13 +258,30 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     });
   }
 
-  function setFile(input, file) {
-    var dt = new DataTransfer(); dt.items.add(file); input.files = dt.files;
+  /* ---------- Submit: compress images, send everything as JSON to the Apps Script endpoint ---------- */
+  function fail(msg) {
+    submitBtn.disabled = false; submitBtn.textContent = 'Δοκιμάστε ξανά →';
+    showError(msg);
   }
 
-  /* ---------- Submit: compress photos, one file per field, then post natively ---------- */
-  var canRewriteFiles = (function () { try { new DataTransfer(); return true; } catch (e) { return false; } })();
-  if (!canRewriteFiles) photosInput.name = 'Φωτογραφίες';
+  function toPayloadFile(file, label) {
+    return new Promise(function (res, rej) {
+      var r = new FileReader();
+      r.onload = function () { res({ label: label, name: file.name, type: file.type || 'image/jpeg', data: String(r.result).split(',')[1] }); };
+      r.onerror = function () { rej(r.error); };
+      r.readAsDataURL(file);
+    });
+  }
+
+  function collectFields() {
+    var out = [];
+    new FormData(form).forEach(function (v, k) {
+      if (typeof v === 'string' && k.charAt(0) !== '_' && v.trim()) out.push([k, v]);
+    });
+    return out;
+  }
+
+  var SEND_ERROR = 'Η αποστολή δεν ολοκληρώθηκε. Τα στοιχεία και οι φωτογραφίες σας είναι ακόμα εδώ, πατήστε «Δοκιμάστε ξανά» σε λίγο.';
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -289,34 +294,49 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
     submitBtn.disabled = true; submitBtn.textContent = 'Ετοιμάζουμε τα αρχεία…';
 
     var photos = Array.prototype.slice.call(photosInput.files, 0, MAX_PHOTOS);
-    var work = canRewriteFiles ? Promise.all(photos.map(compress)) : Promise.resolve(null);
-    var logoWork = canRewriteFiles && logoInput.files[0] && logoInput.files[0].size > 1024 * 1024 ? compress(logoInput.files[0]) : Promise.resolve(null);
+    var logo = logoInput.files[0];
+    var logoWork = logo ? (logo.size > 1024 * 1024 ? compress(logo) : Promise.resolve(logo)) : Promise.resolve(null);
 
-    Promise.all([work, logoWork]).then(function (out) {
+    Promise.all([Promise.all(photos.map(compress)), logoWork]).then(function (out) {
       var small = out[0], smallLogo = out[1];
-      var total = 0;
-      if (smallLogo) setFile(logoInput, smallLogo);
-      if (logoInput.files[0]) total += logoInput.files[0].size;
-      if (small) {
-        slots.innerHTML = '';
-        small.forEach(function (f, i) {
-          var inp = document.createElement('input');
-          inp.type = 'file'; inp.name = 'Φωτογραφία ' + (i + 1);
-          slots.appendChild(inp); setFile(inp, f); total += f.size;
-        });
-      } else {
-        for (var i = 0; i < photosInput.files.length; i++) total += photosInput.files[i].size;
-      }
+      var total = small.reduce(function (sum, f) { return sum + f.size; }, smallLogo ? smallLogo.size : 0);
       if (total > MAX_TOTAL) {
-        slots.innerHTML = '';
-        submitBtn.disabled = false; submitBtn.textContent = 'Υποβολή στοιχείων →';
-        showError('Τα αρχεία είναι ' + (total / 1048576).toFixed(1) + 'MB και το όριο είναι 10MB. Ανεβάστε λιγότερες φωτογραφίες ή στείλτε τις υπόλοιπες με σύνδεσμο (Google Drive / WeTransfer) στο πεδίο «Άλλες πληροφορίες».');
-        return;
+        fail('Τα αρχεία είναι ' + (total / 1048576).toFixed(1) + 'MB και το όριο είναι 30MB. Ανεβάστε λιγότερες φωτογραφίες ή στείλτε τις υπόλοιπες με σύνδεσμο (Google Drive / WeTransfer) στο πεδίο «Άλλες πληροφορίες».');
+        return null;
       }
       saveDraft();
       submitBtn.textContent = 'Αποστολή…';
-      form.submit();
-    });
+      var jobs = small.map(function (f, i) { return toPayloadFile(f, 'Φωτογραφία ' + (i + 1)); });
+      if (smallLogo) jobs.unshift(toPayloadFile(smallLogo, 'Λογότυπο'));
+      return Promise.all(jobs).then(function (files) {
+        var ctrl = new AbortController();
+        var timer = setTimeout(function () { ctrl.abort(); }, SEND_TIMEOUT);
+        // text/plain keeps this a "simple" request: Apps Script cannot answer a CORS preflight
+        return fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          signal: ctrl.signal,
+          body: JSON.stringify({
+            form: FORM_ID,
+            subject: document.getElementById('subjectField').value,
+            replyTo: document.getElementById('f-email').value.trim(),
+            honey: form.elements._honey.value,
+            fields: collectFields(),
+            files: files
+          })
+        }).then(function (r) {
+          clearTimeout(timer);
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        }).then(function (result) {
+          if (!result.ok) throw new Error(result.error || 'failed');
+          form.hidden = true; draftTools.hidden = true; errbox.hidden = true;
+          document.getElementById('success').hidden = false;
+          try { localStorage.removeItem(DRAFT_KEY); } catch (err) {}
+          window.scrollTo(0, 0);
+        });
+      });
+    }).catch(function () { fail(SEND_ERROR); });
   });
 
   /* ---------- Draft: keep typed answers in this browser ---------- */
