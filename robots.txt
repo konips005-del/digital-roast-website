@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /intake/
+Disallow: /intake2/
+Disallow: /intake3/
+Disallow: /apps-script/
+
+Sitemap: https://digitalroast.gr/sitemap.xml
